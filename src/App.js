@@ -4,17 +4,17 @@ import "./App.scss";
 //components
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-
-//pages
 import AddInventoryItem from "./components/addInventoryItem/AddInventoryItem";
 import AddWarehouse from "./components/addWarehouse/AddWarehouse";
 import DeleteInventoryItem from "./components/deleteInventoryItem/DeleteInventoryItem";
 import DeleteWarehouse from "./components/deleteWarehouse/DeleteWarehouse";
 import EditInventoryItem from "./components/editInventoryItem/EditInventoryItem";
 import EditWarehouse from "./components/editWarehouse/EditWarehouse";
-import Inventory from "./pages/inventory/Inventory";
 import InventoryItemDetails from "./components/inventoryItemDetails/InventoryItemDetails";
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
+
+//pages
+import Inventory from "./pages/inventory/Inventory";
 import Warehouses from "./pages/warehouses/Warehouses";
 
 //react router components
