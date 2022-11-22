@@ -1,0 +1,16 @@
+@use "../partials/colors" as *;
+@use "../partials/breakpoints" as *;
+@use "../partials/fonts" as *;
+
+html,
+body {
+  margin: 0;
+  font-family: "Avenir", sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}

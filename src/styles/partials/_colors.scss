@@ -1,0 +1,25 @@
+/*Primary colors*/ 
+/*Instock-Black: Global text color.*/
+$global-text:#13182C;
+/* Instock-Indig0: Interactive elements*/
+$global-interect: #2E66E5;
+ /*White: Global white color*/
+$global-white-background:#FFFFFF;
+
+/*Secondary colors*/ 
+/*Slate: Table column headers and placeholder text.*/
+$table-column: #5C667E;
+/*Cloud: Outlines, dividers, borders, table sorting icon*/ 
+$border-devider: #BDC5D5;
+
+/*Background colors*/ 
+/*Graphite: Top navidation header background, CTA button hover state background */ 
+$navigation-hover: #232940;
+/*Light-Grey: Page background, table column header background, CTA background*/ 
+$page-cta: #F7F8F9; 
+
+/*Supporting colors*/ 
+/*Green: "In stock" label*/ 
+$in-stock: #158463;
+/*Red: "out of stock" label, error states and delete icon*/ 
+$out-of-stock: #C94515;
