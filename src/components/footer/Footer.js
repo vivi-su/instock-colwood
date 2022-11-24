@@ -1,4 +1,4 @@
-//Ticket 8
+// Ticket 8
 
 export default function Footer() {
   return (
