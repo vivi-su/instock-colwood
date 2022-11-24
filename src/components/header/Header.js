@@ -13,7 +13,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="header__buttons-container">
-          <Link to={`warehouse`}>
+          <Link to={`warehouses`}>
             <button
               className="header__button"
               type="button"
