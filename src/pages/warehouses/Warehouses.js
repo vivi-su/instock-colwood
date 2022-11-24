@@ -83,7 +83,7 @@ export default function Warehouses() {
           <h1 className="warehouses__title">Warehouses</h1>
           {/*---top search input---*/}
           <form className="warehouses__form">
-            <div className="warehouses__search-group">
+            <div className="warehouses__search-group warehouses__search-group--search">
               <input
                 type="search"
                 placeholder="Search..."
@@ -96,7 +96,7 @@ export default function Warehouses() {
 
             {/*---top add new warehouse button---*/}
 
-            <button className="warehouses__search-group warehouses__search-group--modify">
+            <button className="warehouses__search-group warehouses__search-group--add">
               <span className="warehouses__search-icon warehouses__search-icon--add"></span>
               <span className="warehouses__add-btn">Add New Warehouse</span>
             </button>
@@ -177,9 +177,10 @@ export default function Warehouses() {
                     contact information
                   </h2>
                   <p className="warehouses__subdetail">
-                    <span className="warehouses__phonenumber">
-                      {warehouse.contact_phone}
-                    </span>
+                    <input
+                      className="warehouses__phonenumber"
+                      defaultValue={warehouse.contact_phone}
+                    ></input>
                     {warehouse.contact_email}
                   </p>
                 </div>
