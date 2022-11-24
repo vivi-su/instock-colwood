@@ -2,18 +2,34 @@
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/fonts" as *;
 
-.Warehouses {
+.warehouses {
+
+  //to overlap top header setting
+  position:relative;
+  top:-20px;
+  z-index: 9999;
+
   padding: 1rem 2rem;
   background-color:$global-background;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   width:90%;
   margin:0 auto;
   max-width: 1280px;
+  border-radius: 3px;
+
+  a{
+    text-decoration: none;
+  }
+
+  label{
+    display: none;
+  }
+
 
   //---search form---
   &__title {
     font-size: 1.75rem;
-    color: #13182c;
+    color: $global-text;
     margin-bottom: 1.6rem;
   }
 
@@ -21,7 +37,7 @@
     cursor: pointer;
     width: 100%;
     border: 1px solid#bdc5d5;
-    background-color: #ffffff;
+    background-color: $global-background;
     border-radius: 50px;
 
     display: flex;
@@ -35,7 +51,7 @@
 
   &__search-group--modify {
     justify-content: center;
-    background-color: #2e66e5;
+    background-color: $global-interect;
     border: 0;
   }
 
@@ -43,7 +59,6 @@
     background-image: url(../../assets/icons/search-24px.svg);
     background-size: contain;
     background-repeat: no-repeat;
-
     width: 100%;
     display: inline-block;
     width: 2rem;
@@ -67,10 +82,10 @@
     width: 100%;
     border: 0;
     font-size: 0.813rem;
-    background-color: #ffffff;
+    background-color: $global-background;
     line-height: 1.25rem;
     &::placeholder {
-      color: #5c667e;
+      color: $table-column;
     }
   }
 
@@ -78,12 +93,12 @@
     font-size: 0.813rem;
     font-weight: 600;
     line-height: 1.25rem;
-    color: #ffffff;
+    color: $global-background;
   }
 
   //---warehouse list---
   &__list {
-    border-top: 1px solid #bdc5d5;
+    border-top: 1px solid $border-devider;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
@@ -118,7 +133,7 @@
 
   &__subtitle {
     font-size: 0.688rem;
-    color: #5c667e;
+    color: $table-column;
     font-weight: 400;
     text-transform: uppercase;
     margin: 0;
@@ -133,7 +148,7 @@
     margin-bottom: 0.25rem;
 
     &--name {
-      color: #2e66e5;
+      color: $global-interect;
       font-weight: 600;
     }
   }
@@ -149,12 +164,16 @@
     background-image: url(../../assets/icons/chevron_right-24px.svg);
     background-size: cover;
 
-    display: inline-block;
     width: 1rem;
     height: 1rem;
     margin-right: 0.1rem;
     position: relative;
     top: -2px;
+    border:0;
+    background-color:none;
+    outline:0;
+    background-color:$global-background;
+   
 
     &--delete {
       background-image: url(../../assets/icons/delete_outline-24px.svg);
@@ -174,7 +193,7 @@
 }
 
 @include medium {
-  .Warehouses {
+  .warehouses {
 
     padding: 2.5rem 0;  
 
@@ -184,7 +203,7 @@
 
     &__list{
       cursor: pointer;
-      border-top: 1px solid #bdc5d5;
+      border-top: 1px solid border-devider;
       padding-top: 1.2rem;
       padding-bottom:1.2rem;
 
@@ -302,7 +321,7 @@
     }
    
    &__title-list{
-   margin-top: 1rem;
+    margin-top: 1rem;
     background-color:  rgba(247, 248, 249, 0.7);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -314,7 +333,7 @@
     flex-direction: row;
     justify-content: space-between;
     text-transform: uppercase;
-    color:#5C667E;
+    color:$table-column;
     font-weight: 600;
     font-size: 0.75rem;
     padding-left: 2rem;
@@ -342,7 +361,7 @@
 
 
 @include large {
-  .Warehouses {
+  .warehouses {
 
   &__form{
       width:40%;
