@@ -1,37 +1,38 @@
 import { useState, useEffect } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import DeleteWarehouse from "../../components/deleteWarehouse/DeleteWarehouse";
 import "./Warehouses.scss";
 import axios from "axios";
 
-
 export default function Warehouses() {
-
   const [warehouses, setWarehouses] = useState([]);
   const navigate = useNavigate();
-  
-  const getNewId = () => {
-     return uuidv4();
-   };
 
-  useEffect(()=>{
-    const fetchAllwarehouses = async () =>{
-      try{
-        const {data} = await axios.get(`http://localhost:8080/warehouses`);
+  const getNewId = () => {
+    return uuidv4();
+  };
+
+  useEffect(() => {
+    const fetchAllwarehouses = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:8080/warehouses`);
         setWarehouses(data);
         console.log(data);
-      } catch (err){
+      } catch (err) {
         console.log("Error", err);
       }
     };
 
     fetchAllwarehouses();
-  },[]);
+  }, []);
 
-    const handleUpdate = (event, warehouseId) => {
-      event.preventDefault();
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    navigate("/editWarehouse/:warehouseId");
+
+    //below lines can be written in EditWarehouse component
+    /**
       const values = {
         warehouse_name: event.target.warehouse_name.value,
         address: event.target.address.value,
@@ -52,18 +53,17 @@ export default function Warehouses() {
         .catch(err=>
           {console.log(err)});
     };
+    */
+  };
 
+  const handleDelete = async (event, warehouseId) => {
+    event.preventDefault();
 
-      const handleDelete = async (event, warehouseId) => {
-        event.preventDefault();
-      
-        navigate("/deleteWarehouse/:warehouseId");
+    navigate("/deleteWarehouse/:warehouseId");
 
-        <DeleteWarehouse handleDelete={handleDelete} warehouseId ={warehouseId} />;
+    //if user click confirm delete then continue going, following code can be written in deleteWarehouse
 
-        //if user click confirm delete then continue going, following code can be written in deleteWarehouse
-
-        /** 
+    /** 
         const {
           data: { deletedwarehouseId },
         } = await axios.delete(
@@ -73,8 +73,7 @@ export default function Warehouses() {
           warehouses.filter((warehouse) => warehouse.id !== deletedwarehouseId)
         );
         */
-      };
-
+  };
 
   return (
     <>
@@ -152,10 +151,8 @@ export default function Warehouses() {
                     address
                   </h2>
                   <div className="warehouses__subdetail">
-                    <span>{warehouse.address}</span>,
-                    <br></br>
-                    <span>{warehouse.city}</span>,
-                    <br></br>
+                    <span>{warehouse.address}</span>,<br></br>
+                    <span>{warehouse.city}</span>,<br></br>
                     <span>{warehouse.country}</span>
                   </div>
                 </div>
