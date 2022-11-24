@@ -6,24 +6,25 @@ import sortIcon from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 export default function Inventory() {
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [inventoryItemsList, setInventoryItemsList] = useState([]);
 
-  console.log(inventoryItems);
+  console.log(inventoryItemsList);
   useEffect(() => {
     const getInventoryItemsURL = "http://localhost:8080/inventories";
-
     axios
       .get(getInventoryItemsURL)
       .then((response) => {
-        setInventoryItems(response.data);
+        setInventoryItemsList(response.data);
       })
       .catch((error) => console.log(error));
   }, []);
 
   return (
     <>
+      <Outlet />
       {/* Inventory nav bar */}
       <div className="inventory">
         <section className="inventory__nav-bar">
@@ -52,34 +53,44 @@ export default function Inventory() {
         <section className="inventory__sort-bar inventory__sort-bar--mid">
           <div className="inventory__sort-item-container">
             <div className="inventory__sort-item">
-              <span>INVENTORY ITEM</span>
+              <span className="inventory__label-text">INVENTORY ITEM</span>
               <img src={sortIcon} alt="sort icon: arrow up and down" />
             </div>
             <div className="inventory__sort-item">
-              <span>CATEGORY</span>
+              <span className="inventory__label-text">CATEGORY</span>
               <img src={sortIcon} alt="sort icon: arrow up and down" />
             </div>
             <div className="inventory__sort-item">
-              <span>STATUS</span>
+              <span className="inventory__label-text">STATUS</span>
               <img src={sortIcon} alt="sort icon: arrow up and down" />
             </div>
             <div className="inventory__sort-item">
-              <span>QTY</span>
+              <span className="inventory__label-text">QTY</span>
               <img src={sortIcon} alt="sort icon: arrow up and down" />
             </div>
             <div className="inventory__sort-item">
-              <span>WAREHOUSE</span>
+              <span className="inventory__label-text">WAREHOUSE</span>
               <img src={sortIcon} alt="sort icon: arrow up and down" />
             </div>
           </div>
           <div className="inventory__action">
-            <span className="inventory__action-text">ACTIONS</span>
+            <span className="inventory__label-text">ACTIONS</span>
           </div>
         </section>
         {/* Inventory list rendered dinamically */}
-        <section className="inventory__item-list-container">
-          <InventoryItemsList />
-        </section>
+        {inventoryItemsList?.map((inventoryItem) => {
+          return (
+            <InventoryItemsList
+              key={inventoryItem?.id + inventoryItem?.item_name}
+              name={inventoryItem?.item_name}
+              category={inventoryItem?.category}
+              status={inventoryItem?.status}
+              quantity={inventoryItem?.quantity}
+              warehouseId={inventoryItem?.warehouse_id}
+              inventoryItemId={inventoryItem?.id}
+            />
+          );
+        })}
       </div>
     </>
   );
