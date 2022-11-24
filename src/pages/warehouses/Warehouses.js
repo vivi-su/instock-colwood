@@ -27,9 +27,16 @@ export default function Warehouses() {
     fetchAllwarehouses();
   }, []);
 
+
+const handleAddWarehouse = (event) => {
+  event.preventDefault();
+  navigate("warehouses/addWarehouse");
+};
+
+
   const handleUpdate = (event) => {
     event.preventDefault();
-    navigate("/editWarehouse/:warehouseId");
+    navigate("warehouses/editWarehouse/:warehouseId");
 
     //below lines can be written in EditWarehouse component
     /**
@@ -56,7 +63,7 @@ export default function Warehouses() {
     */
   };
 
-  const handleDelete = async (event, warehouseId) => {
+  const handleDelete = async (event) => {
     event.preventDefault();
 
     navigate("/deleteWarehouse/:warehouseId");
@@ -95,7 +102,10 @@ export default function Warehouses() {
 
             {/*---top add new warehouse button---*/}
 
-            <button className="warehouses__search-group warehouses__search-group--add">
+            <button
+              className="warehouses__search-group warehouses__search-group--add"
+              onClick={(event) => handleAddWarehouse(event)}
+            >
               <span className="warehouses__search-icon warehouses__search-icon--add"></span>
               <span className="warehouses__add-btn">Add New Warehouse</span>
             </button>
