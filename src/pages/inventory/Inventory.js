@@ -11,7 +11,6 @@ import { Outlet } from "react-router-dom";
 export default function Inventory() {
   const [inventoryItemsList, setInventoryItemsList] = useState([]);
 
-  console.log(inventoryItemsList);
   useEffect(() => {
     const getInventoryItemsURL = "http://localhost:8080/inventories";
     axios

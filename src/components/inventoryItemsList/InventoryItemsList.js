@@ -28,7 +28,9 @@ export default function InventoryItemsList({
         <span className="inventory-list__label-text inventory-list__label-text--mid">
           INVENTORY ITEM
         </span>
-        <span>{name}</span>
+        <Link to={`${inventoryItemId}`}>
+          <span>{name}</span>
+        </Link>
       </div>
       <div>
         <span className="inventory-list__label-text inventory-list__label-text--mid">
@@ -58,7 +60,7 @@ export default function InventoryItemsList({
         <Link to={`deleteInventoryItem/${inventoryItemId}`}>
           <img src={deleteIcon} alt="delete: trash bin icon" />
         </Link>
-        <Link to={``}>
+        <Link to={`editInventoryItem/${inventoryItemId}`}>
           <img src={editIcon} alt="edit: pencil icon" />
         </Link>
       </div>
