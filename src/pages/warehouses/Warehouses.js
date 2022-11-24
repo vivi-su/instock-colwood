@@ -133,20 +133,16 @@ export default function Warehouses() {
           <form className="warehouses__list" key={getNewId()}>
             <div className="warehouses__subtitle-all-list-group">
               <div className="warehouses__subtitle-session-half-for-leftand-right warehouses__subtitle-session-half-for-leftand-right--group-one">
-                <div className="warehouses__subtitle-session">
+                <div className="warehouses__subtitle-session warehouses__subtitle-session--group-one">
                   <h2 className="warehouses__subtitle warehouses__medium-hide">
                     warehouse
                   </h2>
                   <div className="warehouses__list-icon-arrow-containter">
                     <Link to={`warehouses/${warehouse.id}`}>
-                        <input
-                          type="text"
-                          name="city"
-                          defaultValue={warehouse.warehouse_name}
-                          className="warehouses__subdetail" 
-                        ></input>
-                        {/*--- It will link to <WarehouseDetails /> ---*/}
-                    
+                      <p className="warehouses__subdetail">
+                        {warehouse.warehouse_name}
+                      </p>
+                      {/*--- It will link to <WarehouseDetails /> ---*/}
                     </Link>
                     <span className="warehouses__list-icon"></span>
                   </div>
@@ -156,23 +152,11 @@ export default function Warehouses() {
                     address
                   </h2>
                   <div className="warehouses__subdetail">
-                    <input
-                      type="text"
-                      name="address"
-                      defaultValue={warehouse.address}
-                    ></input>
-
-                    <input
-                      type="text"
-                      name="city"
-                      defaultValue={warehouse.city}
-                    ></input>
-
-                    <input
-                      type="text"
-                      name="country"
-                      defaultValue={warehouse.country}
-                    ></input>
+                    <span>{warehouse.address}</span>,
+                    <br></br>
+                    <span>{warehouse.city}</span>,
+                    <br></br>
+                    <span>{warehouse.country}</span>
                   </div>
                 </div>
               </div>
@@ -183,32 +167,23 @@ export default function Warehouses() {
                     contact name
                   </h2>
                   <div className="warehouses__list-icon-arrow-containter">
-                    <input
-                      type="text"
-                      name="contact_name"
-                      className="warehouses__subdetail"
-                      defaultValue={warehouse.contact_name}
-                    ></input>
+                    <p className="warehouses__subdetail">
+                      {warehouse.contact_name}
+                    </p>
                   </div>
                 </div>
-                <div className="warehouses__subtitle-session warehouses__subtitle-session--group-two">
+                <div className="warehouses__subtitle-session">
                   <h2 className="warehouses__subtitle warehouses__medium-hide">
                     contact information
                   </h2>
                   <div className="warehouses__subdetail">
-                    <input
-                      type="text"
-                      name="contact_phone"
-                      className="warehouses__phonenumber"
-                      defaultValue={warehouse.contact_phone}
-                    ></input>
+                    <span className="warehouses__phonenumber">
+                      {warehouse.contact_phone}
+                    </span>
 
-                    <input
-                      type="text"
-                      name="contact_email"
-                      className="warehouses__phonenumber"
-                      defaultValue={warehouse.contact_email}
-                    ></input>
+                    <span className="warehouses__phonenumber">
+                      {warehouse.contact_email}
+                    </span>
                   </div>
                 </div>
               </div>

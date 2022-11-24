@@ -17,8 +17,9 @@
   max-width: 1280px;
   border-radius: 3px;
 
-  a{
+  a, a:active{
     text-decoration: none;
+    color:$global-interect;
   }
 
   input {
@@ -103,9 +104,10 @@
     padding-bottom: 1rem;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    
   }
 
   &__subtitle-all-list-group {
@@ -125,27 +127,31 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;;
   }
 
   &__subtitle-session-half-for-leftand-right {
     padding-right: 1rem;
-  
-    
+
     &--group-one{
-    flex-basis: 30%;
-    // background-color: red;
-   padding-right:0;
+    width:40%;
+    align-self: stretch;
     }
 
     &--group-two{
-     flex-basis: 50%;
-    // background-color: green;
+     width:40%;
+     align-self: stretch;
     }
 
   }
 
   &__subtitle-session {
     padding-bottom: 1rem;
+
+
+    &--group-one{
+    width:100%;
+    }
   }
 
   &__subtitle {
@@ -290,6 +296,11 @@
      flex-grow:5;
     }
 
+    &__list{
+      // background-color: aqua;
+      width:100%;
+    }
+
     &__subtitle-session-half-for-leftand-right{
       width:100%;
       display: flex;
@@ -299,16 +310,19 @@
       padding-right: 0;
   
       &--group-one{
-      width:100%;    
-      flex-basis: 70%;
+      width:70%;   
+      // background-color: red;
       }
      
       &--group-two{
-      flex-basis: 100%;
+      // background-color: green;
+      margin-right: 0;
+      padding-right: 0;
       }
     }
 
     &__subtitle-session{
+    
       align-self: stretch;
 
     display: flex;
@@ -317,18 +331,20 @@
     align-items: flex-start;
 
     &--group-one{
-      flex-basis:70%;
+      width:50%;
+      // background-color: yellow;
+      padding-right:3rem;
+      
     }
 
-    &--group-two{
-      flex-basis:100%;
-    }
+
     }
 
     &__bottom-icons {
     justify-content: center;
     flex-grow:1;
     width:10%;
+    // background-color: lightcoral;
    }
 
    &__medium-hide{
@@ -374,7 +390,7 @@
       top:3px;
 
       &--hide-action{
-        display: none;
+        visibility: hidden;
       }
    }
 }
