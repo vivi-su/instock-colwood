@@ -3,6 +3,8 @@
 import WarehouseDetails from "../warehouseDetails/WarehouseDetails";
 import WarehouseInventoryList from "../warehouseInventoryList/WarehouseInventoryList";
 
+
+
 export default function WarehouseSingle() {
   return (
     <>
