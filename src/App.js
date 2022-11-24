@@ -11,7 +11,7 @@ import DeleteWarehouse from "./components/deleteWarehouse/DeleteWarehouse";
 import EditInventoryItem from "./components/editInventoryItem/EditInventoryItem";
 import EditWarehouse from "./components/editWarehouse/EditWarehouse";
 import InventoryItemDetails from "./components/inventoryItemDetails/InventoryItemDetails";
-import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
+import WarehouseSingle from "./components/warehouseSingle/WarehouseSingle";
 
 //pages
 import Inventory from "./pages/inventory/Inventory";
@@ -44,7 +44,7 @@ function App() {
             </Route>
             <Route
               path="warehouses/:warehouseId"
-              element={<WarehouseDetails />}
+              element={<WarehouseSingle />}
             />
             <Route
               element={<EditWarehouse />}
