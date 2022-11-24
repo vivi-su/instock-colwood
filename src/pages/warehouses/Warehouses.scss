@@ -1,0 +1,334 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+.Warehouses {
+  padding: 1rem 2rem;
+  background-color:$global-background;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  width:90%;
+  margin:0 auto;
+  max-width: 1280;
+
+  //---search form---
+  &__title {
+    font-size: 1.75rem;
+    color: #13182c;
+    margin-bottom: 1.6rem;
+  }
+
+  &__search-group {
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid#bdc5d5;
+    background-color: #ffffff;
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__search-group--modify {
+    justify-content: center;
+    background-color: #2e66e5;
+    border: 0;
+  }
+
+  &__search-icon {
+    background-image: url(../../assets/icons/search-24px.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    display: inline-block;
+    width: 2rem;
+    height: 1.4rem;
+    cursor: pointer;
+
+    &--add {
+      background-image: url(../../assets/icons/plus-24px.svg);
+      background-size: cover;
+
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-right: 0.1rem;
+    }
+  }
+
+  &__search-name {
+    cursor: pointer;
+    outline: 0;
+    display: block;
+    width: 100%;
+    border: 0;
+    font-size: 0.813rem;
+    background-color: #ffffff;
+    line-height: 1.25rem;
+    &::placeholder {
+      color: #5c667e;
+    }
+  }
+
+  &__add-btn {
+    font-size: 0.813rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: #ffffff;
+  }
+
+  //---warehouse list---
+  &__list {
+    border-top: 1px solid #bdc5d5;
+    padding-top: 1rem;
+  }
+
+  &__subtitle-all-list-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &__phonenumber{
+    letter-spacing: 0.2;
+  }
+
+  &__bottom-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__subtitle-session-half-for-leftand-right {
+    padding-right: 1rem;
+    flex-grow: 1;
+  }
+
+  &__subtitle-session {
+    padding-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 0.688rem;
+    color: #5c667e;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
+  }
+
+  &__subdetail {
+    font-size: 0.813rem;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 0.25rem;
+
+    &--name {
+      color: #2e66e5;
+      font-weight: 600;
+    }
+  }
+
+  &__list-icon-arrow-containter {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__list-icon {
+    background-image: url(../../assets/icons/chevron_right-24px.svg);
+    background-size: cover;
+
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.1rem;
+    position: relative;
+    top: -2px;
+
+    &--delete {
+      background-image: url(../../assets/icons/delete_outline-24px.svg);
+      background-size: cover;
+      height: 1.25rem;
+    }
+
+    &--edit {
+      background-image: url(../../assets/icons/edit-24px.svg);
+      background-size: cover;
+    }
+  }
+
+  &__small-hide{
+    display: none;
+  }
+}
+
+@include medium {
+  .Warehouses {
+
+    padding: 2.5rem 0;  
+
+    &__form{
+         width:40%;   
+    }
+
+    &__list{
+      
+      border-top: 1px solid #bdc5d5;
+      padding-top: 1.2rem;
+      padding-bottom:1.5rem;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    
+    &__form-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    
+      flex-grow: 1;
+    }
+
+    &__search-group{
+        margin-bottom: 0;
+        margin-left: 1rem;
+        padding: 0.7rem 1rem;
+    }
+
+    &__title {
+    font-size: 2rem;
+    flex-grow: 1;
+   }
+
+    &__search-name, &__add-btn{
+     font-size: 0.875rem;
+     font-weight: 400;
+    }
+
+    &__subtitle,
+    &__subdetail{
+     font-size: 0.875rem;
+    }
+
+    &__subtitle-session{
+        width:100%;
+        margin-right: 1rem;
+    }
+
+    &__subtitle-all-list-group{
+     flex-grow:5;
+    }
+
+    &__subtitle-session-half-for-leftand-right{
+      width:100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &__bottom-icons {
+    justify-content: center;
+    flex-grow:1;
+    width:10%;
+   }
+
+   &__medium-hide{
+    display:none;
+   }
+
+   &__list-icon {
+
+        &--delete{
+        margin-left: 1rem;
+        }
+
+        &--edit{
+            margin-left: 1rem;
+        }
+    }
+   
+   &__title-list{
+   margin-top: 1rem;
+    background-color:  rgba(247, 248, 249, 0.7);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+   }
+
+   &__title-list--inner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color:#5C667E;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding-left: 2rem;
+    padding-right:2rem;
+   
+   }
+
+   &__sort-icon{
+        background-image: url(../../assets/icons/sort-24px.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      position:relative;
+      top:3px;
+
+      &--hide-action{
+        display: none;
+      }
+   }
+}
+}
+
+
+
+@include large {
+  .Warehouses {
+
+  &__form{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+  }
+
+ &__search-group {
+  width:60%;
+  &--modify{
+    width:40%;
+  }
+ }
+  
+}
+
+}
