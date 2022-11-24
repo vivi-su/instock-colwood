@@ -139,10 +139,14 @@ export default function Warehouses() {
                   </h2>
                   <div className="warehouses__list-icon-arrow-containter">
                     <Link to={`warehouses/${warehouse.id}`}>
-                      <p className="warehouses__subdetail warehouses__subdetail--name">
-                        {warehouse.warehouse_name}
+                        <input
+                          type="text"
+                          name="city"
+                          defaultValue={warehouse.warehouse_name}
+                          className="warehouses__subdetail" 
+                        ></input>
                         {/*--- It will link to <WarehouseDetails /> ---*/}
-                      </p>
+                    
                     </Link>
                     <span className="warehouses__list-icon"></span>
                   </div>
@@ -151,9 +155,25 @@ export default function Warehouses() {
                   <h2 className="warehouses__subtitle warehouses__medium-hide">
                     address
                   </h2>
-                  <p className="warehouses__subdetail">
-                    {warehouse.address}, {warehouse.city}, {warehouse.country}
-                  </p>
+                  <div className="warehouses__subdetail">
+                    <input
+                      type="text"
+                      name="address"
+                      defaultValue={warehouse.address}
+                    ></input>
+
+                    <input
+                      type="text"
+                      name="city"
+                      defaultValue={warehouse.city}
+                    ></input>
+
+                    <input
+                      type="text"
+                      name="country"
+                      defaultValue={warehouse.country}
+                    ></input>
+                  </div>
                 </div>
               </div>
 
@@ -163,26 +183,33 @@ export default function Warehouses() {
                     contact name
                   </h2>
                   <div className="warehouses__list-icon-arrow-containter">
-                    <p
+                    <input
                       type="text"
                       name="contact_name"
                       className="warehouses__subdetail"
-                    >
-                      {warehouse.contact_name}
-                    </p>
+                      defaultValue={warehouse.contact_name}
+                    ></input>
                   </div>
                 </div>
                 <div className="warehouses__subtitle-session warehouses__subtitle-session--group-two">
                   <h2 className="warehouses__subtitle warehouses__medium-hide">
                     contact information
                   </h2>
-                  <p className="warehouses__subdetail">
+                  <div className="warehouses__subdetail">
                     <input
+                      type="text"
+                      name="contact_phone"
                       className="warehouses__phonenumber"
                       defaultValue={warehouse.contact_phone}
                     ></input>
-                    {warehouse.contact_email}
-                  </p>
+
+                    <input
+                      type="text"
+                      name="contact_email"
+                      className="warehouses__phonenumber"
+                      defaultValue={warehouse.contact_email}
+                    ></input>
+                  </div>
                 </div>
               </div>
             </div>
