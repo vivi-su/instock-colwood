@@ -1,5 +1,6 @@
 //Ticket 20 - Markup for header and calling a component for Inventory list
 import "./Inventory.scss";
+import InventoryItemsList from "../../components/inventoryItemsList/InventoryItemsList";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
@@ -77,7 +78,7 @@ export default function Inventory() {
         </section>
         {/* Inventory list rendered dinamically */}
         <section className="inventory__item-list-container">
-          {/* <InventoryList/> */}
+          <InventoryItemsList />
         </section>
       </div>
     </>
