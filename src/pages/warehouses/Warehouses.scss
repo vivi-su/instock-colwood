@@ -85,6 +85,7 @@
   &__list {
     border-top: 1px solid #bdc5d5;
     padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   &__subtitle-all-list-group {
@@ -96,6 +97,7 @@
 
   &__phonenumber{
     letter-spacing: 0.2;
+    display: block;
   }
 
   &__bottom-icons {
@@ -177,14 +179,14 @@
     padding: 2.5rem 0;  
 
     &__form{
-         width:40%;   
+         width:50%;   
     }
 
     &__list{
-      
+      cursor: pointer;
       border-top: 1px solid #bdc5d5;
       padding-top: 1.2rem;
-      padding-bottom:1.5rem;
+      padding-bottom:1.2rem;
 
       display: flex;
       flex-direction: row;
@@ -193,6 +195,10 @@
 
       padding-left: 2rem;
       padding-right: 2rem;
+
+      &:hover{
+        background-color: rgba(46, 102, 230, 0.07);
+      }
     }
     
     &__form-container {
@@ -247,8 +253,35 @@
       width:100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-start;
+      padding-right: 0;
+  
+      &--group-one{
+      width:100%;    
+      flex-basis: 70%;
+      }
+     
+      &--group-two{
+      flex-basis: 100%;
+      }
+    }
+
+    &__subtitle-session{
+      align-self: stretch;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &--group-one{
+      flex-basis:70%;
+    }
+
+    &--group-two{
+      flex-basis:100%;
+    }
     }
 
     &__bottom-icons {
@@ -262,10 +295,6 @@
    }
 
    &__list-icon {
-
-        &--delete{
-        margin-left: 1rem;
-        }
 
         &--edit{
             margin-left: 1rem;
@@ -316,6 +345,7 @@
   .Warehouses {
 
   &__form{
+      width:40%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -328,7 +358,38 @@
     width:40%;
   }
  }
+
+     &__subtitle-session-half-for-leftand-right{
   
+        &--group-one{ 
+        flex-basis:70%;
+        }
+      
+        &--group-two{
+        flex-basis: 80%;
+      }
+    }
+
+    &__subtitle-session{
+
+      &--group-one{
+        flex-basis:80%;
+      }
+
+      &--group-two{
+        flex-basis:90%;
+      }
+
+    }
+
+    &__subtitle-all-list-group{
+      flex-basis:160%;
+    }
+
+   &__title-list-address{
+    flex-basis:10%;
+ 
+   }
 }
 
 }
