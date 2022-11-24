@@ -1,8 +1,11 @@
-
+@use "./styles/partials/fonts" as *;
 html,
-body {
+body,
+input,
+textarea,
+button {
   margin: 0;
-  font-family: "Avenir", sans-serif;
+  font-family: "Titillium Web", sans-serif;
   box-sizing: border-box;
 }
 
