@@ -1,0 +1,13 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+
+.inventory-list {
+  border: 1px solid gray;
+  &__label-text {
+    @include medium {
+      &--mid {
+        display: none;
+      }
+    }
+  }
+}

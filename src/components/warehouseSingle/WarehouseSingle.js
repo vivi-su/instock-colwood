@@ -1,3 +1,5 @@
+//Parent component to ticket 10 and ticket 11
+
 import WarehouseDetails from "../warehouseDetails/WarehouseDetails";
 import WarehouseInventoryList from "../warehouseInventoryList/WarehouseInventoryList";
 

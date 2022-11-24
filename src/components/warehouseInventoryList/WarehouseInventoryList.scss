@@ -1,0 +1,47 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+.inventory {
+
+    &__list{
+        border-bottom: 1px solid $border-devider;
+    }
+  &__card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &__item-header,
+  &__qty-header,
+  &__item-link,
+  &__status-header {
+    display: flex;
+  }
+
+  &__item-link {
+    text-decoration: none;
+  }
+  &__item-wrapper,
+  &__category-wrapper {
+    display: flex;
+    justify-content:space-evenly ;
+  }
+
+  &__actions-btns {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__category-name {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+@include small {
+  .inventory__sort-sortIcon,
+  .inventory__actions-text {
+    display: none;
+  }
+}
