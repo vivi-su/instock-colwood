@@ -35,42 +35,43 @@ function App() {
             <Route path="/" element={<Navigate to={"warehouses"} />} />
 
             {/*<---------------- WAREHOUSE PAGE ---------------->*/}
-            {/* The Warehouses page has one nested route to ADD a new warehouse and one to DELETE an existing warehouse*/}
+            {/* The Warehouses page has only one nested route to DELETE an existing warehouse*/}
             <Route path="warehouses" element={<Warehouses />}>
-              <Route path="addWarehouse" element={<AddWarehouse />} />
               <Route
                 path="deleteWarehouse/:warehouseId"
                 element={<DeleteWarehouse />}
               />
             </Route>
-
-            {/* The WarehouseDetails component has a nested route to EDIT the selected warehouse */}
             <Route
               path="warehouses/:warehouseId"
               element={<WarehouseDetails />}
-            >
-              <Route
-                path="editWarehouse/:warehouseId"
-                element={<EditWarehouse />}
-              />
-            </Route>
+            />
+            <Route
+              element={<EditWarehouse />}
+              path="warehouses/editWarehouse/:warehouseId"
+            />
+            <Route path="warehouses/addWarehouse" element={<AddWarehouse />} />
 
             {/*<---------------- INVENTORY PAGE ---------------->*/}
-            {/* The Inventory page has one nested route to ADD a new item and one to DELETE an existing item*/}
+            {/* The Inventory page has only one nested to DELETE an existing item*/}
             <Route path="inventory" element={<Inventory />}>
-              <Route path="addInventoryItem" element={<AddInventoryItem />} />
               <Route
                 path="deleteInventoryItem/:itemId"
                 element={<DeleteInventoryItem />}
               />
             </Route>
-            {/* The InventoryItemDetails component has a nested route to EDIT the selected item */}
-            <Route path="inventory/:itemId" element={<InventoryItemDetails />}>
-              <Route
-                path="editInventoryItem/:itemId"
-                element={<EditInventoryItem />}
-              />
-            </Route>
+            <Route
+              path="inventory/:itemId"
+              element={<InventoryItemDetails />}
+            />
+            <Route
+              path="inventory/editInventoryItem/:itemId"
+              element={<EditInventoryItem />}
+            />
+            <Route
+              path="inventory/addInventoryItem"
+              element={<AddInventoryItem />}
+            />
 
             {/*<---------------- FALLBACK ROUTE ---------------->*/}
             {/* Fallback route will direct user to Warehouses page*/}
