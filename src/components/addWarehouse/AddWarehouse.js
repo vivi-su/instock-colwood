@@ -1,20 +1,34 @@
 //Ticket 17
 import { useState } from "react";
 import "./AddWarehouse.scss";
+import ErrorIcon from "../../assets/icons/error-24px.svg";
 
 export default function AddWarehouse() {
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   //check the phone number validation
 
   const handleChangeEmail = (event) => {
     // get inputted value from event, update state with value
     setEmail(event.target.value);
   };
+  const handleChangePhoneNumber = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
+  const isPhoneNumberValid = () => {
+    if (phoneNumber.length < 11) {
+      return false;
+    }
+    return true;
+  };
 
   const isFormValid = () => {
-    // Check if the fields are all filled
-    if (email === "") {
-      // invalid form -> alert and return
+    // Check if the fields are filled
+    if (email === "" || phoneNumber === "") {
+      return false;
+    }
+    if (!isPhoneNumberValid()) {
       return false;
     }
     return true;
@@ -24,8 +38,7 @@ export default function AddWarehouse() {
     event.preventDefault();
 
     if (isFormValid()) {
-      // This is where we would make an axios request
-      // to our backend to add the user to our database.
+      // Make the post request
       alert("Warehouse added successfully");
     } else {
       alert("Failed to add Warehouse, you have errors in your form");
@@ -87,9 +100,13 @@ export default function AddWarehouse() {
           ></input>
           <p className="add-warehouse__phone">Phone Number</p>
           <input
-            className="add-warehouse__phone-field"
-            name="phone"
-            type="number"
+            className={`add-warehouse__phone-field ${
+              isPhoneNumberValid() ? "" : "add-warehouse__phone-field--invalid"
+            }`}
+            type="phoneNumber"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={handleChangePhoneNumber}
             placeholder="Phone Number"
           ></input>
           <p className="add-warehouse__email">Email</p>
@@ -98,14 +115,20 @@ export default function AddWarehouse() {
             name="email"
             value={email}
             onChange={handleChangeEmail}
-            className="add-warehouse__"
+            className="add-warehouse__email-field"
             placeholder="Email"
           ></input>
+          {!isFormValid() && (
+            <p>
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
         </section>
         <button className="add-warehouse__cancel-button" type="text">
           Cancel
         </button>
-        <button className="add-warehouse__add-button" type="text">
+        <button className="add-warehouse__add-button" type="submit">
           + Add Warehouse
         </button>
       </form>
