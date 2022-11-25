@@ -29,13 +29,13 @@ export default function Warehouses() {
 
 const handleAddWarehouse = (event) => {
   event.preventDefault();
-  navigate("warehouses/addWarehouse");
+  navigate("addWarehouse");
 };
 
 
   const handleUpdate = (event, warehouseId) => {
     event.preventDefault();
-    navigate(`warehouses/editWarehouse/${warehouseId}`);
+    navigate(`editWarehouse/${warehouseId}`);
 
     //below lines can be written in EditWarehouse component
     /**
