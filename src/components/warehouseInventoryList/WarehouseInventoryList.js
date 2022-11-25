@@ -100,12 +100,20 @@ export default function WarehouseInventoryList({ warehouseId }) {
               </div>
 
               <div className="inventory__actions-btns">
-                <button>
-                  <img src={deleteIcon} alt="delete" />
-                </button>
-                <button>
-                  <img src={editIcon} alt="edit" />
-                </button>
+                <Link
+                  to={`/inventory/deleteInventoryItem/${warehouseInventory.id}`}
+                >
+                  <button>
+                    <img src={deleteIcon} alt="delete" />
+                  </button>
+                </Link>
+                <Link
+                  to={`/inventory/editInventoryItem/${warehouseInventory.id}`}
+                >
+                  <button>
+                    <img src={editIcon} alt="edit" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
