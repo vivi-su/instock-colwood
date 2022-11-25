@@ -6,18 +6,19 @@
   @include medium {
     display: flex;
     padding: 32px;
+    align-items: center;
   }
   @include large {
     max-width: 1020px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
   }
   &__logo-container {
     text-align: center;
     height: 28px;
   }
-  // &__logo {
-  // }
   &__buttons-container {
     margin-top: 24px;
     display: flex;
@@ -37,11 +38,23 @@
     }
   }
   &__button {
-    background-color: aliceblue;
+    background-color: $navigation-hover;
+    color: $border-devider;
     border: 0;
     height: 36px;
     width: 100%;
     border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    &:hover {
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+    &--current-page {
+      background-color: $global-text;
+      color: $global-background;
+    }
     @include medium {
       height: 38px;
       width: auto;
