@@ -1,0 +1,184 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  width: auto;
+  background: $global-background;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 0.2rem;
+  position: absolute;
+  left: 4.5%;
+  right: 4.5%;
+  top: 16%;
+  width: stretch;
+  top: 8rem;
+  margin: 0 1rem 6rem 1rem;
+
+  &__arrow-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid $border-devider;
+    padding: 1rem 7%;
+    margin: 0;
+    @include medium {
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 4%;
+      margin: 0;
+    }
+
+    &-arrow {
+      padding-right: 2%;
+    }
+    &-title {
+      font-weight: 600;
+      color: $global-text;
+      margin: 1rem 0;
+      //margin-top: 0;
+
+      @include medium {
+        //margin: 0.6rem 0 0 0;
+      }
+    }
+
+    &-button {
+      align-self: center;
+      margin-left: auto;
+      background-color: $global-interect;
+      border-radius: 1.2rem;
+      width: 5rem;
+      height: 2.3rem;
+      @include medium {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      &-icon {
+        width: 1rem;
+        height: 1rem;
+        filter: brightness(4) sepia(0) hue-rotate(0deg) saturate(0);
+      }
+      &-text {
+        display: none;
+        color: $global-background;
+        @include medium {
+          display: flex;
+          flex-direction: row;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &__container {
+    padding: 5%;
+    @include medium {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    @include medium {
+      width: 50%;
+    }
+    &-header {
+      color: $table-column;
+      margin-bottom: 0.75%;
+    }
+    &-description {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 5%;
+      color: $global-text;
+      font-weight: 100;
+      width: 95%;
+      font-size: 1rem;
+      @include medium {
+        width: 85%;
+      }
+    }
+  }
+  &__line {
+    @include medium {
+      border-right: 0.5px solid $border-devider;
+      position: absolute;
+      top: 40%;
+      left: 45%;
+      bottom: 5%;
+    }
+  }
+
+
+  &__logistics{
+        display:flex;
+        flex-direction:column;
+        @include medium{
+            width:50%;
+            padding-left:5%;
+        }
+
+         &-amount{
+            display:flex;
+            flex-direction: row;
+            &-status{
+                display:flex;
+                flex-direction:column;
+                width:50%;
+                @include medium{
+                    width:100%;
+                }
+            }
+            &-quantity{
+                display:flex;
+                flex-direction:column;
+                width:50%;
+            }
+        }
+         &-header{
+            color:$table-column;
+            margin-bottom:0.75%;
+        }
+        &-instock{
+            line-height: 16px;
+            text-transform: uppercase;
+            font-size:1rem;
+            margin: 0;
+            color: $in-stock;
+            background: rgba(21, 132, 99, 0.07);
+            padding: 3px 4px;
+            border-radius: 20px;
+            width:35%;
+        }
+        &-outstock{
+            line-height: 16px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin: 0;
+            color: $out-of-stock;
+            background: rgba(132, 21, 40, 0.07);
+            padding: 3px 4px;
+            border-radius: 20px;
+            width:50%;
+        }
+        &-description{
+            margin:0;
+            color:$global-text;
+            font-weight:100;
+            margin-bottom:5%;
+        }
+    }
+}

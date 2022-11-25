@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./Warehouses.scss";
 import axios from "axios";
+import { Outlet } from "react-router-dom";
 
 export default function Warehouses() {
   const [warehouses, setWarehouses] = useState([]);
@@ -26,12 +27,10 @@ export default function Warehouses() {
     fetchAllwarehouses();
   }, []);
 
-
-const handleAddWarehouse = (event) => {
-  event.preventDefault();
-  navigate("addWarehouse");
-};
-
+  const handleAddWarehouse = (event) => {
+    event.preventDefault();
+    navigate("addWarehouse");
+  };
 
   const handleUpdate = (event, warehouseId) => {
     event.preventDefault();
@@ -65,7 +64,7 @@ const handleAddWarehouse = (event) => {
   const handleDelete = async (event, warehouseId) => {
     event.preventDefault();
 
-    navigate(`/deleteWarehouse/${warehouseId}`);
+    navigate(`deleteWarehouse/${warehouseId}`);
 
     //if user click confirm delete then continue going, following code can be written in deleteWarehouse
 
@@ -83,6 +82,7 @@ const handleAddWarehouse = (event) => {
 
   return (
     <>
+      <Outlet />
       <section className="warehouses">
         <div className="warehouses__form-container">
           <h1 className="warehouses__title">Warehouses</h1>
