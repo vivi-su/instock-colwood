@@ -1,0 +1,51 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+
+.warehouse-details {
+  &__nav-bar {
+    display: flex;
+  }
+  &__arrow-text-wrapper {
+    display: flex;
+  }
+  //   &__back-icon {
+  //   }
+  &__section-header {
+    margin: 0;
+  }
+  //   &__edit-button {
+  //   }
+  //   &__edit-icon {
+  //   }
+  //   &__edit-text {
+  //   }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    @include medium {
+      flex-direction: row;
+    }
+  }
+  //   &__address {
+  //   }
+  //   &__label-text {
+  //   }
+  &__address-wrapper {
+    @include medium {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  //   &__info-text {
+  //   }
+  &__contact-wrapper {
+    display: flex;
+    @include medium {
+      margin-left: auto;
+    }
+  }
+  &__contact {
+    display: flex;
+    flex-direction: column;
+  }
+}
