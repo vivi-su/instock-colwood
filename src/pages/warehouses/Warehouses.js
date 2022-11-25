@@ -18,7 +18,6 @@ export default function Warehouses() {
       try {
         const { data } = await axios.get(`http://localhost:8080/warehouses`);
         setWarehouses(data);
-        console.log(data);
       } catch (err) {
         console.log("Error", err);
       }
@@ -138,7 +137,7 @@ const handleAddWarehouse = (event) => {
         </div>
 
         {/*---warehouse list---*/}
-        {warehouses.map((warehouse) => (
+        {warehouses?.map((warehouse) => (
           <form className="warehouses__list" key={getNewId()}>
             <div className="warehouses__subtitle-all-list-group">
               <div className="warehouses__subtitle-session-half-for-leftand-right warehouses__subtitle-session-half-for-leftand-right--group-one">
@@ -147,7 +146,7 @@ const handleAddWarehouse = (event) => {
                     warehouse
                   </h2>
                   <div className="warehouses__list-icon-arrow-containter">
-                    <Link to={`warehouses/${warehouse.id}`}>
+                    <Link to={`${warehouse.id}`}>
                       <p className="warehouses__subdetail">
                         {warehouse.warehouse_name}
                       </p>
