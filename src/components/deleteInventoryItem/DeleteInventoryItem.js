@@ -1,4 +1,4 @@
-//Ticket 23
+
 
 export default function DeleteInventoryItem() {
   return (

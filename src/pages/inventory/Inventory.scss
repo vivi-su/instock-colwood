@@ -1,0 +1,19 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+
+.inventory {
+  &__sort-bar {
+    display: none;
+    @include medium {
+      &--mid {
+        display: flex;
+        flex-direction: row;
+        background-color: $page-cta;
+      }
+    }
+  }
+  &__sort-item-container {
+    display: flex;
+    flex-direction: row;
+  }
+}
