@@ -6,6 +6,7 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import "./WarehouseInventoryList.scss";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function WarehouseInventoryList({ warehouseId }) {
@@ -22,7 +23,10 @@ export default function WarehouseInventoryList({ warehouseId }) {
   return (
     <section className="inventory">
       {warehouseInventoryList?.map((warehouseInventory) => (
-        <div className="inventory__list" key ={warehouseInventory.item_name+warehouseInventory.id}>
+        <div
+          className="inventory__list"
+          key={warehouseInventory.item_name + warehouseInventory.id}
+        >
           <div className="inventory__card">
             {/* INVENTORY ITEM */}
             <div className="inventory__item-wrapper">
@@ -36,13 +40,13 @@ export default function WarehouseInventoryList({ warehouseId }) {
                   />
                 </div>
                 <div className="inventory__item-thing">
-                  <a className="inventory__item-link" href="">
+                  <Link to={`/inventory/${warehouseInventory.id}`}>
                     <p className="inventory__item-thing-text">
                       {warehouseInventory.item_name}
                     </p>
 
                     <img src={chevronIcon} alt="more than sign" />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
