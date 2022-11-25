@@ -1,6 +1,51 @@
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/colors" as *;
 
-.header-container {
-  background-color: $navigation-hover;
+.header {
+  padding: 24px 16px;
+  @include medium {
+    display: flex;
+    padding: 32px;
+  }
+  @include large {
+    max-width: 1020px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &__logo-container {
+    text-align: center;
+    height: 28px;
+  }
+  // &__logo {
+  // }
+  &__buttons-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+    @include medium {
+      margin: 0;
+      justify-content: right;
+    }
+  }
+
+  &__button-wrapper {
+    width: 50%;
+    @include medium {
+      width: auto;
+    }
+  }
+  &__button {
+    background-color: aliceblue;
+    border: 0;
+    height: 36px;
+    width: 100%;
+    border-radius: 20px;
+    @include medium {
+      height: 38px;
+      width: auto;
+      padding: 0 16px;
+    }
+  }
 }

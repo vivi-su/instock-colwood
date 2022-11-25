@@ -13,24 +13,28 @@ export default function Header() {
           </Link>
         </div>
         <div className="header__buttons-container">
-          <Link to={`warehouses`}>
-            <button
-              className="header__button"
-              type="button"
-              name="warehousesButton"
-            >
-              Warehouses
-            </button>
-          </Link>
-          <Link to={`inventory`}>
-            <button
-              className="header__button"
-              type="button"
-              name="inventoryButton"
-            >
-              Inventory
-            </button>
-          </Link>
+          <div className="header__button-wrapper">
+            <Link to={`warehouses`}>
+              <button
+                className="header__button"
+                type="button"
+                name="warehousesButton"
+              >
+                Warehouses
+              </button>
+            </Link>
+          </div>
+          <div className="header__button-wrapper">
+            <Link to={`inventory`}>
+              <button
+                className="header__button"
+                type="button"
+                name="inventoryButton"
+              >
+                Inventory
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>
