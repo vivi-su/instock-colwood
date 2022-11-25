@@ -54,7 +54,7 @@ function App() {
 
             {/*<---------------- INVENTORY PAGE ---------------->*/}
             {/* The Inventory page has only one nested to DELETE an existing item*/}
-            <Route path="inventory" element={<Inventory />}>
+            <Route path="/inventory" element={<Inventory />}>
               <Route
                 path="deleteInventoryItem/:itemId"
                 element={<DeleteInventoryItem />}
