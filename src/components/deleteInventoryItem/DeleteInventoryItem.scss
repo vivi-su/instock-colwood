@@ -1,5 +1,10 @@
-.deleteInventory{
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
 
+.deleteInventory{
+    max-width:1280px;
+    margin:0 auto;
 
     &__popup{
         position:fixed;
@@ -11,22 +16,176 @@
 
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
     }
 
     &__pop-inner{
         position:relative;
-        padding:2rem;
+
+        padding-left:1rem;
+        padding-right: 1rem;
+        padding-top:3.75rem;
+
         width:100%;
-        max-width:640px;
+        height:100vh;
         background-color: #fff;
-    }
-     
-    &__close-btn{
-        position:absolute;
-        top:16px;
-        right:16px;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+        border-radius: 3px;
     }
 
+    &__title{
+        font-size: 1.75rem;
+        margin:0;
+        color:$global-text;
+        padding-bottom:1rem;
+        font-weight: 600;
+    }
+
+    &__p{
+        margin:0;
+        font-size: 0.938rem;
+        color:$global-text;
+        line-height: 1.625rem;
+        font-weight: 400;
+    }
+     
+    &__btn-group{
+       display:flex;
+       flex-direction: row;
+       justify-content: center;
+
+    }
+
+    &__btn{
+        background-color: transparent;
+        border: 0;
+        font-size: 0.813rem;
+        border-radius: 20px;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        width: 100%;
+        margin-bottom:1.5rem;
+    }
+    
+    &__close-btn{
+        padding: 0;
+        position:absolute;
+        top:1.31rem;
+        right:1.31rem;
+        background-color: transparent;
+        border: 0;
+    }
+     
+    &__cancel-btn{
+        border: 1px solid $border-devider;    
+        color:$table-column;
+        flex-grow: 1;
+        margin-right:0.5rem;
+        transition: .5s ease-in-out; 
+        
+        &:hover{
+            border: 1px solid $global-interect;
+            color:$global-interect;  
+        }
+          
+    }
+
+    &__delete-btn{
+        flex-grow: 1;
+        color:$global-background;
+        background-color:$out-of-stock;
+        margin-left:0.5rem;
+        transition: .5s ease-in-out; 
+        
+        &:hover{
+            background-color:$global-text;
+        }
+    }
+}
+
+
+@include medium {
+
+    .deleteInventory{
+
+
+    &__pop-inner{
+        position:relative;
+        margin-left: 3rem;
+        margin-right: 3rem;
+        margin-top: 28.188rem;
+        padding-left:4rem;
+        padding-right: 4rem;
+    }
+
+    &__title{
+        font-size: 2rem;
+    }
+
+    &__p{
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+     
+    &__btn-group{
+       justify-content: flex-end;
+    }
+
+    &__btn{
+        font-size: 0.875rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        width: auto;
+        padding-left:1rem;
+        padding-right:1rem;
+        margin-bottom:2.5rem;
+    }
+
+        &__close-btn{
+        padding: 0;
+        position:absolute;
+        background-color: transparent;
+        border: 0;
+    }
+
+    &__cancel-btn{
+        border: 1px solid $border-devider;    
+        color:$table-column;
+        flex-grow: 0;
+        margin-right:0.5rem;
+          
+    }
+
+    &__delete-btn{
+        flex-grow: 0;
+        color:$global-background;
+        background-color:$out-of-stock;
+        margin-left:0.5rem;
+    }
+
+}
+
+}
+
+
+@include medium {
+
+    .deleteInventory{
+
+    &__pop-inner{
+        height:300px;
+        top:-200px;
+    }
+     
+    &__btn-group{
+       justify-content: flex-end;
+    }
+
+}
 
 }

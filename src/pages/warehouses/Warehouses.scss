@@ -292,7 +292,6 @@
     }
 
     &__list {
-      // background-color: aqua;
       width: 100%;
     }
 
@@ -306,11 +305,9 @@
 
       &--group-one {
         width: 70%;
-        // background-color: red;
       }
 
       &--group-two {
-        // background-color: green;
         margin-right: 0;
         padding-right: 0;
       }
@@ -326,7 +323,6 @@
 
       &--group-one {
         width: 50%;
-        // background-color: yellow;
         padding-right: 3rem;
       }
     }
@@ -335,7 +331,6 @@
       justify-content: center;
       flex-grow: 1;
       width: 10%;
-      // background-color: lightcoral;
     }
 
     &__medium-hide {
