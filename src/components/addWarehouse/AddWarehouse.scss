@@ -1,0 +1,13 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+.add-warehouse {
+    &__input {
+        
+        &--invalid{
+            border: 1px solid red;
+        }
+
+    }
+}
