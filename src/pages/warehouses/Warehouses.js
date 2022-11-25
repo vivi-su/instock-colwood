@@ -44,7 +44,7 @@ export default function Warehouses() {
 
   return (
     <>
-    <Outlet />
+      <Outlet />
       <section className="warehouses">
         <div className="warehouses__form-container">
           <h1 className="warehouses__title">Warehouses</h1>
