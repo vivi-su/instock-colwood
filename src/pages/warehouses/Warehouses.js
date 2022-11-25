@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./Warehouses.scss";
 import axios from "axios";
@@ -35,54 +36,16 @@ export default function Warehouses() {
   const handleUpdate = (event, warehouseId) => {
     event.preventDefault();
     navigate(`editWarehouse/${warehouseId}`);
-
-    //below lines can be written in EditWarehouse component
-    /**
-      const values = {
-        warehouse_name: event.target.warehouse_name.value,
-        address: event.target.address.value,
-        city: event.target.city.value,
-        country: event.target.country.value,
-        contact_name: event.target.contact_name.value,
-        contact_phone: event.target.contact_phone.value,
-        contact_email: event.target.contact_email.value,
-      };
-      axios
-        .patch(`http://localhost:8080/warehouses`, values)
-        .then(({data}) => {
-          const updatedWarehouses= warehouses.map((warehouse) =>
-            warehouseId === data.id ? data : warehouse
-          );
-          setWarehouses(updatedWarehouses);
-        })
-        .catch(err=>
-          {console.log(err)});
-    };
-    */
   };
 
   const handleDelete = async (event, warehouseId) => {
     event.preventDefault();
-
     navigate(`deleteWarehouse/${warehouseId}`);
-
-    //if user click confirm delete then continue going, following code can be written in deleteWarehouse
-
-    /** 
-        const {
-          data: { deletedwarehouseId },
-        } = await axios.delete(
-          `http://localhost:8080/warehouses/${warehouseId}`
-        );
-        setWarehouses(
-          warehouses.filter((warehouse) => warehouse.id !== deletedwarehouseId)
-        );
-        */
   };
 
   return (
     <>
-      <Outlet />
+    <Outlet />
       <section className="warehouses">
         <div className="warehouses__form-container">
           <h1 className="warehouses__title">Warehouses</h1>
