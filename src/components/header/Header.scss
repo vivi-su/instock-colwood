@@ -2,14 +2,14 @@
 @use "../../styles/partials/colors" as *;
 
 .header {
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
   @include medium {
     display: flex;
-    padding: 32px;
+    padding: 2rem;
     align-items: center;
   }
   @include large {
-    max-width: 1020px;
+    max-width: 63.75rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;
@@ -17,14 +17,14 @@
   }
   &__logo-container {
     text-align: center;
-    height: 28px;
+    height: 1.75rem;
   }
   &__buttons-container {
-    margin-top: 24px;
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
     width: 100%;
-    gap: 16px;
+    gap: 1rem;
     @include medium {
       margin: 0;
       justify-content: right;
@@ -41,12 +41,12 @@
     background-color: $navigation-hover;
     color: $border-devider;
     border: 0;
-    height: 36px;
+    height: 2.25rem;
     width: 100%;
-    border-radius: 20px;
-    font-size: 13px;
+    border-radius: 1.25rem;
+    font-size: 0.813rem;
     font-weight: 600;
-    line-height: 20px;
+    line-height: 1.25rem;
     &:hover {
       text-decoration-line: underline;
       cursor: pointer;
@@ -56,9 +56,9 @@
       color: $global-background;
     }
     @include medium {
-      height: 38px;
+      height: 2.375rem;
       width: auto;
-      padding: 0 16px;
+      padding: 0 1rem;
     }
   }
 }

@@ -20,17 +20,17 @@ button {
 
 .header-container {
   background-color: $navigation-hover;
-  height: 200px;
+  height: 12.5rem;
   @include medium {
-    height: 186px;
+    height: 11.625rem;
   }
 }
 
 .main-container {
   position: relative;
-  top: -65px;
+  top: -4.063rem;
   z-index: 9999;
   @include medium {
-    top: -85px;
+    top: -5.313rem;
   }
 }
