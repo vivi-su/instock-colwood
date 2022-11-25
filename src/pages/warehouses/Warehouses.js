@@ -34,9 +34,9 @@ const handleAddWarehouse = (event) => {
 };
 
 
-  const handleUpdate = (event) => {
+  const handleUpdate = (event, warehouseId) => {
     event.preventDefault();
-    navigate("warehouses/editWarehouse/:warehouseId");
+    navigate(`warehouses/editWarehouse/${warehouseId}`);
 
     //below lines can be written in EditWarehouse component
     /**
@@ -63,10 +63,10 @@ const handleAddWarehouse = (event) => {
     */
   };
 
-  const handleDelete = async (event) => {
+  const handleDelete = async (event, warehouseId) => {
     event.preventDefault();
 
-    navigate("/deleteWarehouse/:warehouseId");
+    navigate(`/deleteWarehouse/${warehouseId}`);
 
     //if user click confirm delete then continue going, following code can be written in deleteWarehouse
 
