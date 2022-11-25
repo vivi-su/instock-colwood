@@ -1,8 +1,10 @@
 //Ticket 17
 import "./AddWarehouse.scss";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
+import BackArrowIcon from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 // const handleChangeEmail = (event) => {
@@ -137,12 +139,15 @@ export default function AddWarehouse() {
 
   return (
     <>
-      <h1 className="add-warehouse">Add New Warehouse</h1>
+      <h1 className="add-warehouse">
+        <img src={BackArrowIcon} alt="Back arrow icon" />
+        Add New Warehouse
+      </h1>
 
       <form onSubmit={handleSubmit}>
         <section className="add-warehouse__details-container">
           <h2 className="add-warehouse__title">Warehouse Details</h2>
-          <p className="add-warehouse__name">Warehouse Name</p>
+          <label className="add-warehouse__label">Warehouse Name</label>
           <input
             className={`add-warehouse__input ${
               isWarehouseNameValid() ? "" : "add-warehouse__input--invalid"
@@ -151,7 +156,13 @@ export default function AddWarehouse() {
             type="text"
             placeholder="Warehouse Name"
           ></input>
-          <p className="add-warehouse__address">Street Address</p>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
+          <label className="add-warehouse__label">Street Address</label>
           <input
             className={`add-warehouse__input ${
               isAddressValid() ? "" : "add-warehouse__input--invalid"
@@ -160,7 +171,13 @@ export default function AddWarehouse() {
             type="text"
             placeholder="Street Address"
           ></input>
-          <p className="add-warehouse__city">City</p>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
+          <label className="add-warehouse__label">City</label>
           <input
             className={`add-warehouse__input ${
               isCityValid() ? "" : "add-warehouse__input--invalid"
@@ -169,7 +186,13 @@ export default function AddWarehouse() {
             type="text"
             placeholder="City"
           ></input>
-          <p className="add-warehouse__country">Country</p>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
+          <label className="add-warehouse__label">Country</label>
           <input
             className={`add-warehouse__input ${
               isCountryValid() ? "" : "add-warehouse__input--invalid"
@@ -178,11 +201,17 @@ export default function AddWarehouse() {
             type="text"
             placeholder="Country"
           ></input>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
         </section>
 
-        <section className="add-warehouse_contact">
+        <section className="add-warehouse__contact">
           <h2 className="add-warehouse__contact-container">Contact Details</h2>
-          <p className="add-warehouse__contact-name">Contact Name</p>
+          <label className="add-warehouse__label">Contact Name</label>
           <input
             className={`add-warehouse__input ${
               isContactNameValid() ? "" : "add-warehouse__input--invalid"
@@ -191,7 +220,13 @@ export default function AddWarehouse() {
             type="text"
             placeholder="Contact Name"
           ></input>
-          <p className="add-warehouse__position">Position</p>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
+          <label className="add-warehouse__label">Position</label>
           <input
             className={`add-warehouse__input ${
               isPositionValid() ? "" : "add-warehouse__input--invalid"
@@ -200,16 +235,30 @@ export default function AddWarehouse() {
             type="text"
             placeholder="Position"
           ></input>
-          <p className="add-warehouse__phone">Phone Number</p>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
+          <label className="add-warehouse__label">Phone Number</label>
           <input
             className={`add-warehouse__input ${
               isPhoneNumberValid() ? "" : "add-warehouse__input--invalid"
             }`}
-            type="phoneNumber"
+            type="number"
+            pattern="[0-9]*"
+            inputMode="numeric"
             name="phoneNumber"
             placeholder="Phone Number"
           ></input>
-          <p className="add-warehouse__email">Email</p>
+          {!isFormValid && (
+            <p className="add-warehouse__error">
+              <img src={ErrorIcon} alt="Error icon" />
+              This field is required
+            </p>
+          )}
+          <label className="add-warehouse__label">Email</label>
           <input
             className={`add-warehouse__input ${
               isEmailValid() ? "" : "add-warehouse__input--invalid"
@@ -219,19 +268,22 @@ export default function AddWarehouse() {
             placeholder="Email"
           ></input>
           {!isFormValid && (
-            // paste in all fields
-            <p>
+            <p className="add-warehouse__error">
               <img src={ErrorIcon} alt="Error icon" />
               This field is required
             </p>
           )}
         </section>
-        <button className="add-warehouse__cancel-button" type="text">
-          Cancel
-        </button>
-        <button className="add-warehouse__add-button" type="submit">
-          + Add Warehouse
-        </button>
+        <section className="add-warehouse__button">
+          <button className="add-warehouse__cancel-button" type="submit">
+            <Link to="/warehouses" className="add-warehouse__cancel">
+              Cancel
+            </Link>
+          </button>
+          <button className="add-warehouse__add-button" type="submit">
+            + Add Warehouse
+          </button>
+        </section>
       </form>
     </>
   );
