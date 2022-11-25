@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./Warehouses.scss";
 import axios from "axios";
-import { Outlet } from "react-router-dom";
 
 export default function Warehouses() {
   const [warehouses, setWarehouses] = useState([]);
@@ -45,7 +44,7 @@ export default function Warehouses() {
 
   return (
     <>
-    <Outlet />
+      <Outlet />
       <section className="warehouses">
         <div className="warehouses__form-container">
           <h1 className="warehouses__title">Warehouses</h1>
