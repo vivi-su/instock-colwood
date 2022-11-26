@@ -1,6 +1,64 @@
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/colors" as *;
 
-.header-container {
-  background-color: $navigation-hover;
+.header {
+  padding: 1.5rem 1rem;
+  @include medium {
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+  }
+  @include large {
+    max-width: 63.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  &__logo-container {
+    text-align: center;
+    height: 1.75rem;
+  }
+  &__buttons-container {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+    @include medium {
+      margin: 0;
+      justify-content: right;
+    }
+  }
+
+  &__button-wrapper {
+    width: 50%;
+    @include medium {
+      width: auto;
+    }
+  }
+  &__button {
+    background-color: $navigation-hover;
+    color: $border-devider;
+    border: 0;
+    height: 2.25rem;
+    width: 100%;
+    border-radius: 1.25rem;
+    font-size: 0.813rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    &:hover {
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+    &--current-page {
+      background-color: $global-text;
+      color: $global-background;
+    }
+    @include medium {
+      height: 2.375rem;
+      width: auto;
+      padding: 0 1rem;
+    }
+  }
 }
