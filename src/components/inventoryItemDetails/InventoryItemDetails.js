@@ -14,14 +14,19 @@ export default function InventoryItemDetails() {
     <section className="item-details">
       <div className="item-details__header">
         <div className="item-details__arrow-title">
-          <img
-            className="item-details__header-arrow"
-            src={Arrow}
-            alt="Back arrow"
-          />
+          <Link to="/inventory">
+            <img
+              className="item-details__header-arrow"
+              src={Arrow}
+              alt="Back arrow"
+            />
+          </Link>
           <h1 className="item-details__header-title">TELEVISION</h1>
         </div>
-        <Link className="item-details__link">
+        <Link
+          to="/inventory/editInventoryItem/:itemId"
+          className="item-details__link"
+        >
           <button
             className="item-details__header-button"
             // onClick={() => {

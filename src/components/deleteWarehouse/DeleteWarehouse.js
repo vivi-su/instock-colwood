@@ -6,7 +6,7 @@ import "./DeleteWarehouse.scss";
 
 export default function DeleteWarehouse() {
   return (
-    //<div class="opacity">
+    <div class="opacity">
     <div className="delete-warehouse">
       <div className="delete-warehouse__container">
         <Link to="/warehouses">
@@ -32,6 +32,6 @@ export default function DeleteWarehouse() {
         </div>
       </div>
     </div>
-    //</div>
+    </div>
   );
 }
