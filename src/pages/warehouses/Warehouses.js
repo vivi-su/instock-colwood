@@ -1,31 +1,11 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import "./Warehouses.scss";
-import axios from "axios";
 
-export default function Warehouses() {
-  const [warehouses, setWarehouses] = useState([]);
+export default function Warehouses({warehouseList}) {
+
   const navigate = useNavigate();
-
-  const getNewId = () => {
-    return uuidv4();
-  };
-
-  useEffect(() => {
-    const fetchAllwarehouses = async () => {
-      try {
-        const { data } = await axios.get(`http://localhost:8080/warehouses`);
-        setWarehouses(data);
-      } catch (err) {
-        console.log("Error", err);
-      }
-    };
-
-    fetchAllwarehouses();
-  }, []);
 
   const handleAddWarehouse = (event) => {
     event.preventDefault();
@@ -64,7 +44,7 @@ export default function Warehouses() {
             {/*---top add new warehouse button---*/}
 
             <button
-              className="warehouses__search-group warehouses__search-group--add"
+              className="warehouses__search-group warehouses__search-group--add warehouses__search-group--hover"
               onClick={(event) => handleAddWarehouse(event)}
             >
               <span className="warehouses__search-icon warehouses__search-icon--add"></span>
@@ -99,8 +79,8 @@ export default function Warehouses() {
         </div>
 
         {/*---warehouse list---*/}
-        {warehouses?.map((warehouse) => (
-          <form className="warehouses__list" key={getNewId()}>
+        {warehouseList?.map((warehouse) => (
+          <form className="warehouses__list" key={warehouse.id}>
             <div className="warehouses__subtitle-all-list-group">
               <div className="warehouses__subtitle-session-half-for-leftand-right warehouses__subtitle-session-half-for-leftand-right--group-one">
                 <div className="warehouses__subtitle-session warehouses__subtitle-session--group-one">
