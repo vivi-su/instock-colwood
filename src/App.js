@@ -47,6 +47,7 @@ function App() {
     );
   }
 
+  //
   // function handleAddWarehouse() {
   //   setWarehouseList();
   //   //here will go the added warehouse
