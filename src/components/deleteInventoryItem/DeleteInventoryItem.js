@@ -11,7 +11,6 @@ const DisplayDeletePopup = (props) => {
   const { itemId } = useParams();
   const [deletePopup, setDeletePopup] = useState(false);
   const [deleteInventoryItem, SetDeleteInventoryItem] = useState([]);
-  console.log("showDeleteInventoryItem",props.showDeleteInventoryItem);
 
   const handleCancel = (event) => {
     event.preventDefault();
@@ -29,7 +28,6 @@ const DisplayDeletePopup = (props) => {
           `http://localhost:8080/inventories/${itemId}`
         );
         SetDeleteInventoryItem(data);
-        setDeletePopup(false);
         alert(
           `Your ${props.showDeleteInventoryItem} item is successfully deleted!`
         );
@@ -97,9 +95,7 @@ export default function DeleteInventoryItem() {
              `http://localhost:8080/inventories/${itemId}`
            );
            setDeletePopup(true);
-           console.log(data.item_name);
            SetShowDeleteInventoryItem(data.item_name);
-           console.log(showDeleteInventoryItem);
          } catch (err) {
            console.log(`${itemId} does not exist`, err);
          }
