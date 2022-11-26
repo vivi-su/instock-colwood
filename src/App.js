@@ -19,8 +19,73 @@ import Warehouses from "./pages/warehouses/Warehouses";
 
 //react router components
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [inventoryItemsList, setInventoryItemsList] = useState([]);
+  const [warehouseList, setWarehouseList] = useState([]);
+
+  //<----------------WAREHOUSE---------------------------->
+  //get date for warehouse
+  useEffect(() => {
+    const fetchAllwarehouses = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:8080/warehouses`);
+        setWarehouseList(data);
+      } catch (err) {
+        console.log("Error", err);
+      }
+    };
+
+    fetchAllwarehouses();
+  }, []);
+
+  function handleDeleteWarehouse(warehouseId) {
+    setWarehouseList(
+      setWarehouseList.filter((warehouse) => warehouse.id !== warehouseId)
+    );
+  }
+
+  console.log();
+  // function handleAddWarehouse() {
+  //   setWarehouseList();
+  //   //here will go the added warehouse
+  // }
+
+  // function handleEditWarehouse() {
+  //   setWarehouseList();
+  //   //here will go the edited warehouse
+  // }
+
+  //<----------------INVENTORY---------------------------->
+  //get data for inventory
+  useEffect(() => {
+    const getInventoryItemsURL = "http://localhost:8080/inventories";
+    axios
+      .get(getInventoryItemsURL)
+      .then((response) => {
+        setInventoryItemsList(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [inventoryItemsList]);
+
+  function handleDeleteItem(itemId) {
+    setInventoryItemsList(
+      inventoryItemsList.filter((item) => item.id !== itemId)
+    );
+  }
+
+  // function handleAddItem() {
+  //   setInventoryItemsList();
+  //   //here will go the added item
+  // }
+
+  // function handleEditItem() {
+  //   setInventoryItemsList();
+  //   //here will go the edited item
+  // }
+
   return (
     <BrowserRouter>
       <div className="app-container">
@@ -36,10 +101,18 @@ function App() {
 
             {/*<---------------- WAREHOUSE PAGE ---------------->*/}
             {/* The Warehouses page has only one nested route to DELETE an existing warehouse*/}
-            <Route path="warehouses" element={<Warehouses />}>
+            <Route
+              path="warehouses"
+              element={<Warehouses warehouseList={warehouseList} />}
+            >
               <Route
                 path="deleteWarehouse/:warehouseId"
-                element={<DeleteWarehouse />}
+                element={
+                  <DeleteWarehouse
+                    warehouseList={warehouseList}
+                    handleDeleteWarehouse={handleDeleteWarehouse}
+                  />
+                }
               />
             </Route>
             <Route
@@ -54,10 +127,18 @@ function App() {
 
             {/*<---------------- INVENTORY PAGE ---------------->*/}
             {/* The Inventory page has only one nested to DELETE an existing item*/}
-            <Route path="/inventory" element={<Inventory />}>
+            <Route
+              path="/inventory"
+              element={<Inventory inventoryItemsList={inventoryItemsList} />}
+            >
               <Route
                 path="deleteInventoryItem/:itemId"
-                element={<DeleteInventoryItem />}
+                element={
+                  <DeleteInventoryItem
+                    inventoryItemsList={inventoryItemsList}
+                    handleDeleteItem={handleDeleteItem}
+                  />
+                }
               />
             </Route>
             <Route
