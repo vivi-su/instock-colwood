@@ -8,9 +8,10 @@
     padding: 1.5rem 1rem;
     font-size: 1.75rem;
     line-height: 2.25rem;
-    border-bottom: .0625rem solid $border-divider;
+    border-bottom: .0625rem solid $border-devider;
     display: flex;
     justify-content: space-between;
+    background-color: $global-background;
 
     &__title, &__contact-container {
         margin: 0;
@@ -22,7 +23,7 @@
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        border-bottom: .0625rem solid $border-divider;
+        border-bottom: .0625rem solid $border-devider;
     }
 
     &__label {
@@ -37,15 +38,21 @@
         border-radius: 1.25rem;
         padding: 0 1rem;
         height: 2.25rem;
-        // margin-bottom: 1rem;
-        border: solid $border-divider;
+        border: solid $border-devider;
 
-        &:active{
-            border: solid $global-interect;
+        &:focus{
+            outline: none;
+            border: 1px solid $global-interect;
         }
 
         &--invalid{
             border: 1px solid red;
+        }
+
+        &::-webkit-outer-spin-button,
+        ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
         }
     }
 
@@ -71,15 +78,16 @@
     &__cancel-button {
         padding: 0 1rem;
         border-radius: 1.25rem;
-        border: solid $border-divider;
+        border: solid $border-devider;
         height: 2.25rem;
         width: 45%;
+        font-weight: 600;
     }
-
+    
     &__cancel {
         text-decoration: none;
     }
-
+    
     &__add-button {
         border-radius: 1.25rem;
         padding: 0 1rem;
@@ -88,6 +96,7 @@
         border: solid transparent;
         background-color: $global-interect;
         color: $global-background;
+        font-weight: 600;
     }
 
 }

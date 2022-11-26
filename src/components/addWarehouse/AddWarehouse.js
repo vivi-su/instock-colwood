@@ -7,13 +7,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-// const handleChangeEmail = (event) => {
-//   // get inputted value from event, update state with value
-//   setEmail(event.target.value);
-// };
-// const handleChangePhoneNumber = (event) => {
-//   setPhoneNumber(event.target.value);
-// };
 export default function AddWarehouse() {
   const [warehouseName, setwarehouseName] = useState("default");
   const [address, setAddress] = useState("default");
@@ -68,7 +61,11 @@ export default function AddWarehouse() {
   };
 
   const isPhoneNumberValid = () => {
-    if (phoneNumber === "" && phoneNumber.length < 11) {
+    if (
+      phoneNumber === "" &&
+      phoneNumber.length < 11
+      // phoneNumber.match(/^[0-9]+$/) != null
+    ) {
       return false;
     }
     return true;
@@ -93,6 +90,16 @@ export default function AddWarehouse() {
     const phoneNumber = event.target.phoneNumber.value;
     const email = event.target.email.value;
 
+    // function formatPhoneNumber(phoneNumber) {
+    //   const regEx = /^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im;
+    //   const isValid = regEx.test(phoneNumber);
+    //   console.log(isValid);
+    //   return isValid;
+    // }
+    //    write function here
+    //    once converted, send this new phone number to API
+    // }
+
     setwarehouseName(warehouseName);
     setAddress(address);
     setCity(city);
@@ -114,8 +121,6 @@ export default function AddWarehouse() {
       contact_email: email,
     };
 
-    console.log(warehouseDetails);
-
     if (
       warehouseName &&
       address &&
@@ -123,11 +128,15 @@ export default function AddWarehouse() {
       country &&
       contactName &&
       position &&
-      phoneNumber &&
+      // formatPhoneNumber() &&
       email
     ) {
       axios
         .post("http://localhost:8080/warehouses", warehouseDetails)
+        .then((response) => {
+          alert("Warehouse added successfully");
+          window.location.reload(true);
+        })
         .catch((error) => {
           console.log(error);
           alert("Failed to add Warehouse, please check your form");
@@ -140,7 +149,9 @@ export default function AddWarehouse() {
   return (
     <>
       <h1 className="add-warehouse">
-        <img src={BackArrowIcon} alt="Back arrow icon" />
+        <Link to="/warehouses">
+          <img src={BackArrowIcon} alt="Back arrow icon" />
+        </Link>
         Add New Warehouse
       </h1>
 
@@ -246,9 +257,7 @@ export default function AddWarehouse() {
             className={`add-warehouse__input ${
               isPhoneNumberValid() ? "" : "add-warehouse__input--invalid"
             }`}
-            type="number"
-            pattern="[0-9]*"
-            inputMode="numeric"
+            type="text"
             name="phoneNumber"
             placeholder="Phone Number"
           ></input>
