@@ -21,7 +21,7 @@ export default function WarehouseDetails({ warehouseId }) {
       <section className="warehouse-details">
         <div className="warehouse-details__nav-bar">
           <div className="warehouse-details__arrow-text-wrapper">
-            <Link to={`/warehouses`}>
+            <Link className="warehouse-details__back-link" to={`/warehouses`}>
               <img
                 className="warehouse-details__back-icon"
                 src={backArrow}
@@ -32,19 +32,24 @@ export default function WarehouseDetails({ warehouseId }) {
               {warehouseDetails?.warehouse_name}
             </h1>
           </div>
-          <Link to={`/warehouses/editWarehouse/${warehouseId}`}>
-            <button className="warehouse-details__edit-button">
+          <Link
+            className="warehouse-details__edit-link"
+            to={`/warehouses/editWarehouse/${warehouseId}`}
+          >
+            <div className="warehouse-details__edit-button">
               <img
                 className="warehouse-details__edit-icon"
                 src={editIcon}
                 alt="edit icon: pencil"
               />
-              <span className="warehouse-details__edit-text">Edit</span>
-            </button>
+              <span className="warehouse-details__edit-text warehouse-details__edit-text--mid">
+                Edit
+              </span>
+            </div>
           </Link>
         </div>
         <div className="warehouse-details__info">
-          <div className="warehouse-details__address">
+          <div className="warehouse-details__address-container">
             <span className="warehouse-details__label-text">
               WAREHOUSE ADDRESS:
             </span>
@@ -58,7 +63,7 @@ export default function WarehouseDetails({ warehouseId }) {
             </div>
           </div>
           <div className="warehouse-details__contact-wrapper">
-            <div className="warehouse-details__contact">
+            <div className="warehouse-details__contact warehouse-details__contact--name">
               <span className="warehouse-details__label-text">
                 CONTACT NAME:
               </span>
