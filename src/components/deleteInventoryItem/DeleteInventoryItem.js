@@ -10,23 +10,30 @@ export default function DeleteInventoryItem({
 }) {
   const navigate = useNavigate();
   const { itemId } = useParams();
-  const [showDeleteInventoryItem, setShowDeleteInventoryItem] = useState();
+  const [showDeleteInventoryItem, setShowDeleteInventoryItem] = useState({});
 
   useEffect(() => {
     setShowDeleteInventoryItem(
       inventoryItemsList?.find((inventoryItem) => inventoryItem.id === itemId)
     );
-  }, [itemId, setShowDeleteInventoryItem, inventoryItemsList]);
+  }, [
+    itemId,
+    setShowDeleteInventoryItem,
+    inventoryItemsList
+  ]);
 
   const handleDelete = (event) => {
     event.preventDefault();
+
     const deleteInventoryItem = async () => {
       if (!itemId) {
         return;
       }
       try {
         await axios.delete(`http://localhost:8080/inventories/${itemId}`);
-        alert(`Your ${showDeleteInventoryItem} item is successfully deleted!`);
+        alert(
+          `Your ${showDeleteInventoryItem.item_name} item is successfully deleted!`
+        );
         handleDeleteItem(itemId);
         navigate("/inventory");
       } catch (err) {
@@ -61,10 +68,12 @@ export default function DeleteInventoryItem({
             </Link>
           </div>
           <div className="deleteInventory__btn-group ">
-            <Link to={`/inventory`}>
-              <button className="deleteInventory__btn deleteInventory__cancel-btn">
-                Cancel
-              </button>
+            <Link
+              to={`/inventory`}
+              className="deleteInventory__btn deleteInventory__cancel-btn"
+              style={{ textDecoration: "none" }}
+            >
+              Cancel
             </Link>
             <button
               onClick={handleDelete}
