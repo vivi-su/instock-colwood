@@ -1,9 +1,10 @@
 // Ticket 8
+import "./Footer.scss";
 
 export default function Footer() {
   return (
     <>
-      <h1>Footer</h1>
+      <p>© InStock Inc. All Rights Reserved.</p>
     </>
   );
 }
