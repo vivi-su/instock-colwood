@@ -1,6 +1,7 @@
 import "./InventoryItemsList.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+import chevron from "../../assets/icons/chevron_right-24px.svg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -30,6 +31,7 @@ export default function InventoryItemsList({
         </span>
         <Link to={`${inventoryItemId}`}>
           <span>{name}</span>
+          <img src={chevron} alt="chevron" />
         </Link>
       </div>
       <div>

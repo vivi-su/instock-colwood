@@ -3,24 +3,9 @@ import "./Inventory.scss";
 import InventoryItemsList from "../../components/inventoryItemsList/InventoryItemsList";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
-export default function Inventory() {
-  const [inventoryItemsList, setInventoryItemsList] = useState([]);
-
-  useEffect(() => {
-    const getInventoryItemsURL = "http://localhost:8080/inventories";
-    axios
-      .get(getInventoryItemsURL)
-      .then((response) => {
-        setInventoryItemsList(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
+export default function Inventory({ inventoryItemsList }) {
   return (
     <>
       <Outlet />
