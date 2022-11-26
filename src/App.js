@@ -27,7 +27,7 @@ function App() {
   const [warehouseList, setWarehouseList] = useState([]);
 
   //<----------------WAREHOUSE---------------------------->
-  //get date for warehouse
+  //get data for warehouse
   useEffect(() => {
     const fetchAllwarehouses = async () => {
       try {

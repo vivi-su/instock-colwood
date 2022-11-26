@@ -99,7 +99,16 @@ export default function AddWarehouse() {
     //    write function here
     //    once converted, send this new phone number to API
     // }
-    console.log(event.target.warehouseName.value);
+
+    // function formatPhoneNumber(phoneNumber) {
+    //   let result = phoneNumber.match(/[0-9]/g);
+    //   const beginning = result.slice(0, 3).join("");
+    //   const middle = result.slice(3, 6).join("");
+    //   const end = result.slice(6, 10).join("");
+    //   console.log(formatPhoneNumber);
+    //   return `(${beginning}) ${middle}- ${end}`;
+    // }
+
     setwarehouseName(warehouseName);
     setAddress(address);
     setCity(city);
@@ -156,135 +165,135 @@ export default function AddWarehouse() {
           Add New Warehouse
         </h1>
 
-        <form className="add-warehouse__form" onSubmit={handleSubmit}>
-          <section className="add-warehouse__details-container">
-            <h2 className="add-warehouse__details">Warehouse Details</h2>
-            <label className="add-warehouse__label">Warehouse Name</label>
-            <input
-              className={`add-warehouse__input ${
-                isWarehouseNameValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              name="warehouseName"
-              type="text"
-              placeholder="Warehouse Name"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-            <label className="add-warehouse__label">Street Address</label>
-            <input
-              className={`add-warehouse__input ${
-                isAddressValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              name="address"
-              type="text"
-              placeholder="Street Address"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-            <label className="add-warehouse__label">City</label>
-            <input
-              className={`add-warehouse__input ${
-                isCityValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              name="city"
-              type="text"
-              placeholder="City"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-            <label className="add-warehouse__label">Country</label>
-            <input
-              className={`add-warehouse__input ${
-                isCountryValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              name="country"
-              type="text"
-              placeholder="Country"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-          </section>
+        <form onSubmit={handleSubmit}>
+          <section className="add-warehouse__form">
+            <section className="add-warehouse__details-container">
+              <h2 className="add-warehouse__details">Warehouse Details</h2>
+              <label className="add-warehouse__label">Warehouse Name</label>
+              <input
+                className={`add-warehouse__input ${
+                  isWarehouseNameValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                name="warehouseName"
+                type="text"
+                placeholder="Warehouse Name"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+              <label className="add-warehouse__label">Street Address</label>
+              <input
+                className={`add-warehouse__input ${
+                  isAddressValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                name="address"
+                type="text"
+                placeholder="Street Address"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+              <label className="add-warehouse__label">City</label>
+              <input
+                className={`add-warehouse__input ${
+                  isCityValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                name="city"
+                type="text"
+                placeholder="City"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+              <label className="add-warehouse__label">Country</label>
+              <input
+                className={`add-warehouse__input ${
+                  isCountryValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                name="country"
+                type="text"
+                placeholder="Country"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+            </section>
 
-          <section className="add-warehouse__contact">
-            <h2 className="add-warehouse__contact-container">
-              Contact Details
-            </h2>
-            <label className="add-warehouse__label">Contact Name</label>
-            <input
-              className={`add-warehouse__input ${
-                isContactNameValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              name="contactName"
-              type="text"
-              placeholder="Contact Name"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-            <label className="add-warehouse__label">Position</label>
-            <input
-              className={`add-warehouse__input ${
-                isPositionValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              name="position"
-              type="text"
-              placeholder="Position"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-            <label className="add-warehouse__label">Phone Number</label>
-            <input
-              className={`add-warehouse__input ${
-                isPhoneNumberValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              type="text"
-              name="phoneNumber"
-              placeholder="Phone Number"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
-            <label className="add-warehouse__label">Email</label>
-            <input
-              className={`add-warehouse__input ${
-                isEmailValid() ? "" : "add-warehouse__input--invalid"
-              }`}
-              type="text"
-              name="email"
-              placeholder="Email"
-            ></input>
-            {!isFormValid && (
-              <p className="add-warehouse__error">
-                <img src={ErrorIcon} alt="Error icon" />
-                This field is required
-              </p>
-            )}
+            <section className="add-warehouse__contact-container">
+              <h2 className="add-warehouse__contact">Contact Details</h2>
+              <label className="add-warehouse__label">Contact Name</label>
+              <input
+                className={`add-warehouse__input ${
+                  isContactNameValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                name="contactName"
+                type="text"
+                placeholder="Contact Name"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+              <label className="add-warehouse__label">Position</label>
+              <input
+                className={`add-warehouse__input ${
+                  isPositionValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                name="position"
+                type="text"
+                placeholder="Position"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+              <label className="add-warehouse__label">Phone Number</label>
+              <input
+                className={`add-warehouse__input ${
+                  isPhoneNumberValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                type="text"
+                name="phoneNumber"
+                placeholder="Phone Number"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+              <label className="add-warehouse__label">Email</label>
+              <input
+                className={`add-warehouse__input ${
+                  isEmailValid() ? "" : "add-warehouse__input--invalid"
+                }`}
+                type="text"
+                name="email"
+                placeholder="Email"
+              ></input>
+              {!isFormValid && (
+                <p className="add-warehouse__error">
+                  <img src={ErrorIcon} alt="Error icon" />
+                  This field is required
+                </p>
+              )}
+            </section>
           </section>
           <section className="add-warehouse__button">
             <button className="add-warehouse__cancel-button" type="submit">
