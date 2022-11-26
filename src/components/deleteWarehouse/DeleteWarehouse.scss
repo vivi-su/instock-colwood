@@ -1,0 +1,140 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+//     .opacity{
+// background-color: red;
+// //  linear-gradient(
+// //     to bottom,
+// //     rgba(50, 50, 50, 0.5),
+// //     rgba(50, 50, 50, 0.5)
+// //   )
+//     }
+  
+.delete-warehouse {
+  background-color: $global-background;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+
+  border: 1px solid $border-devider;
+  width: stretch;
+
+  @include medium {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 11rem;
+    width: 42rem;
+  }
+
+  &__container {
+    width: 92%;
+    margin: 0 auto;
+    padding: 15px 0 25px 0;
+
+    @include medium {
+      width: 90%;
+      margin: 0 9%;
+      padding: 15px 0 35px 0;
+    }
+  }
+  &__icon {
+    margin-left: 94%;
+    width: 26px;
+  }
+
+  &__heading {
+    line-height: 36px;
+    color: $global-text;
+
+    @include medium {
+      margin: 0 0 20px 0;
+    }
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin: 0;
+
+    line-height: 26px;
+    color: $global-text;
+    margin-bottom: 375px;
+
+    @include medium {
+      width: 544px;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      line-height: 28px;
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include medium {
+      width: 25%;
+      margin-left: 64%;
+    }
+    @include large {
+      margin-left: 62%;
+    }
+  }
+
+  &__cancel {
+    width: 48%;
+
+    @include medium {
+      width: 45%;
+    }
+  }
+
+  &__button {
+    border-radius: 1.25rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 48%;
+    height: 2.2rem;
+    font-size: 0.8rem;
+    text-align: center;
+
+    @include medium {
+      text-align: center;
+      width: 43%;
+    }
+    &-cancel {
+      border: 1px solid $border-devider;
+      background-color: $global-background;
+      font-weight: 600;
+      color: $table-column;
+      width: 100%;
+
+      &:hover {
+        color: $global-interect;
+        border: 1px solid $global-interect;
+      }
+    }
+
+    &-delete {
+      background-color: $out-of-stock;
+      color: $global-background;
+
+      &:hover {
+        background-color: $global-text;
+      }
+    }
+  }
+}
