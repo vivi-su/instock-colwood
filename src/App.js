@@ -47,6 +47,7 @@ function App() {
     );
   }
 
+  console.log();
   // function handleAddWarehouse() {
   //   setWarehouseList();
   //   //here will go the added warehouse
@@ -126,11 +127,10 @@ function App() {
 
             {/*<---------------- INVENTORY PAGE ---------------->*/}
             {/* The Inventory page has only one nested to DELETE an existing item*/}
-
             <Route
               path="/inventory"
               element={<Inventory inventoryItemsList={inventoryItemsList} />}
-   
+            >
               <Route
                 path="deleteInventoryItem/:itemId"
                 element={
