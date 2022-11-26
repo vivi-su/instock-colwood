@@ -286,6 +286,7 @@ export default function AddWarehouse() {
               </p>
             )}
           </section>
+
           <section className="add-warehouse__button">
             <button className="add-warehouse__cancel-button" type="submit">
               <Link to="/warehouses" className="add-warehouse__cancel">
