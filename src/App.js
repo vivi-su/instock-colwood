@@ -47,7 +47,7 @@ function App() {
     );
   }
 
-  //
+  console.log();
   // function handleAddWarehouse() {
   //   setWarehouseList();
   //   //here will go the added warehouse
