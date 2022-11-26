@@ -5,7 +5,7 @@
   padding: 1.5rem 1rem;
   @include medium {
     display: flex;
-    padding: 2rem;
+    padding: 27px 32px;
     align-items: center;
   }
   @include large {
@@ -59,6 +59,8 @@
       height: 2.375rem;
       width: auto;
       padding: 0 1rem;
+      font-size: 14px;
+      line-height: 22px;
     }
   }
 }

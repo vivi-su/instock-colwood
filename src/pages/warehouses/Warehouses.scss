@@ -3,10 +3,6 @@
 @use "../../styles/partials/fonts" as *;
 
 .warehouses {
-  //to overlap top header setting
-  // position: relative;
-  // top: -20px;
-  // z-index: 9999;
 
   padding: 1rem 2rem;
   background-color: $global-background;
@@ -28,9 +24,11 @@
 
   //---search form---
   &__title {
+    margin:0;
     font-size: 1.75rem;
     color: $global-text;
-    margin-bottom: 1.6rem;
+    margin-top:2rem;
+    margin-bottom: 1rem;
   }
 
   &__search-group {
@@ -47,6 +45,7 @@
 
     padding: 0.5rem 1rem;
     margin-bottom: 1.5rem;
+    transition: .5s ease-in-out; 
 
     &--add {
       justify-content: center;
@@ -54,6 +53,12 @@
       border: 0;
       padding: 0.6rem 0;
     }
+    
+   &--hover{
+      &:hover{
+          background-color:$global-text;
+      }
+  }
   }
 
   &__search-icon {
@@ -212,7 +217,11 @@
 
 @include medium {
   .warehouses {
-    padding: 2.5rem 0;
+    padding: 2rem 0;
+
+    &__title{
+      margin-top:0;
+    }
 
     &__form {
       display: flex;
