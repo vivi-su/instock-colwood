@@ -124,7 +124,7 @@
             gap: .375rem;
             font-size: 2rem;
             line-height: 2.5rem;
-            padding: 1.4rem 2rem;
+            padding: 1.74rem 2rem;
         }
 
         &__form {
@@ -152,6 +152,10 @@
             width: 50%;
             padding-right: 0;
             padding-left: 2rem;
+        }
+
+        &__error {
+            justify-content: flex-start;
         }
         
         &__label {
@@ -182,7 +186,7 @@
             height: 2.375rem;
             font-size: .875rem;
             padding: 0 1rem;
-            width: 22%;
+            width: 23%;
         }
     }
 }

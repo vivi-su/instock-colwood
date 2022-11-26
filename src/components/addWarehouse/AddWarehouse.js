@@ -100,6 +100,15 @@ export default function AddWarehouse() {
     //    once converted, send this new phone number to API
     // }
 
+    // function formatPhoneNumber(phoneNumber) {
+    //   let result = phoneNumber.match(/[0-9]/g);
+    //   const beginning = result.slice(0, 3).join("");
+    //   const middle = result.slice(3, 6).join("");
+    //   const end = result.slice(6, 10).join("");
+    //   console.log(formatPhoneNumber);
+    //   return `(${beginning}) ${middle}- ${end}`;
+    // }
+
     setwarehouseName(warehouseName);
     setAddress(address);
     setCity(city);
