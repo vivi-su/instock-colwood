@@ -178,7 +178,7 @@ export default function AddWarehouse() {
                 type="text"
                 placeholder="Warehouse Name"
               ></input>
-              {!isFormValid && (
+              {!isWarehouseNameValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -193,7 +193,7 @@ export default function AddWarehouse() {
                 type="text"
                 placeholder="Street Address"
               ></input>
-              {!isFormValid && (
+              {!isAddressValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -208,7 +208,7 @@ export default function AddWarehouse() {
                 type="text"
                 placeholder="City"
               ></input>
-              {!isFormValid && (
+              {!isCityValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -223,7 +223,7 @@ export default function AddWarehouse() {
                 type="text"
                 placeholder="Country"
               ></input>
-              {!isFormValid && (
+              {!isCountryValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -242,7 +242,7 @@ export default function AddWarehouse() {
                 type="text"
                 placeholder="Contact Name"
               ></input>
-              {!isFormValid && (
+              {!isContactNameValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -257,7 +257,7 @@ export default function AddWarehouse() {
                 type="text"
                 placeholder="Position"
               ></input>
-              {!isFormValid && (
+              {!isPositionValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -272,7 +272,7 @@ export default function AddWarehouse() {
                 name="phoneNumber"
                 placeholder="Phone Number"
               ></input>
-              {!isFormValid && (
+              {!isPhoneNumberValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -287,7 +287,7 @@ export default function AddWarehouse() {
                 name="email"
                 placeholder="Email"
               ></input>
-              {!isFormValid && (
+              {!isEmailValid() && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
