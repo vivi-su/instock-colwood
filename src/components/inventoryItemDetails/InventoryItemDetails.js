@@ -7,35 +7,25 @@ import Edit from "../../assets/icons/edit-24px.svg";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 //import EditInventoryItem from "../EditInventoryItem/EditInventoryItem";
 
-
-
 export default function InventoryItemDetails() {
   return (
     <section className="item-details">
       <div className="item-details__header">
-        <div className="item-details__arrow-title">
-          <Link to="/inventory">
-            <img
-              className="item-details__header-arrow"
-              src={Arrow}
-              alt="Back arrow"
-            />
-          </Link>
-          <h1 className="item-details__header-title">TELEVISION</h1>
-        </div>
+        <Link to={"/inventory"}>
+          <img
+            className="item-details__header-arrow"
+            src={Arrow}
+            alt="go back arrow"
+          />
+        </Link>
+
+        <h1 className="item-details__header-title">TELEVISION</h1>
+
         <Link
           to="/inventory/editInventoryItem/:itemId"
           className="item-details__link"
         >
-          <button
-            className="item-details__header-button"
-            // onClick={() => {
-            //   this.editItem(
-            //     this.state.singleItem.id,
-            //     this.state.singleItem.warehouseName
-            //   );
-            // }}
-          >
+          <button className="item-details__header-button">
             <img
               className="item-details__header-button-icon"
               src={Edit}
@@ -45,14 +35,18 @@ export default function InventoryItemDetails() {
           </button>
         </Link>
       </div>
+
       <div className="item-details__container">
         <div className="item-details__description">
-          <h3 className="item-details__description-header">
-            ITEM DESCRIPTION:
-          </h3>
-          <p className="item-details__description-description">
-            This 5- 4k LED TV provide....
-          </p>
+          <div className="item-details__description">
+            <h3 className="item-details__description-header">
+              ITEM DESCRIPTION:
+            </h3>
+            <p className="item-details__description-description">
+              This 5- 4k LED TV provide....
+            </p>
+          </div>
+
           <h3 className="item-details__description-header">CATEGORY:</h3>
           <p className="item-details__description-description">Electronics</p>
         </div>
