@@ -4,6 +4,7 @@ import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 export default function AddInventoryItem({
   inventoryItemsList,
@@ -18,16 +19,48 @@ export default function AddInventoryItem({
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState("default");
 
+  //The warehouse list and the category list is hardcoded because
+  //it didn't make sense to have them generated dinamically.
+  //If we had them generated dinamically, if somebody deleted the warehouses,
+  //leaving only a warehouse that had no inventory, there would be nothing in the category list.
+  //And same applies to warehouses. If all the warehouses in the list get deleted, there won't be
+  //any warehouse for the user to select from in the dropdown options.
   const warehouseList = [
-    "Please Select",
-    "Manhattan",
-    "Washington",
-    "Jersey",
-    "SF",
-    "Santa Monica",
-    "Seattle",
-    "Miami",
-    "Boston",
+    {
+      warehouse_name: "Please Select",
+    },
+    {
+      id: "2922c286-16cd-4d43-ab98-c79f698aeab0",
+      warehouse_name: "Manhattan",
+    },
+    {
+      id: "5bf7bd6c-2b16-4129-bddc-9d37ff8539e9",
+      warehouse_name: "Washington",
+    },
+    {
+      id: "90ac3319-70d1-4a51-b91d-ba6c2464408c",
+      warehouse_name: "Jersey",
+    },
+    {
+      id: "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
+      warehouse_name: "SF",
+    },
+    {
+      id: "89898957-04ba-4bd0-9f5c-a7aea7447963",
+      warehouse_name: "Santa Monica",
+    },
+    {
+      id: "ade0a47b-cee6-4693-b4cd-a7e6cb25f4b7",
+      warehouse_name: "Seattle",
+    },
+    {
+      id: "bb1491eb-30e6-4728-a5fa-72f89feaf622",
+      warehouse_name: "Miami",
+    },
+    {
+      id: "150a36cf-f38e-4f59-8e31-39974207372d",
+      warehouse_name: "Boston",
+    },
   ];
   const categoryList = [
     "Please Select",
@@ -81,18 +114,21 @@ export default function AddInventoryItem({
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
-
-  const handleStatus = (event) => {
+  const handleStatusChange = (event) => {
     setStatusButton(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const warehouse = event.target.warehouse.value;
+    const warehouseObj = warehouseList.find(
+      (element) => element.warehouse_name === warehouse
+    );
     const itemName = event.target.itemName.value;
     const description = event.target.description.value;
     const category = event.target.category.value;
     const status = event.target.status.value;
-    const warehouse = event.target.warehouse.value;
+    const warehouseId = warehouseObj.id;
     let quantity = null;
 
     if (status === "In Stock") {
@@ -102,8 +138,7 @@ export default function AddInventoryItem({
     }
 
     const newInventoryItem = {
-      id: uuidv4(),
-      warehouse_id: warehouse,
+      warehouse_id: warehouseId,
       item_name: itemName,
       description: description,
       category: category,
@@ -118,16 +153,19 @@ export default function AddInventoryItem({
     setQuantity(quantity);
     setWarehouse(warehouse);
 
-    event.target.reset();
     if (
+      warehouseId &&
       itemName &&
       description &&
       category &&
       status &&
-      quantity &&
-      warehouse
+      quantity
     ) {
-      //make api call
+      axios
+        .post("http://localhost:8080/inventories", newInventoryItem)
+        .then((response) => {
+          handleAddItem([...inventoryItemsList, response.data]);
+        });
       navigate("/inventory");
     }
   };
@@ -208,7 +246,7 @@ export default function AddInventoryItem({
                 className={`add-item__input ${
                   isStatusValid() ? "" : "add-item__input--invalid"
                 }`}
-                onClick={handleStatus}
+                onChange={handleStatusChange}
                 type="radio"
                 id="inStock"
                 name="status"
@@ -220,7 +258,7 @@ export default function AddInventoryItem({
                 className={`add-item__input ${
                   isItemNameValid() ? "" : "add-item__input--invalid"
                 }`}
-                onClick={handleStatus}
+                onChange={handleStatusChange}
                 type="radio"
                 id="outOfStock"
                 name="status"
@@ -254,17 +292,22 @@ export default function AddInventoryItem({
                   id="warehouse"
                 >
                   {warehouseList.map((warehouse) => (
-                    <option value={warehouse} key={warehouse + uuidv4()}>
-                      {warehouse}
+                    <option
+                      value={warehouse.warehouse_name}
+                      key={warehouse.warehouse_name + warehouse.id}
+                    >
+                      {warehouse.warehouse_name}
                     </option>
                   ))}
                 </select>
               </label>
             </div>
           </div>
-          <div className="add-item__button add-item__button--cancel">
-            Cancel
-          </div>
+          <Link className="add-item__back-link" to={`/inventory`}>
+            <div className="add-item__button add-item__button--cancel">
+              Cancel
+            </div>
+          </Link>
           <button className="add-item__button add-item__button--add">
             +Add New Item
           </button>
