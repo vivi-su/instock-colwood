@@ -18,16 +18,18 @@ import Inventory from "./pages/inventory/Inventory";
 import Warehouses from "./pages/warehouses/Warehouses";
 
 //react router components
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate,useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
+
   const [inventoryItemsList, setInventoryItemsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
 
   //<----------------WAREHOUSE---------------------------->
   //get data for warehouse
+
   useEffect(() => {
     const fetchAllwarehouses = async () => {
       try {
@@ -47,16 +49,15 @@ function App() {
     );
   }
 
-  console.log();
   // function handleAddWarehouse() {
   //   setWarehouseList();
   //   //here will go the added warehouse
   // }
 
-  // function handleEditWarehouse() {
-  //   setWarehouseList();
-  //   //here will go the edited warehouse
-  // }
+  function handleEditWarehouse(warehouseId) {
+    setWarehouseList.filter((warehouse) => warehouse.id === warehouseId);
+    //here will go the edited warehouse
+  }
 
   //<----------------INVENTORY---------------------------->
   //get data for inventory
@@ -107,12 +108,7 @@ function App() {
             >
               <Route
                 path="deleteWarehouse/:warehouseId"
-                element={
-                  <DeleteWarehouse
-                    warehouseList={warehouseList}
-                    handleDeleteWarehouse={handleDeleteWarehouse}
-                  />
-                }
+                element={<DeleteWarehouse warehouseList={warehouseList} />}
               />
             </Route>
             <Route
@@ -120,7 +116,12 @@ function App() {
               element={<WarehouseSingle />}
             />
             <Route
-              element={<EditWarehouse />}
+              element={
+                <EditWarehouse
+                  warehouseList={warehouseList}
+                  handleEditWarehouse={handleEditWarehouse}
+                />
+              }
               path="warehouses/editWarehouse/:warehouseId"
             />
             <Route path="warehouses/addWarehouse" element={<AddWarehouse />} />
