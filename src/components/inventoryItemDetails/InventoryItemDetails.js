@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./InventoryItemDetails.scss";
-import axios from "axios";
+//import axios from "axios";
 import Edit from "../../assets/icons/edit-24px.svg";
 import Arrow from "../../assets/icons/arrow_back-24px.svg";
 //import EditInventoryItem from "../EditInventoryItem/EditInventoryItem";

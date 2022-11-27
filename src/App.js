@@ -19,7 +19,7 @@ import Warehouses from "./pages/warehouses/Warehouses";
 
 //react router components
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
@@ -43,11 +43,11 @@ function App() {
 
   function handleDeleteWarehouse(warehouseId) {
     setWarehouseList(
-      setWarehouseList.filter((warehouse) => warehouse.id !== warehouseId)
+      warehouseList.filter((warehouse) => warehouse.id !== warehouseId)
     );
   }
 
-  console.log();
+  // console.log();
   // function handleAddWarehouse() {
   //   setWarehouseList();
   //   //here will go the added warehouse
@@ -97,12 +97,12 @@ function App() {
           <Routes>
             {/*<---------------- HOME ---------------->*/}
             {/* Home will navigate the user to the Warehouses page so there is no need for a file homePage.js */}
-            <Route path="/" element={<Navigate to={"warehouses"} />} />
+            <Route path="/" element={<Navigate to={"/warehouses"} />} />
 
             {/*<---------------- WAREHOUSE PAGE ---------------->*/}
             {/* The Warehouses page has only one nested route to DELETE an existing warehouse*/}
             <Route
-              path="warehouses"
+              path="/warehouses"
               element={<Warehouses warehouseList={warehouseList} />}
             >
               <Route
