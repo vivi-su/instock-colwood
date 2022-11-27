@@ -22,7 +22,6 @@ export default function EditWarehouse({
            try {
              const { data } = await axios.get(URL);
              setSelectedWarehouse(data);
-             console.log(data);
            } catch (err) {
              console.log("error", err);
            }
@@ -156,8 +155,8 @@ export default function EditWarehouse({
                 Cancel
               </Link>
             </button>
-            <button className="edit-warehouse__edit-button" type="submit">
-              + Edit Warehouse
+            <button className="edit-warehouse__save-button" type="submit">
+              Save
             </button>
           </section>
         </form>

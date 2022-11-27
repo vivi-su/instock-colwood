@@ -58,21 +58,10 @@
             outline: none;
             border: 1px solid $global-interect;
         }
-
-        &--invalid{
-            border: 1px solid red;
-        }
     }
 
     &__contact-container {
         border-bottom: none;
-    }
-
-    &__error {
-        color: red;
-        margin: 0;
-        display: flex;
-        gap: .25rem;
     }
 
     &__button {
@@ -87,11 +76,12 @@
     &__cancel-button {
         padding: 0 1rem;
         border-radius: 1.25rem;
-        border: solid $border-devider;
+        border:1px solid $border-devider;
         height: 2.25rem;
         width: 48%;
         font-size: .8125rem;
         font-weight: 600;
+        background-color: white;
             
             &:focus {
                 outline: none;
@@ -101,6 +91,8 @@
     
     &__cancel {
         text-decoration: none;
+        color: #5C667E;
+
 
         &:focus {
             outline: none;
@@ -109,7 +101,7 @@
         }
     }
     
-    &__edit-button {
+    &__save-button {
         border-radius: 1.25rem;
         height: 2.25rem;
         width: 48%;
@@ -188,11 +180,11 @@
             font-size: .875rem;
         }
 
-        &__edit-button {
+        &__save-button {
             height: 2.375rem;
             font-size: .875rem;
             padding: 0 1rem;
-            width: 23%;
+            width: 12%;
         }
     }
 }
@@ -229,8 +221,8 @@
             width: 8%;
         }
 
-        &__edit-button{
-            width: 14%;
+        &__save-button{
+            width: 8%;
         }
     }
 }
