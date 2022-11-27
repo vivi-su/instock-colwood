@@ -8,21 +8,28 @@ import Arrow from "../../assets/icons/arrow_back-24px.svg";
 //import EditInventoryItem from "../EditInventoryItem/EditInventoryItem";
 
 export default function InventoryItemDetails() {
+
+  
+
+  
+
   return (
     <section className="item-details">
       <div className="item-details__header">
-        <Link to={"/inventory"}>
+      
+        <Link to={`/inventory`}>
           <img
             className="item-details__header-arrow"
             src={Arrow}
-            alt="go back arrow"
+            alt="Back arrow"
           />
         </Link>
 
-        <h1 className="item-details__header-title">TELEVISION</h1>
+        <h1 className="item-details__header-title">Televition</h1>
+        
 
         <Link
-          to="/inventory/editInventoryItem/:itemId"
+          to={`/inventory/editInventoryItem/:itemId`}
           className="item-details__link"
         >
           <button className="item-details__header-button">
@@ -38,7 +45,7 @@ export default function InventoryItemDetails() {
 
       <div className="item-details__container">
         <div className="item-details__description">
-          <div className="item-details__description">
+          <div >
             <h3 className="item-details__description-header">
               ITEM DESCRIPTION:
             </h3>
@@ -47,10 +54,12 @@ export default function InventoryItemDetails() {
             </p>
           </div>
 
-          <h3 className="item-details__description-header">CATEGORY:</h3>
-          <p className="item-details__description-description">Electronics</p>
+          <div className="item-details__description-wrap">
+            <h3 className="item-details__description-header">CATEGORY:</h3>
+            <p className="item-details__description-description">Electronics</p>
+          </div>
         </div>
-        <div className="item-details__line"></div>
+
         <div className="item-details__logistics">
           <div className="item-details__logistics-amount">
             <div className="item-details__logistics-amount-status">
@@ -58,7 +67,7 @@ export default function InventoryItemDetails() {
 
               <p className="item-details__logistics-instock">IN STOCK</p>
 
-              <p className="item-details__logistics-outstock">OUT OF STOCK</p>
+              {/* <p className="item-details__logistics-outstock">OUT OF STOCK</p> */}
             </div>
             <div className="item-details__logistics-amount-quantity">
               <h3 className="item-details__logistics-header">QUANTITY:</h3>
