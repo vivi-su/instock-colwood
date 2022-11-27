@@ -81,10 +81,10 @@ function App() {
   //   //here will go the added item
   // }
 
-  // function handleEditItem() {
-  //   setInventoryItemsList();
-  //   //here will go the edited item
-  // }
+  function handleEditItem() {
+    setInventoryItemsList();
+    //here will go the edited item
+  }
 
   return (
     <BrowserRouter>
@@ -147,7 +147,12 @@ function App() {
             />
             <Route
               path="inventory/editInventoryItem/:itemId"
-              element={<EditInventoryItem />}
+              element={
+                <EditInventoryItem
+                  inventoryItemsList={inventoryItemsList}
+                  handleEditItem={handleEditItem}
+                />
+              }
             />
             <Route
               path="inventory/addInventoryItem"

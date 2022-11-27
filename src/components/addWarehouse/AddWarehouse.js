@@ -160,7 +160,11 @@ export default function AddWarehouse() {
       <section className="add-warehouse">
         <h1 className="add-warehouse__title">
           <Link to="/warehouses">
-            <img src={BackArrowIcon} alt="Back arrow icon" />
+            <img
+              src={BackArrowIcon}
+              alt="Back arrow icon"
+              className="add-warehouse__back-icon"
+            />
           </Link>
           Add New Warehouse
         </h1>
