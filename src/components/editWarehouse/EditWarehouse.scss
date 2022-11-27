@@ -81,7 +81,7 @@
         width: 48%;
         font-size: .8125rem;
         font-weight: 600;
-        background-color: white;
+        background-color: $global-background;
             
             &:focus {
                 outline: none;
@@ -91,7 +91,7 @@
     
     &__cancel {
         text-decoration: none;
-        color: #5C667E;
+        color: $table-column;
 
 
         &:focus {
