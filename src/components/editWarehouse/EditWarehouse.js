@@ -5,10 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function EditWarehouse({
-  handleEditWarehouse,
-  warehouseList
-}) {
+export default function EditWarehouse() {
 
      const [selectedWarehouse, setSelectedWarehouse] = useState({});
      const { warehouseId } = useParams();
@@ -150,11 +147,11 @@ export default function EditWarehouse({
             </section>
           </section>
           <section className="edit-warehouse__button">
-            <button className="edit-warehouse__cancel-button" type="submit">
-              <Link to="/warehouses" className="edit-warehouse__cancel">
+          
+              <Link to="/warehouses" className="edit-warehouse__cancel-button" >
                 Cancel
               </Link>
-            </button>
+          
             <button className="edit-warehouse__save-button" type="submit">
               Save
             </button>

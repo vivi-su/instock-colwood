@@ -74,7 +74,7 @@
     }
     
     &__cancel-button {
-        padding: 0 1rem;
+        padding: 0.45rem 1rem;
         border-radius: 1.25rem;
         border:1px solid $border-devider;
         height: 2.25rem;
@@ -82,23 +82,17 @@
         font-size: .8125rem;
         font-weight: 600;
         background-color: $global-background;
+        text-decoration: none;
+         color: $table-column;
+         text-align: center;
+         transition: 0.3s ease-in-out;
             
-            &:focus {
+            &:focus,&:hover {
                 outline: none;
                 border: 1px solid $global-interect;
+                color: $global-interect;
             }
-        }
-    
-    &__cancel {
-        text-decoration: none;
-        color: $table-column;
-
-
-        &:focus {
-            outline: none;
-            border: 1px solid $global-interect;
-            color: $global-interect;
-        }
+        
     }
     
     &__save-button {
@@ -110,6 +104,12 @@
         color: $global-background;
         font-size: .8125rem;
         font-weight: 600;
+        transition: 0.3s ease-in-out;
+
+        &:focus,&:hover {
+        background-color:$global-text ;
+        }
+
     }
 }
 
@@ -173,10 +173,6 @@
         &__cancel-button {
             height: 2.375rem;
             width: 12%;
-            padding: 0 1rem;
-        }
-
-        &__cancel {
             font-size: .875rem;
         }
 
