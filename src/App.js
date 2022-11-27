@@ -82,8 +82,7 @@ function App() {
   // }
 
   function handleEditItem() {
-    setInventoryItemsList();
-    //here will go the edited item
+    setInventoryItemsList( );
   }
 
   return (
