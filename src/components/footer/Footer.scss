@@ -2,18 +2,20 @@
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/fonts" as *;
 
-p {
-    font-size: .75rem;
-    color: $table-column;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-    margin-top: 0;
+.footer {
+    font-size: 0.75rem;
+        color: $table-column;
+        display: flex;
+        justify-content: center;
+        padding: 2.5rem 0;
+        margin: 0;
+        margin-top: auto;
 }
 
 @include medium {
     
-    p {
+    .footer {
         font-size: 1rem;
+        padding: 2.5rem 0 3rem;
     }
 }
