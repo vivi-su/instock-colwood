@@ -92,81 +92,90 @@ function App() {
         <header className="header-container">
           <Header />
         </header>
-        <main className="main-container">
-          <Routes>
-            {/*<---------------- HOME ---------------->*/}
-            {/* Home will navigate the user to the Warehouses page so there is no need for a file homePage.js */}
-            <Route path="/" element={<Navigate to={"/warehouses"} />} />
+        <div className="main-footer-wrapper">
+          {/* <div> */}
+          <main className="main-container">
+            <Routes>
+              {/*<---------------- HOME ---------------->*/}
+              {/* Home will navigate the user to the Warehouses page so there is no need for a file homePage.js */}
+              <Route path="/" element={<Navigate to={"/warehouses"} />} />
 
-            {/*<---------------- WAREHOUSE PAGE ---------------->*/}
-            {/* The Warehouses page has only one nested route to DELETE an existing warehouse*/}
-            <Route
-              path="/warehouses"
-              element={<Warehouses warehouseList={warehouseList} />}
-            >
+              {/*<---------------- WAREHOUSE PAGE ---------------->*/}
+              {/* The Warehouses page has only one nested route to DELETE an existing warehouse*/}
               <Route
-                path="deleteWarehouse/:warehouseId"
-                element={
-                  <DeleteWarehouse
-                    warehouseList={warehouseList}
-                    handleDeleteWarehouse={handleDeleteWarehouse}
-                  />
-                }
-              />
-            </Route>
-            <Route
-              path="warehouses/:warehouseId"
-              element={<WarehouseSingle />}
-            />
-            <Route
-              element={<EditWarehouse />}
-              path="warehouses/editWarehouse/:warehouseId"
-            />
-            <Route path="warehouses/addWarehouse" element={<AddWarehouse />} />
-
-            {/*<---------------- INVENTORY PAGE ---------------->*/}
-            {/* The Inventory page has only one nested to DELETE an existing item*/}
-            <Route
-              path="/inventory"
-              element={<Inventory inventoryItemsList={inventoryItemsList} />}
-            >
-              <Route
-                path="deleteInventoryItem/:itemId"
-                element={
-                  <DeleteInventoryItem
-                    inventoryItemsList={inventoryItemsList}
-                    handleDeleteItem={handleDeleteItem}
-                  />
-                }
-              />
-            </Route>
-            <Route
-              path="inventory/:itemId"
-              element={<InventoryItemDetails />}
-            />
-            <Route
-              path="inventory/editInventoryItem/:itemId"
-              element={<EditInventoryItem />}
-            />
-            <Route
-              path="inventory/addInventoryItem"
-              element={
-                <AddInventoryItem
-                  inventoryItemsList={inventoryItemsList}
-                  handleAddItem={handleAddItem}
+                path="/warehouses"
+                element={<Warehouses warehouseList={warehouseList} />}
+              >
+                <Route
+                  path="deleteWarehouse/:warehouseId"
+                  element={
+                    <DeleteWarehouse
+                      warehouseList={warehouseList}
+                      handleDeleteWarehouse={handleDeleteWarehouse}
+                    />
+                  }
                 />
-              }
-            />
+              </Route>
+              <Route
+                path="warehouses/:warehouseId"
+                element={<WarehouseSingle />}
+              />
+              <Route
+                element={<EditWarehouse />}
+                path="warehouses/editWarehouse/:warehouseId"
+              />
+              <Route
+                path="warehouses/addWarehouse"
+                element={<AddWarehouse />}
+              />
 
-            {/*<---------------- FALLBACK ROUTE ---------------->*/}
-            {/* Fallback route will direct user to Warehouses page*/}
-            <Route path="*" element={<Warehouses />} />
-          </Routes>
-        </main>
-        {/* Footer stays outside the routes */}
-        <footer className="footer-container">
-          <Footer />
-        </footer>
+              {/*<---------------- INVENTORY PAGE ---------------->*/}
+              {/* The Inventory page has only one nested to DELETE an existing item*/}
+              <Route
+                path="/inventory"
+                element={<Inventory inventoryItemsList={inventoryItemsList} />}
+              >
+                <Route
+                  path="deleteInventoryItem/:itemId"
+                  element={
+                    <DeleteInventoryItem
+                      inventoryItemsList={inventoryItemsList}
+                      handleDeleteItem={handleDeleteItem}
+                    />
+                  }
+                />
+              </Route>
+              <Route
+                path="inventory/:itemId"
+                element={<InventoryItemDetails />}
+              />
+              <Route
+                path="inventory/editInventoryItem/:itemId"
+                element={<EditInventoryItem />}
+              />
+              <Route
+                path="inventory/addInventoryItem"
+                element={
+                  <AddInventoryItem
+                    inventoryItemsList={inventoryItemsList}
+                    handleAddItem={handleAddItem}
+                  />
+                }
+              />
+
+              {/*<---------------- FALLBACK ROUTE ---------------->*/}
+              {/* Fallback route will direct user to Warehouses page*/}
+              <Route path="*" element={<Warehouses />} />
+            </Routes>
+          </main>
+          {/* </div> */}
+          {/* Footer stays outside the routes */}
+          <div className="footer-wrapper">
+            <footer className="footer-container">
+              <Footer />
+            </footer>
+          </div>
+        </div>
       </div>
     </BrowserRouter>
   );

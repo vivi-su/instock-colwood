@@ -186,26 +186,32 @@ export default function AddInventoryItem({
             <h1 className="add-item__section-header">Add New Inventory Item</h1>
           </div>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form className="add-item__form" onSubmit={handleSubmit}>
           {/* DETAILS SIDE */}
           <div className="add-item__details">
             <h2 className="add-item__subheader">Item Details</h2>
             <div>
-              <label htmlFor="itemName">Item Name</label>
+              <label className="add-item__label-text" htmlFor="itemName">
+                Item Name
+              </label>
               <input
                 // className="add-item__input add-item__input--invalid"
-                className={`add-item__input ${
-                  isItemNameValid() ? "" : "add-item__input--invalid"
+                className={`add-item__input-regular ${
+                  isItemNameValid() ? "" : "add-item__input-regular--invalid"
                 }`}
                 type="text"
                 id="itemName"
               />
             </div>
-            <div>
-              <label htmlFor="description">Description</label>
+            <div className="add-item__description-container">
+              <label className="add-item__label-text" htmlFor="description">
+                Description
+              </label>
               <textarea
-                className={`add-item__input ${
-                  isDescriptionValid() ? "" : "add-item__input--invalid"
+                className={`add-item__input-textarea ${
+                  isDescriptionValid()
+                    ? ""
+                    : "add-item__input-textarea--invalid"
                 }`}
                 name="description"
                 id="description"
@@ -215,11 +221,11 @@ export default function AddInventoryItem({
               ></textarea>
             </div>
             <div>
-              <label>
+              <label className="add-item__label-text">
                 Category
                 <select
-                  className={`add-item__input ${
-                    isCategoryValid() ? "" : "add-item__input--invalid"
+                  className={`add-item__input-select ${
+                    isCategoryValid() ? "" : "add-item__input-select--invalid"
                   }`}
                   value={category}
                   onChange={handleCategoryChange}
@@ -239,52 +245,69 @@ export default function AddInventoryItem({
           {/* AVAILABILITY SIDE */}
           <div className="add-item__availability">
             <h2 className="add-item__subheader">Item Availability</h2>
-            <div>
-              <label>Status</label>
-              <label htmlFor="inStock">In Stock</label>
-              <input
-                className={`add-item__input ${
-                  isStatusValid() ? "" : "add-item__input--invalid"
-                }`}
-                onChange={handleStatusChange}
-                type="radio"
-                id="inStock"
-                name="status"
-                value="In Stock"
-              />
-
-              <label htmlFor="outOfStock">Out of Stock</label>
-              <input
-                className={`add-item__input ${
-                  isItemNameValid() ? "" : "add-item__input--invalid"
-                }`}
-                onChange={handleStatusChange}
-                type="radio"
-                id="outOfStock"
-                name="status"
-                value="Out of Stock"
-              />
+            <div className="add-item__status-container">
+              <label className="add-item__label-text">Status</label>
+              <div className="add-item__stock-container">
+                <label className="add-item__text" htmlFor="inStock">
+                  In Stock
+                </label>
+                <div
+                  className={`add-item__input-radio ${
+                    isStatusValid() ? "" : "add-item__input-radio--invalid"
+                  }`}
+                >
+                  <input
+                    className="add-item__radio-button"
+                    onChange={handleStatusChange}
+                    type="radio"
+                    id="inStock"
+                    name="status"
+                    value="In Stock"
+                  />
+                </div>
+              </div>
+              <div className="add-item__stock-container">
+                <label className="add-item__text" htmlFor="outOfStock">
+                  Out of Stock
+                </label>
+                <div
+                  className={`add-item__input-radio ${
+                    isStatusValid() ? "" : "add-item__input-radio--invalid"
+                  }`}
+                >
+                  <input
+                    className="add-item__radio-button"
+                    onChange={handleStatusChange}
+                    type="radio"
+                    id="outOfStock"
+                    name="status"
+                    value="Out of Stock"
+                  />
+                </div>
+              </div>
             </div>
             <div
               className={`add-item__quantity ${
                 statusButton === "In Stock" ? "add-item__quantity--inStock" : ""
               }`}
             >
-              <label htmlFor="quantity">Quantity</label>
+              <label className="add-item__label-text" htmlFor="quantity">
+                Quantity
+              </label>
               <input
-                className={`add-item__input ${
-                  isQuantityValid() ? "" : "add-item__input--invalid"
+                className={`add-item__input-regular ${
+                  isQuantityValid() ? "" : "add-item__input-regular--invalid"
                 }`}
                 type="text"
                 id="quantity"
               />
             </div>
             <div>
-              <label>
+              <label className="add-item__label-text">
                 Warehouse
                 <select
-                  className={`add-item__input ${
-                    isWarehouseValid() ? "" : "add-item__input--invalid"
+                  className={`add-item__input-select ${
+                    isWarehouseValid() ? "" : "add-item__input-select--invalid"
                   }`}
                   onChange={handleWarehouseChange}
                   value={warehouse}
