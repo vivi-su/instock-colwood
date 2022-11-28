@@ -108,7 +108,12 @@ function App() {
             >
               <Route
                 path="deleteWarehouse/:warehouseId"
-                element={<DeleteWarehouse warehouseList={warehouseList} />}
+                element={
+                  <DeleteWarehouse
+                    warehouseList={warehouseList}
+                    handleDeleteWarehouse={handleDeleteWarehouse}
+                  />
+                }
               />
             </Route>
             <Route
