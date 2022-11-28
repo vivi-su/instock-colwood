@@ -80,8 +80,8 @@ function App() {
     setInventoryItemsList(newInventoryItem);
   }
 
-  function handleEditItem() {
-    setInventoryItemsList( );
+  function handleEditItem(editInventoryItem) {
+    setInventoryItemsList(editInventoryItem);
   }
 
   return (
