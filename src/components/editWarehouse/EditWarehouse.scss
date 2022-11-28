@@ -57,11 +57,29 @@
         &:focus{
             outline: none;
             border: 1px solid $global-interect;
+      
+        }
+
+        &--invalid{
+            border: 1px solid red;
+
+            &:focus{
+            
+            border: 1px solid red;
+      
+        }
         }
     }
 
     &__contact-container {
         border-bottom: none;
+    }
+
+    &__error {
+        color: red;
+        margin: 0;
+        display: flex;
+        gap: .25rem;
     }
 
     &__button {
