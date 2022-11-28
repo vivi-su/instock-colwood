@@ -15,7 +15,7 @@ export default function EditInventoryItem({
   const [description, setDescription] = useState();
   const [category, setCategory] = useState();
   const [quantity, setQuantity] = useState();
-  const [warehouseId, setWarehouse] = useState();
+  const [warehouseId, setWarehouseId] = useState();
   const [warehouseList, setWarehouseList] = useState([]);
   const [firstLoad, setFirstLoad] = useState(true);
   const { itemId } = useParams();
@@ -27,12 +27,12 @@ export default function EditInventoryItem({
       (inventoryItem) => inventoryItem.id === itemId
     );
 
-    setItemName(editInventoryItem.item_name);
-    setDescription(editInventoryItem.description);
-    setCategory(editInventoryItem.category);
-    setQuantity(editInventoryItem.quantity);
-    setStatusButton(editInventoryItem.status);
-    setWarehouse(editInventoryItem.warehouse_id);
+    setItemName(editInventoryItem?.item_name);
+    setDescription(editInventoryItem?.description);
+    setCategory(editInventoryItem?.category);
+    setQuantity(editInventoryItem?.quantity);
+    setStatusButton(editInventoryItem?.status);
+    setWarehouseId(editInventoryItem?.warehouse_id);
     setFirstLoad(false);
   }, [itemId, inventoryItemsList]);
 
@@ -111,7 +111,7 @@ export default function EditInventoryItem({
   };
 
   const handleWarehouseChange = (event) => {
-    setWarehouse(event.target.value);
+    setWarehouseId(event.target.value);
   };
 
   const handleQuantityChange = (event) => {
@@ -119,47 +119,40 @@ export default function EditInventoryItem({
   };
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
-    // const itemName = event.target.itemName.value;
-    // const description = event.target.description.value;
-    // const category = event.target.category.value;
-    // const status = event.target.status.value;
-    // const warehouse = event.target.warehouse.value;
-    // let quantity = null;
-    // if (status === "In Stock") {
-    //   quantity = Number(event.target.quantity.value);
-    // } else {
-    //   quantity = 0;
-    // }
-    // const editedInventoryItem = {
-    //   warehouse: warehouse,
-    //   item_name: itemName,
-    //   description: description,
-    //   category: category,
-    //   status: status,
-    //   quantity: quantity,
-    // };
-    // setItemName(itemName);
-    // setDescription(description);
-    // setCategory(category);
-    // setStatus(status);
-    // setQuantity(quantity);
-    // setWarehouse(warehouse);
-    // if (
-    //   warehouse &&
-    //   itemName &&
-    //   description &&
-    //   category &&
-    //   status &&
-    //   quantity
-    // ) {
-    //   axios
-    //     .put(`http://localhost:8080/inventories/${itemId}`)
-    //     .then((response) => {
-    //       handleEditItem([...inventoryItemsList, response.data]);
-    //     });
-    //   navigate("/inventory");
-    // }
+    event.preventDefault();
+
+    let newQuantity = null;
+    if (statusButton === "In Stock") {
+      newQuantity = Number(quantity);
+    } else {
+      newQuantity = 0;
+    }
+
+    const editedInventoryItem = {
+      id: itemId,
+      warehouse_id: warehouseId,
+      item_name: itemName,
+      description: description,
+      category: category,
+      status: statusButton,
+      quantity: quantity,
+    };
+
+    if (
+      itemName &&
+      description &&
+      category &&
+      statusButton &&
+      quantity &&
+      warehouseId
+    ) {
+      axios
+        .put(`http://localhost:8080/inventories/${itemId}`, editedInventoryItem)
+        .then((response) => {
+          handleEditItem([...inventoryItemsList, response.data]);
+        });
+      navigate("/inventory");
+    }
   };
 
   return (
