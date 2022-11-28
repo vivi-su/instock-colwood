@@ -145,7 +145,9 @@ export default function EditWarehouse() {
   };
 
   const isContactEmailValid = () => {
-    if (contactEmail === "" || !contactEmail?.includes("@")) {
+    const pass =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (contactEmail === "" || !contactEmail?.match(pass)) {
       return false;
     } else {
       return true;
