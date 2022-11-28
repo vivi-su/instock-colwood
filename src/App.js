@@ -19,7 +19,7 @@ import Warehouses from "./pages/warehouses/Warehouses";
 
 //react router components
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { startTransition, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
