@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 export default function WarehouseSingle() {
   const { warehouseId } = useParams();
 
+
   return (
     <section className="warehouseSingle-container">
       <WarehouseDetails warehouseId={warehouseId} />

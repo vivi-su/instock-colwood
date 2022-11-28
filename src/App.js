@@ -149,7 +149,7 @@ function App() {
             </Route>
             <Route
               path="inventory/:itemId"
-              element={<InventoryItemDetails />}
+              element={<InventoryItemDetails warehouseList={warehouseList} />}
             />
             <Route
               path="inventory/editInventoryItem/:itemId"

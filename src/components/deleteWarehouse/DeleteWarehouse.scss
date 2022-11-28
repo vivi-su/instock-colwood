@@ -1,3 +1,5 @@
+
+
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/fonts" as *;
@@ -70,9 +72,7 @@
     height: 2.375rem;
   }
 
-  // &__button-cancel{
-  //   text-decoration: none;
-  // }
+  
   &__delete {
     color: $global-background;
     background-color: $out-of-stock;
@@ -178,12 +178,3 @@
     }
   }
 }
-
-// button {
-//   &:hover {
-//     cursor: pointer;
-//   }
-//   &:focus {
-//     outline: none;
-//   }
-// }

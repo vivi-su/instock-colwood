@@ -3,79 +3,87 @@
 @use "../../styles/partials/fonts" as *;
 
 .item-details {
-  display: flex;
-  flex-direction: column;
-  width: 50rem;
-  width: auto;
+  padding-top: 1rem;
   background: $global-background;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-  border-radius: 0.2rem;
-  position: absolute;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 3px;
   left: 4.5%;
   right: 4.5%;
-  top: 16%;
-  width: stretch;
-  top: 8rem;
-  margin: 0 1rem 6rem 1rem;
-
-  &__arrow-title {
-    display: flex;
-    justify-content: space-between;
+  @include large {
+    max-width: 64rem;
   }
 
   &__header {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     border-bottom: 1px solid $border-devider;
-    padding: 1rem 7%;
+    padding: 1rem;
     margin: 0;
+
     @include medium {
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 4%;
+      padding-top: 1.4rem;
+      padding-left: 4%;
+      padding-right: 4%;
       margin: 0;
+      padding-bottom: 1.4rem;
     }
 
     &-arrow {
       padding-right: 2%;
+      padding-top: 20%;
     }
     &-title {
+      font-size: 1.7rem;
+      line-height: 1.75rem;
       font-weight: 600;
       color: $global-text;
       margin: 1rem 0;
-      //margin-top: 0;
+      margin-top: 0;
+      padding-left: 0.5rem;
 
       @include medium {
-        //margin: 0.6rem 0 0 0;
+        margin-bottom: 0.6rem;
       }
     }
 
     &-button {
-      align-self: center;
-      margin-left: auto;
-      background-color: $global-interect;
-      border-radius: 1.2rem;
-      width: 5rem;
-      height: 2.3rem;
+      border: none;
+      background: $global-interect;
+      border-radius: 50%;
+      position: absolute;
+      right: 3rem;
+      top: 1.5rem;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
       @include medium {
+        border-radius: 2rem;
+        width: 5rem;
+        right: 4rem;
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
+        top: 1.8rem;
       }
+
+      @include large {
+        right: 11rem;
+      }
+
       &-icon {
-        width: 1rem;
-        height: 1rem;
+        padding-top: 0.5rem;
+        width: 1.3rem;
+        height: 1.7rem;
         filter: brightness(4) sepia(0) hue-rotate(0deg) saturate(0);
+        @include medium {
+          margin-left: 0.5rem;
+        }
       }
       &-text {
         display: none;
         color: $global-background;
         @include medium {
           display: flex;
-          flex-direction: row;
-          margin: 0;
+          padding-top: 0.4rem;
         }
       }
     }
@@ -84,101 +92,126 @@
   &__container {
     padding: 5%;
     @include medium {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
       display: flex;
       flex-direction: row;
     }
   }
 
   &__description {
+    font-size: 0.9375rem;
+    line-height: 1.625rem;
+    font-weight: 400;
+    flex-direction: column;
+    @include medium {
+      width: 50%;
+      border-right: 0.5px solid $border-devider;
+      padding-right: 1rem;
+      &-wrap {
+        padding-top: 1rem;
+      }
+    }
+
+    &-header {
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      color: $table-column;
+      margin-bottom: 0.75%;
+      @include medium {
+        margin-top: 0;
+      }
+    }
+    &-description {
+      font-size: 0.8rem;
+      line-height: 1.625rem;
+      font-weight: 400;
+      display: unset;
+      margin-bottom: 5%;
+      color: $global-text;
+      width: 95%;
+
+      @include medium {
+        width: 85%;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  &__logistics {
     display: flex;
     flex-direction: column;
     @include medium {
       width: 50%;
+      padding-left: 5%;
+      &-warehouse {
+        padding-top: 1rem;
+      }
+    }
+
+    &-amount {
+      display: flex;
+      flex-direction: row;
+      &-status {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        @include medium {
+          width: 100%;
+        }
+      }
+      &-quantity {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      }
     }
     &-header {
       color: $table-column;
       margin-bottom: 0.75%;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      @include medium {
+        margin-top: 0;
+      }
     }
+    &-instock {
+      color: $out-of-stock;
+      background: rgba(132, 21, 40, 0.07);
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      margin: 0;
+      text-transform: uppercase;
+      padding: 0.2rem 0.1rem;
+      border-radius: 3rem;
+      width: 5rem;
+      &--instock {
+        width: 3.5rem;
+        color: $in-stock;
+        background: rgba(21, 132, 99, 0.07);
+      }
+
+      @include medium {
+        font-size: 0.7rem;
+      }
+    }
+
     &-description {
-      margin-left: 0;
-      margin-right: 0;
-      margin-bottom: 5%;
+      font-size: 0.8rem;
+      line-height: 1.625rem;
+      font-weight: 400;
+      display: unset;
+      margin: 0;
       color: $global-text;
       font-weight: 100;
-      width: 95%;
-      font-size: 1rem;
+      margin-bottom: 5%;
+
       @include medium {
-        width: 85%;
+        font-size: 0.9rem;
       }
     }
   }
-  &__line {
-    @include medium {
-      border-right: 0.5px solid $border-devider;
-      position: absolute;
-      top: 40%;
-      left: 45%;
-      bottom: 5%;
-    }
-  }
-
-
-  &__logistics{
-        display:flex;
-        flex-direction:column;
-        @include medium{
-            width:50%;
-            padding-left:5%;
-        }
-
-         &-amount{
-            display:flex;
-            flex-direction: row;
-            &-status{
-                display:flex;
-                flex-direction:column;
-                width:50%;
-                @include medium{
-                    width:100%;
-                }
-            }
-            &-quantity{
-                display:flex;
-                flex-direction:column;
-                width:50%;
-            }
-        }
-         &-header{
-            color:$table-column;
-            margin-bottom:0.75%;
-        }
-        &-instock{
-            line-height: 16px;
-            text-transform: uppercase;
-            font-size:1rem;
-            margin: 0;
-            color: $in-stock;
-            background: rgba(21, 132, 99, 0.07);
-            padding: 3px 4px;
-            border-radius: 20px;
-            width:35%;
-        }
-        &-outstock{
-            line-height: 16px;
-            text-transform: uppercase;
-            font-size: 1rem;
-            margin: 0;
-            color: $out-of-stock;
-            background: rgba(132, 21, 40, 0.07);
-            padding: 3px 4px;
-            border-radius: 20px;
-            width:50%;
-        }
-        &-description{
-            margin:0;
-            color:$global-text;
-            font-weight:100;
-            margin-bottom:5%;
-        }
-    }
 }
