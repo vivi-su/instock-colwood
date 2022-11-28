@@ -10,11 +10,11 @@ export default function EditWarehouse() {
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
   const { warehouseId } = useParams();
   const [warehouseName, setWarehouseName] = useState();
-  const [address, setAddress]= useState();
-  const [city, setCity]= useState();
-  const [country, setCountry]= useState();
+  const [address, setAddress] = useState();
+  const [city, setCity] = useState();
+  const [country, setCountry] = useState();
   const [contactName, setContactName] = useState();
-  const [contactPosition, setContactPosition]= useState();
+  const [contactPosition, setContactPosition] = useState();
   const [contactPhone, setContactPhone] = useState();
   const [contactEmail, setContactEmail] = useState();
 
@@ -49,114 +49,124 @@ export default function EditWarehouse() {
     selectedWarehouse.contact_name,
     selectedWarehouse.contact_position,
     selectedWarehouse.contact_phone,
-    selectedWarehouse.contact_email
+    selectedWarehouse.contact_email,
   ]);
 
-const handleWarehouseNameChange = (e)=>{
-  setWarehouseName(e.target.value);
-};
+  const handleWarehouseNameChange = (e) => {
+    setWarehouseName(e.target.value);
+  };
 
-const handleAddressChange = (e) =>{
-  setAddress(e.target.value);
-}
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
 
-const handleCityChange = (e) =>{
-  setCity(e.target.value);
-}
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
+  };
 
-const handleCountryChange = (e) =>{
-  setCountry(e.target.value);
-} 
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+  };
 
-const handleContactNameChange = (e) =>{
-  setContactName(e.target.value);
-}
+  const handleContactNameChange = (e) => {
+    setContactName(e.target.value);
+  };
 
-const handlePositionChange = (e) => {
-  setContactPosition(e.target.value);
-};
+  const handlePositionChange = (e) => {
+    setContactPosition(e.target.value);
+  };
 
-const handleContactPhoneChange = (e) =>{
-  setContactPhone(e.target.value);
-}
+  const handleContactPhoneChange = (e) => {
+    setContactPhone(e.target.value);
+  };
 
-const handleContactEmailChange = (e) =>{
-  setContactEmail(e.target.value);
-}
+  const handleContactEmailChange = (e) => {
+    setContactEmail(e.target.value);
+  };
 
-   
-const isWarehouseNameValid = () => {
-  if (warehouseName === "") {
-    return false;
-  }
-  return true;
-};
+  const isWarehouseNameValid = () => {
+    if (warehouseName === "") {
+      return false;
+    }
+    return true;
+  };
 
-const isAddressValid = () => {
-  if (address === "") {
-    return false;
-  }
-  return true;
-};
+  const isAddressValid = () => {
+    if (address === "") {
+      return false;
+    }
+    return true;
+  };
 
-const isCityValid = () => {
-  if (city === "") {
-    return false;
-  }
-  return true;
-};
+  const isCityValid = () => {
+    if (city === "") {
+      return false;
+    }
+    return true;
+  };
 
-const isCountryValid = () => {
-  if (country === "") {
-    return false;
-  }
-  return true;
-};
+  const isCountryValid = () => {
+    if (country === "") {
+      return false;
+    }
+    return true;
+  };
 
-const isContactNameValid = () => {
-  if (contactName === "") {
-    return false;
-  }
-  return true;
-};
+  const isContactNameValid = () => {
+    if (contactName === "") {
+      return false;
+    }
+    return true;
+  };
 
-const isContactPositionValid = () => {
-  if (contactPosition === "") {
-    return false;
-  }
-  return true;
-};
+  const isContactPositionValid = () => {
+    if (contactPosition === "") {
+      return false;
+    }
+    return true;
+  };
 
-const isContactPhoneValid = () => {
-  if (contactPhone === "") {
-    return false;
-  }
-  return true;
-};
+/**  
++1 (123) 456-7890
++1 (123)456-7890
++1 123-456-7890
++1 1234567890
++1 can be optional
+ */
 
-const isContactEmailValid = () => { 
-    // if (contactEmail === "" || !contactEmail.includes("@"))
-      if (contactEmail===""){
-        return false;
-      } else {
-        return true;
-      }
-};
-  
+  const isContactPhoneValid = () => {
+    const pass = 
+      /^[+]?([0-9]{1})?\x20?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
+
+    if (contactPhone === "" || !contactPhone?.match(pass)) {
+      return false;
+    }
+    return true;
+  };
+
+  const isContactEmailValid = () => {
+    if (contactEmail === "" || !contactEmail?.includes("@")) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const handleEdit = (e) => {
     e.preventDefault();
 
     if (
-      isWarehouseNameValid(warehouseName) &&
-      isAddressValid(address) &&
-      isCityValid(city) &&
-      isCountryValid(country) &&
-      isContactNameValid(contactName) &&
-      isContactPositionValid(contactPosition) &&
-      isContactPhoneValid(contactPhone) &&
-      isContactEmailValid(contactEmail)
+      !isWarehouseNameValid(warehouseName) ||
+      !isAddressValid(address) ||
+      !isCityValid(city) ||
+      !isCountryValid(country) ||
+      !isContactNameValid(contactName) ||
+      !isContactPositionValid(contactPosition) ||
+      !isContactPhoneValid(contactPhone) ||
+      !isContactEmailValid(contactEmail)
     ) {
-
+      alert("Please fill up all the field!");
+      return}
       const values = {
         warehouse_name: e.target.warehouseName.value,
         address: e.target.address.value,
@@ -171,12 +181,10 @@ const isContactEmailValid = () => {
       axios.put(URL, values).then((response) => {
         setSelectedWarehouse(response);
         alert(`The warehouse ${selectedWarehouse.warehouse_name} is updated!`);
-        window.location.reload(false);
+        
       });
-    } else {
-    
-      alert("required form");
-    }
+      window.location.reload(true);
+      
   };
   return (
     <>
@@ -334,7 +342,7 @@ const isContactEmailValid = () => {
                   This field is required
                 </p>
               )}
-          
+
               <label className="edit-warehouse__label">Email</label>
               <input
                 className={`edit-warehouse__input ${

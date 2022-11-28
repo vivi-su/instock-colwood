@@ -1,8 +1,6 @@
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import axios from "axios";
 import "./Warehouses.scss";
 
 export default function Warehouses({warehouseList}) {
