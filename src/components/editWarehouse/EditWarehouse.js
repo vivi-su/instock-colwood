@@ -9,7 +9,15 @@ import { useParams, Link } from "react-router-dom";
 export default function EditWarehouse() {
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
   const { warehouseId } = useParams();
-  const [warehouseNameValid, setWarehouseNameValid] = useState(true);
+  const [warehouseNameValid, setWarehouseNameValid] = useState(true); 
+  const [warehouseName, setWarehouseName] = useState();
+  const [address, setAddress]= useState();
+  const [city, setCity]= useState();
+  const [country, setCountry]= useState();
+  const [contactName, setContactName] = useState();
+  const [contactPosition, setContactPosition]= useState();
+  const [contactPhone, setContactPhone] = useState();
+  const [contactEmail, setContactEmail] = useState();
 
   const URL = `http://localhost:8080/warehouses/${warehouseId}`;
   useEffect(() => {
@@ -23,25 +31,48 @@ export default function EditWarehouse() {
         }
       };
       fetchSelectedWarehouse();
+      setWarehouseName(selectedWarehouse.warehouse_name);
+      setAddress(selectedWarehouse.address);
+      setCity(selectedWarehouse.city);
+      setCountry(selectedWarehouse.country);
+      setContactName(selectedWarehouse.contact_name);
+      setContactPosition(selectedWarehouse.contact_position);
+      setContactPhone(selectedWarehouse.contact_phone);
+      setContactEmail(selectedWarehouse.contact_email);
     }
-  }, [warehouseId, URL]);
+  }, [
+    warehouseId,
+    URL,
+    selectedWarehouse.warehouse_name,
+    selectedWarehouse.address,
+    selectedWarehouse.city,
+    selectedWarehouse.country,
+    selectedWarehouse.contact_name,
+    selectedWarehouse.contact_position,
+    selectedWarehouse.contact_phone,
+    selectedWarehouse.contact_email
+  ]);
 
-  const isWarehouseNameValid = (e) => {
-    console.log(e.target.warehouseName.value);
-    if (e.target.warehouseName.value === "") {
-      return false;
-    }
-   return true;
-  };
 
 
-  
+
+
+
+  const handleChange = (e)=>{
+     console.log(e.target.value);
+         const isWarehouseNameValid = () => {
+           if (!warehouseName) {
+             return true;
+           }
+           return false;
+         };
+alert(isWarehouseNameValid(warehouseName));
+  }
+
 
   const handleEdit = (e) => {
     e.preventDefault();
-    console.log(isWarehouseNameValid(e));
-    console.log(e);
-    setWarehouseNameValid(isWarehouseNameValid(e));
+
     // alert(warehouseNameValid);
  
     
@@ -92,7 +123,8 @@ export default function EditWarehouse() {
                 name="warehouseName"
                 type="text"
                 placeholder="Warehouse Name"
-                defaultValue={selectedWarehouse.warehouse_name}
+                defaultValue={warehouseName}
+                onChange={handleChange}
               ></input>
               {!warehouseNameValid && (
                 <p className="edit-warehouse__error">
@@ -106,7 +138,7 @@ export default function EditWarehouse() {
                 name="address"
                 type="text"
                 placeholder="Street Address"
-                defaultValue={selectedWarehouse.address}
+                defaultValue={address}
               ></input>
               <label className="edit-warehouse__label">City</label>
               <input
@@ -114,7 +146,7 @@ export default function EditWarehouse() {
                 name="city"
                 type="text"
                 placeholder="City"
-                defaultValue={selectedWarehouse.city}
+                defaultValue={city}
               ></input>
               <label className="edit-warehouse__label">Country</label>
               <input
@@ -122,7 +154,7 @@ export default function EditWarehouse() {
                 name="country"
                 type="text"
                 placeholder="Country"
-                defaultValue={selectedWarehouse.country}
+                defaultValue={country}
               ></input>
             </section>
 
@@ -134,7 +166,7 @@ export default function EditWarehouse() {
                 name="contactName"
                 type="text"
                 placeholder="Contact Name"
-                defaultValue={selectedWarehouse.contact_name}
+                defaultValue={contactName}
               ></input>
 
               <label className="edit-warehouse__label">Position</label>
@@ -143,7 +175,7 @@ export default function EditWarehouse() {
                 name="position"
                 type="text"
                 placeholder="Position"
-                defaultValue={selectedWarehouse.contact_position}
+                defaultValue={contactPosition}
               ></input>
 
               <label className="edit-warehouse__label">Phone Number</label>
@@ -152,7 +184,7 @@ export default function EditWarehouse() {
                 type="text"
                 name="phoneNumber"
                 placeholder="Phone Number"
-                defaultValue={selectedWarehouse.contact_phone}
+                defaultValue={contactPhone}
               ></input>
 
               <label className="edit-warehouse__label">Email</label>
@@ -161,7 +193,7 @@ export default function EditWarehouse() {
                 type="text"
                 name="email"
                 placeholder="Email"
-                defaultValue={selectedWarehouse.contact_email}
+                defaultValue={contactEmail}
               ></input>
             </section>
           </section>
