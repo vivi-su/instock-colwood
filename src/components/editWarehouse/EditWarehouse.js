@@ -86,17 +86,17 @@ const handleContactEmailChange = (e) =>{
 
    
 const isWarehouseNameValid = () => {
-      if (warehouseName==="") {
-          return false;
-      }
-          return true;
-  };
+  if (warehouseName === "") {
+    return false;
+  }
+  return true;
+};
 
 const isAddressValid = () => {
-      if (address === "") {
-        return false;
-      }
-      return true;
+  if (address === "") {
+    return false;
+  }
+  return true;
 };
 
 const isCityValid = () => {
@@ -106,12 +106,12 @@ const isCityValid = () => {
   return true;
 };
 
-const isCountryValid = () =>{
-  if (country === ""){
+const isCountryValid = () => {
+  if (country === "") {
     return false;
   }
   return true;
-}
+};
 
 const isContactNameValid = () => {
   if (contactName === "") {
@@ -128,27 +128,23 @@ const isContactPositionValid = () => {
 };
 
 const isContactPhoneValid = () => {
-  
-  if (contactPhone ==="") {
+  if (contactPhone === "") {
     return false;
   }
   return true;
 };
 
-const isContactEmailValid = ()=>{
-    if (contactEmail==="") {
-      return false;
-    }
-  return true;
+const isContactEmailValid = () => { 
+    // if (contactEmail === "" || !contactEmail.includes("@"))
+      if (contactEmail===""){
+        return false;
+      } else {
+        return true;
+      }
 };
-
-
-
-
   
   const handleEdit = (e) => {
     e.preventDefault();
-
 
     if (
       isWarehouseNameValid(warehouseName) &&
@@ -160,6 +156,7 @@ const isContactEmailValid = ()=>{
       isContactPhoneValid(contactPhone) &&
       isContactEmailValid(contactEmail)
     ) {
+
       const values = {
         warehouse_name: e.target.warehouseName.value,
         address: e.target.address.value,
@@ -177,6 +174,7 @@ const isContactEmailValid = ()=>{
         window.location.reload(false);
       });
     } else {
+    
       alert("required form");
     }
   };
