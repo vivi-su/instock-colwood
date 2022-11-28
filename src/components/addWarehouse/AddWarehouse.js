@@ -129,30 +129,30 @@ export default function AddWarehouse() {
       contact_phone: phoneNumber,
       contact_email: email,
     };
-
-    if (
-      warehouseName &&
-      address &&
-      city &&
-      country &&
-      contactName &&
-      position &&
-      phoneNumber &&
-      email
-    ) {
-      axios
-        .post("http://localhost:8080/warehouses", warehouseDetails)
-        .then((response) => {
-          alert("Warehouse added successfully");
-          window.location.reload(true);
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("Failed to add Warehouse, please check your form");
-        });
-    } else {
-      setIsFormValid(false);
-    }
+    
+      if (
+        warehouseName &&
+        address &&
+        city &&
+        country &&
+        contactName &&
+        position &&
+        phoneNumber &&
+        email
+      ) {
+        axios
+          .post("http://localhost:8080/warehouses", warehouseDetails)
+          .then((response) => {
+            alert("Warehouse added successfully");
+            window.location.reload(true);
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Failed to add Warehouse, please check your form");
+          });
+      } else {
+        setIsFormValid(false);
+      }
   };
 
   return (
