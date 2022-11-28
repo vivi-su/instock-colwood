@@ -9,24 +9,20 @@ import Arrow from "../../assets/icons/arrow_back-24px.svg";
 
 export default function InventoryItemDetails({ warehouseList }) {
   const { itemId } = useParams();
-  // console.log(warehouseList);
+
   const [itemDetails, setItemDetails] = useState();
 
   const warehouseObj = warehouseList.find(
     (element) => element?.id === itemDetails?.warehouse_id
   );
-  //console.log(warehouseObj)
+
   useEffect(() => {
     const getSingleItemURL = `http://localhost:8080/inventories/${itemId}`;
     axios.get(getSingleItemURL).then((response) => {
       setItemDetails(response.data);
-      //console.log(response.data);
     });
   }, [itemId]);
 
-  // let inventoryStatusClass =
-  //   inventory.status == "In Stock" ? "status--inStock" : "status--outOfStock";
-  //console.log(itemDetails)
   return (
     <>
       <Outlet />
@@ -83,7 +79,6 @@ export default function InventoryItemDetails({ warehouseList }) {
               <div className="item-details__logistics-amount-status">
                 <h3 className="item-details__logistics-header">STATUS:</h3>
 
-                {/* <p className={`item-details__status-text ${inventoryStatusClass}`}> */}
                 <p
                   className={`item-details__logistics-instock ${
                     itemDetails?.status === "In Stock"
@@ -93,8 +88,6 @@ export default function InventoryItemDetails({ warehouseList }) {
                 >
                   {itemDetails?.status}
                 </p>
-
-                {/* <p className="item-details__logistics-outstock">OUT OF STOCK</p> */}
               </div>
               <div className="item-details__logistics-amount-quantity">
                 <h3 className="item-details__logistics-header">QUANTITY:</h3>
