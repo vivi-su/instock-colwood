@@ -14,52 +14,34 @@ export default function EditInventoryItem({
   const [itemName, setItemName] = useState();
   const [description, setDescription] = useState();
   const [category, setCategory] = useState();
-  const [status, setStatus] = useState();
   const [quantity, setQuantity] = useState();
-  const [warehouse, setWarehouse] = useState();
-  const [showEditInventoryItem, setShowEditInventoryItem] = useState({});
+  const [warehouseId, setWarehouse] = useState();
+  const [warehouseList, setWarehouseList] = useState([]);
+  const [firstLoad, setFirstLoad] = useState(true);
   const { itemId } = useParams();
 
   useEffect(() => {
-    setShowEditInventoryItem(
-      inventoryItemsList?.find((inventoryItem) => inventoryItem.id === itemId)
-    );
-  }, [itemId, setShowEditInventoryItem, inventoryItemsList]);
+    if (!firstLoad) return;
 
-  const warehouseList = [
-    {
-      id: "2922c286-16cd-4d43-ab98-c79f698aeab0",
-      warehouse_name: "Manhattan",
-    },
-    {
-      id: "5bf7bd6c-2b16-4129-bddc-9d37ff8539e9",
-      warehouse_name: "Washington",
-    },
-    {
-      id: "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-      warehouse_name: "Jersey",
-    },
-    {
-      id: "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-      warehouse_name: "SF",
-    },
-    {
-      id: "89898957-04ba-4bd0-9f5c-a7aea7447963",
-      warehouse_name: "Santa Monica",
-    },
-    {
-      id: "ade0a47b-cee6-4693-b4cd-a7e6cb25f4b7",
-      warehouse_name: "Seattle",
-    },
-    {
-      id: "bb1491eb-30e6-4728-a5fa-72f89feaf622",
-      warehouse_name: "Miami",
-    },
-    {
-      id: "150a36cf-f38e-4f59-8e31-39974207372d",
-      warehouse_name: "Boston",
-    },
-  ];
+    const editInventoryItem = inventoryItemsList?.find(
+      (inventoryItem) => inventoryItem.id === itemId
+    );
+
+    setItemName(editInventoryItem.item_name);
+    setDescription(editInventoryItem.description);
+    setCategory(editInventoryItem.category);
+    setQuantity(editInventoryItem.quantity);
+    setStatusButton(editInventoryItem.status);
+    setWarehouse(editInventoryItem.warehouse_id);
+    setFirstLoad(false);
+  }, [itemId, inventoryItemsList]);
+
+  useEffect(() => {
+    const getSingleWarehouseURL = `http://localhost:8080/warehouses/`;
+    axios.get(getSingleWarehouseURL).then((response) => {
+      setWarehouseList(response.data);
+    });
+  });
 
   const categoryList = [
     "Please Select",
@@ -78,7 +60,7 @@ export default function EditInventoryItem({
   };
 
   const isStatusValid = () => {
-    if (status === "") {
+    if (statusButton === "") {
       return false;
     }
     return true;
@@ -106,7 +88,7 @@ export default function EditInventoryItem({
   };
 
   const isWarehouseValid = () => {
-    if (warehouse === "Please Select") {
+    if (warehouseId === "Please Select") {
       return false;
     }
     return true;
@@ -130,6 +112,10 @@ export default function EditInventoryItem({
 
   const handleWarehouseChange = (event) => {
     setWarehouse(event.target.value);
+  };
+
+  const handleQuantityChange = (event) => {
+    setQuantity(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -203,7 +189,7 @@ export default function EditInventoryItem({
                 } `}
                 name="itemName"
                 type="text"
-                defaultValue={showEditInventoryItem?.item_name}
+                defaultValue={itemName}
                 onChange={handleItemNameChange}
               ></input>
               <label className="edit-item__label">Description</label>
@@ -211,7 +197,7 @@ export default function EditInventoryItem({
                 className={`edit-item__input ${
                   isDescriptionValid() ? "" : "edit-item__input--invalid"
                 } `}
-                defaultValue={showEditInventoryItem?.description}
+                defaultValue={description}
                 onChange={handleDescriptionChange}
                 name="description"
                 type="text"
@@ -220,7 +206,7 @@ export default function EditInventoryItem({
               ></input>
               <label className="edit-item__label">Category</label>
               <select
-                value={showEditInventoryItem?.category}
+                value={category}
                 name="category"
                 className={`edit-item__input ${
                   isCategoryValid() ? "" : "edit-item__input--invalid"
@@ -248,10 +234,9 @@ export default function EditInventoryItem({
                     }`}
                     onChange={handleStatusChange}
                     id="inStock"
-                    name="status"
                     type="radio"
                     value="In Stock"
-                    checked={showEditInventoryItem?.status === "In Stock"}
+                    checked={statusButton === "In Stock"}
                   ></input>
                 </label>
                 <label className="edit-item__out-stock">
@@ -262,10 +247,9 @@ export default function EditInventoryItem({
                     }`}
                     onChange={handleStatusChange}
                     id="outOfStock"
-                    name="status"
                     type="radio"
                     value="Out of Stock"
-                    checked={showEditInventoryItem?.status === "Out of Stock"}
+                    checked={statusButton === "Out of Stock"}
                   ></input>
                 </label>
               </div>
@@ -281,7 +265,8 @@ export default function EditInventoryItem({
                   className={`edit-item__input ${
                     isQuantityValid() ? "" : "edit-item__input--invalid"
                   }`}
-                  defaultValue={showEditInventoryItem?.quantity}
+                  onChange={handleQuantityChange}
+                  defaultValue={quantity}
                   name="quantity"
                   type="text"
                 ></input>
@@ -292,12 +277,14 @@ export default function EditInventoryItem({
                   className={`edit-item__input ${
                     isWarehouseValid() ? "" : "edit-item__input--invalid"
                   }`}
-                  value={showEditInventoryItem?.warehouse_id}
+                  value={warehouseId}
                   onChange={handleWarehouseChange}
                   name="warehouse"
                   id="warehouse"
                 >
-                  <option className="edit-item__option">Please select</option>
+                  <option className="edit-item__option" value="Please Select">
+                    Please select
+                  </option>
                   {warehouseList.map((warehouse) => (
                     <option value={warehouse.id} key={warehouse.id}>
                       {warehouse.warehouse_name}
