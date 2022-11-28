@@ -82,11 +82,10 @@ function App() {
     setInventoryItemsList(newInventoryItem);
   }
 
-  // function handleEditItem() {
-  //   setInventoryItemsList();
-  //   //here will go the edited item
-  // }
-  // console.log(inventoryItemsList);
+  function handleEditItem(editInventoryItem) {
+    setInventoryItemsList(editInventoryItem);
+  }
+
   return (
     <BrowserRouter>
       <div className="app-container">
@@ -153,7 +152,12 @@ function App() {
             />
             <Route
               path="inventory/editInventoryItem/:itemId"
-              element={<EditInventoryItem />}
+              element={
+                <EditInventoryItem
+                  inventoryItemsList={inventoryItemsList}
+                  handleEditItem={handleEditItem}
+                />
+              }
             />
             <Route
               path="inventory/addInventoryItem"
