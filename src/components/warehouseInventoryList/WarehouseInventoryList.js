@@ -101,7 +101,7 @@ export default function WarehouseInventoryList({ warehouseId }) {
                       <div className="inventory__status-header">
                         <h5 className="inventory__item-text">STATUS</h5>
                       </div>
-                      <p className="inventory__item-name">
+                      <p className="inventory__item-status">
                         {warehouseInventory.status}
                       </p>
                     </div>
@@ -188,7 +188,7 @@ export default function WarehouseInventoryList({ warehouseId }) {
                   <div className="inventory-tablet__status-qty">
                     {/* INVENTORY STATUS */}
                     <div className="inventory-tablet__status">
-                      <p className="inventory-tablet__item-name">
+                      <p className="inventory-tablet__item-status">
                         {warehouseInventory.status}
                       </p>
                     </div>

@@ -33,8 +33,7 @@
   }
 }
 
-.inventory-wrapper {
-}
+
 
 .inventory {
   &__list {
@@ -61,6 +60,30 @@
     margin-top: 1rem;
     margin-bottom: 0;
   }
+    &__item-status {
+       font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: $in-stock;
+      background: rgba(21, 132, 99, 0.07);
+      padding: 0.2rem 0.1rem;
+      border-radius: 3rem;
+      width: 3.5rem;
+      text-transform: uppercase;
+    }
+    // &-outstock {
+    //   font-size: 0.6875rem;
+    //   line-height: 1rem;
+    //   font-weight: 600;
+    //   margin: 0;
+    //   color: $out-of-stock;
+    //   background: rgba(132, 21, 40, 0.07);
+    //   padding: 0.2rem 0.1rem;
+    //   border-radius: 3rem;
+    //   width: 5rem;
+    //text-transform: uppercase;
+    // }
   &__item-name {
     display: unset;
     font-weight: 400;
@@ -162,60 +185,40 @@
     &__item-icon{
       margin-bottom:1rem;
     }
-  }
-  //   &__card{
-  //     margin-left: 2rem;
-  //   margin-right: 2rem;
-  //   }
-  //   &__item{
-  //     display:flex;
 
-  //   }
-  //   &__item-header{
-  //     width:49%;
-  //   }
+    &__item-status {
+       font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: $in-stock;
+      background: rgba(21, 132, 99, 0.07);
+      padding: 0.2rem 0.1rem;
+      border-radius: 3rem;
+      width: 3.5rem;
+      text-transform: uppercase;
+    }
+    // &-outstock {
+    //   font-size: 0.6875rem;
+    //   line-height: 1rem;
+    //   font-weight: 600;
+    //   margin: 0;
+    //   color: $out-of-stock;
+    //   background: rgba(132, 21, 40, 0.07);
+    //   padding: 0.2rem 0.1rem;
+    //   border-radius: 3rem;
+    //   width: 5rem;
+    //text-transform: uppercase;
+    // }
+
+  }
+
+}
+@include large {
+  .inventory-header{
+    padding-left:2.5rem;
+    padding-right:2.5rem;
+  }
+
 }
 
-// .inventory-wrapper {
-
-//     &__list{
-//         border-bottom: 1px solid $border-devider;
-//     }
-//   &__card {
-//     padding-left: 1rem;
-//     padding-right: 1rem;
-//   }
-
-//   &__item-header,
-//   &__qty-header,
-//   &__item-link,
-//   &__status-header {
-//     display: flex;
-//   }
-
-//   &__item-link {
-//     text-decoration: none;
-//   }
-//   &__item-wrapper,
-//   &__category-wrapper {
-//     display: flex;
-//     justify-content:space-evenly ;
-//   }
-
-//   &__actions-btns {
-//     display: flex;
-//     justify-content: space-evenly;
-//   }
-
-//   &__category-name {
-//     padding-bottom: 0;
-//     padding-top: 0;
-//   }
-// }
-
-// @include small {
-//   .inventory__sort-sortIcon,
-//   .inventory__actions-text {
-//     display: none;
-//   }
-// }
