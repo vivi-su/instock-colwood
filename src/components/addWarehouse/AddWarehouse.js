@@ -63,8 +63,8 @@ export default function AddWarehouse() {
   const isPhoneNumberValid = () => {
     if (
       phoneNumber === "" &&
-      phoneNumber.length < 11
-      // phoneNumber.match(/^[0-9]+$/) != null
+      phoneNumber?.length < 11 &&
+      !Number.isInteger(phoneNumber)
     ) {
       return false;
     }
@@ -72,7 +72,7 @@ export default function AddWarehouse() {
   };
 
   const isEmailValid = () => {
-    if (email === "" && !email.includes("@")) {
+    if (email === "" && !email?.includes("@")) {
       return false;
     }
     return true;
@@ -89,25 +89,6 @@ export default function AddWarehouse() {
     const position = event.target.position.value;
     const phoneNumber = event.target.phoneNumber.value;
     const email = event.target.email.value;
-
-    // function formatPhoneNumber(phoneNumber) {
-    //   const regEx = /^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im;
-    //   const isValid = regEx.test(phoneNumber);
-    //   console.log(isValid);
-    //   return isValid;
-    // }
-    //    write function here
-    //    once converted, send this new phone number to API
-    // }
-
-    // function formatPhoneNumber(phoneNumber) {
-    //   let result = phoneNumber.match(/[0-9]/g);
-    //   const beginning = result.slice(0, 3).join("");
-    //   const middle = result.slice(3, 6).join("");
-    //   const end = result.slice(6, 10).join("");
-    //   console.log(formatPhoneNumber);
-    //   return `(${beginning}) ${middle}- ${end}`;
-    // }
 
     setwarehouseName(warehouseName);
     setAddress(address);
@@ -138,7 +119,9 @@ export default function AddWarehouse() {
       contactName &&
       position &&
       phoneNumber &&
-      email
+      isPhoneNumberValid() &&
+      email &&
+      isEmailValid()
     ) {
       axios
         .post("http://localhost:8080/warehouses", warehouseDetails)
