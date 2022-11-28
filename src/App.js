@@ -78,16 +78,15 @@ function App() {
     );
   }
 
-  // function handleAddItem() {
-  //   setInventoryItemsList();
-  //   //here will go the added item
-  // }
+  function handleAddItem(newInventoryItem) {
+    setInventoryItemsList(newInventoryItem);
+  }
 
   // function handleEditItem() {
   //   setInventoryItemsList();
   //   //here will go the edited item
   // }
-
+  // console.log(inventoryItemsList);
   return (
     <BrowserRouter>
       <div className="app-container">
@@ -153,7 +152,12 @@ function App() {
             />
             <Route
               path="inventory/addInventoryItem"
-              element={<AddInventoryItem />}
+              element={
+                <AddInventoryItem
+                  inventoryItemsList={inventoryItemsList}
+                  handleAddItem={handleAddItem}
+                />
+              }
             />
 
             {/*<---------------- FALLBACK ROUTE ---------------->*/}
