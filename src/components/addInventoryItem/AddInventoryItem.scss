@@ -55,13 +55,22 @@
   }
 
   &__form {
+    padding: 1rem 1.5rem;
   }
   &__details {
   }
+  &__item-name-container {
+    display: flex;
+    flex-direction: column;
+  }
   &__subheader {
+    margin: 0;
+    margin-bottom: 1.5rem;
   }
 
   &__label-text {
+    display: flex;
+    flex-direction: column;
   }
   &__input-regular {
     &--invalid {
@@ -69,6 +78,7 @@
     }
   }
   &__input-textarea {
+    resize: none;
     &--invalid {
       border: 1px solid $out-of-stock;
     }
@@ -94,12 +104,26 @@
     }
   }
   &__description-container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__category-container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__radio-buttons-container {
+    display: flex;
+    flex-direction: row;
   }
   &__availability {
   }
   &__status-container {
+    display: flex;
+    flex-direction: column;
   }
   &__stock-container {
+    display: flex;
+    flex-direction: row;
   }
   &__text {
   }
@@ -110,6 +134,10 @@
     }
   }
   &__back-link {
+  }
+  &__buttons-container {
+    display: flex;
+    flex-direction: row;
   }
   &__button {
     &--cancel {

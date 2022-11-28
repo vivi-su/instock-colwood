@@ -2,7 +2,7 @@
 import "./AddInventoryItem.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
@@ -18,7 +18,11 @@ export default function AddInventoryItem({
   const [status, setStatus] = useState("default");
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState("default");
+  const [uniqueId, setUniqueId] = useState();
 
+  useEffect(() => {
+    setUniqueId(uuidv4());
+  }, []);
   //The warehouse list and the category list is hardcoded because
   //it didn't make sense to have them generated dinamically.
   //If we had them generated dinamically, if somebody deleted the warehouses,
@@ -190,7 +194,7 @@ export default function AddInventoryItem({
           {/* DETAILS SIDE */}
           <div className="add-item__details">
             <h2 className="add-item__subheader">Item Details</h2>
-            <div>
+            <div className="add-item__item-name-container">
               <label className="add-item__label-text" htmlFor="itemName">
                 Item Name
               </label>
@@ -220,25 +224,23 @@ export default function AddInventoryItem({
                 placeholder="Please enter a brief item description..."
               ></textarea>
             </div>
-            <div>
-              <label className="add-item__label-text">
-                Category
-                <select
-                  className={`add-item__input-select ${
-                    isCategoryValid() ? "" : "add-item__input-select--invalid"
-                  }`}
-                  value={category}
-                  onChange={handleCategoryChange}
-                  name="category"
-                  id="category"
-                >
-                  {categoryList.map((category) => (
-                    <option value={category} key={category + uuidv4()}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </label>
+            <div className="add-item__category-container">
+              <label className="add-item__label-text">Category</label>
+              <select
+                className={`add-item__input-select ${
+                  isCategoryValid() ? "" : "add-item__input-select--invalid"
+                }`}
+                value={category}
+                onChange={handleCategoryChange}
+                name="category"
+                id="category"
+              >
+                {categoryList?.map((category) => (
+                  <option value={category} key={category + uniqueId}>
+                    {category}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
@@ -247,42 +249,46 @@ export default function AddInventoryItem({
             <h2 className="add-item__subheader">Item Availability</h2>
             <div className="add-item__status-container">
               <label className="add-item__label-text">Status</label>
-              <div className="add-item__stock-container">
-                <label className="add-item__text" htmlFor="inStock">
-                  In Stock
-                </label>
-                <div
-                  className={`add-item__input-radio ${
-                    isStatusValid() ? "" : "add-item__input-radio--invalid"
-                  }`}
-                >
-                  <input
-                    className="add-item__radio-button"
-                    onChange={handleStatusChange}
-                    type="radio"
-                    id="inStock"
-                    name="status"
-                    value="In Stock"
-                  />
+
+              <div className="add-item__radio-buttons-container">
+                <div className="add-item__stock-container">
+                  <div
+                    className={`add-item__input-radio ${
+                      isStatusValid() ? "" : "add-item__input-radio--invalid"
+                    }`}
+                  >
+                    <input
+                      className="add-item__radio-button"
+                      onChange={handleStatusChange}
+                      type="radio"
+                      id="inStock"
+                      name="status"
+                      value="In Stock"
+                    />
+                  </div>
+                  <label className="add-item__text" htmlFor="inStock">
+                    In Stock
+                  </label>
                 </div>
-              </div>
-              <div className="add-item__stock-container">
-                <label className="add-item__text" htmlFor="outOfStock">
-                  Out of Stock
-                </label>
-                <div
-                  className={`add-item__input-radio ${
-                    isStatusValid() ? "" : "add-item__input-radio--invalid"
-                  }`}
-                >
-                  <input
-                    className="add-item__radio-button"
-                    onChange={handleStatusChange}
-                    type="radio"
-                    id="outOfStock"
-                    name="status"
-                    value="Out of Stock"
-                  />
+
+                <div className="add-item__stock-container">
+                  <div
+                    className={`add-item__input-radio ${
+                      isStatusValid() ? "" : "add-item__input-radio--invalid"
+                    }`}
+                  >
+                    <input
+                      className="add-item__radio-button"
+                      onChange={handleStatusChange}
+                      type="radio"
+                      id="outOfStock"
+                      name="status"
+                      value="Out of Stock"
+                    />
+                  </div>
+                  <label className="add-item__text" htmlFor="outOfStock">
+                    Out of Stock
+                  </label>
                 </div>
               </div>
             </div>
@@ -326,14 +332,16 @@ export default function AddInventoryItem({
               </label>
             </div>
           </div>
-          <Link className="add-item__back-link" to={`/inventory`}>
-            <div className="add-item__button add-item__button--cancel">
-              Cancel
-            </div>
-          </Link>
-          <button className="add-item__button add-item__button--add">
-            +Add New Item
-          </button>
+          <div className="add-item__buttons-container">
+            <Link className="add-item__back-link" to={`/inventory`}>
+              <div className="add-item__button add-item__button--cancel">
+                Cancel
+              </div>
+            </Link>
+            <button className="add-item__button add-item__button--add">
+              +Add New Item
+            </button>
+          </div>
         </form>
       </section>
     </div>
