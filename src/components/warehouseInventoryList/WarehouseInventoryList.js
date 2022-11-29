@@ -24,7 +24,6 @@ export default function WarehouseInventoryList({ warehouseId }) {
     <>
       <section className="inventory">
         <div className="inventory-header__list">
-          {/* <div className="inventory-header__list-wrapper--large"> */}
           <div className="inventory-header__list-content">
             <div className="inventory-header__list-content-text">
               INVENTORY ITEM
@@ -60,7 +59,6 @@ export default function WarehouseInventoryList({ warehouseId }) {
             />
           </div>
           <div className="inventory-header__list-content-text">ACTIONS</div>
-          {/* </div> */}
         </div>
 
         {warehouseInventoryList?.map((warehouseInventory) => (
@@ -159,14 +157,13 @@ export default function WarehouseInventoryList({ warehouseId }) {
                 </div>
               </div>
             </section>
-            {/* my experiment */}
+            {/* tablet/desctop layout*/}
             <section className="inventory-tablet">
               <div className="inventory-tablet__list-tablet">
                 <div className="inventory-tablet__card">
                   {/* INVENTORY ITEM */}
                   <div className="inventory-tablet__item-wrapper">
                     <div className="inventory-tablet__item">
-                      {/* <div className="inventory__item-thing"> */}
                       <Link
                         className="inventory-tablet__item-link"
                         to={`/inventory/${warehouseInventory.id}`}
@@ -184,17 +181,15 @@ export default function WarehouseInventoryList({ warehouseId }) {
                           alt="more than sign"
                         />
                       </Link>
-                      {/* </div> */}
                     </div>
-                    {/* 
-                    <div className="inventory__category-wrapper"> */}
+                    
                     {/* INVENTORY CATEGORY */}
                     <div className="inventory-tablet__category">
                       <p className="inventory-tablet__item-name">
                         {warehouseInventory.category}
                       </p>
                     </div>
-                    {/* </div> */}
+                   
                   </div>
                   <div className="inventory-tablet__status-qty">
                     {/* INVENTORY STATUS */}
