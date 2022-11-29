@@ -42,10 +42,9 @@
       margin-top: 0;
       padding-left: 0.5rem;
       width: 80%;
-margin-bottom: 0;
+      margin-bottom: 0;
       @include medium {
         margin-bottom: 0;
-        
       }
     }
 
@@ -85,9 +84,9 @@ margin-bottom: 0;
         color: $global-background;
         @include medium {
           display: flex;
-         
-          padding-top: 0.2rem;
-    padding-left: 0.1rem;
+          margin: 0;
+          padding-top: 0.4rem;
+          padding-left: 0.1rem;
         }
       }
     }
