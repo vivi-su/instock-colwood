@@ -16,7 +16,7 @@ export default function AddInventoryItem({
   const [itemName, setItemName] = useState("default");
   const [description, setDescription] = useState("default");
   const [category, setCategory] = useState("default");
-  const [status, setStatus] = useState("default");
+  const [status, setStatus] = useState("Out of Stock");
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState("default");
   const [uniqueId, setUniqueId] = useState();
@@ -74,12 +74,13 @@ export default function AddInventoryItem({
     "Health",
     "Apparel",
   ];
-  //Validation
+  //Validation for fields
+
   const isStatusValid = () => {
-    if (status === "") {
-      return false;
+    if (status === "In Stock" || status === "Out of Stock") {
+      return true;
     }
-    return true;
+    return false;
   };
   const isItemNameValid = () => {
     if (itemName === "") {
@@ -115,6 +116,7 @@ export default function AddInventoryItem({
     }
     return true;
   };
+
   //Handel changes
   const handleItemNameChange = (event) => {
     setItemName(event.target.value);
@@ -134,9 +136,52 @@ export default function AddInventoryItem({
   const handleStatusChange = (event) => {
     setStatusButton(event.target.value);
   };
+
   //API call
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const isWarehouseIdValid = (warehouseId) => {
+      if (warehouseId === "") {
+        return false;
+      }
+      return true;
+    };
+    const isStatusValid = (status) => {
+      if (status === "In Stock" || status === "Out of Stock") {
+        return true;
+      }
+      return false;
+    };
+    const isItemNameValid = (itemName) => {
+      if (itemName === "") {
+        return false;
+      }
+      return true;
+    };
+    const isDescriptionValid = (description) => {
+      if (description === "") {
+        return false;
+      }
+      return true;
+    };
+    const isCategoryValid = (category) => {
+      if (category === "Please Select") {
+        return false;
+      }
+      return true;
+    };
+    const isQuantityValid = (quantity) => {
+      if (
+        quantity === "" ||
+        !Number.isInteger(Number(quantity)) ||
+        quantity < 0
+      ) {
+        return false;
+      }
+      return true;
+    };
+
     const warehouse = event.target.warehouse.value;
     const warehouseObj = warehouseList.find(
       (element) => element.warehouse_name === warehouse
@@ -147,13 +192,6 @@ export default function AddInventoryItem({
     const status = event.target.status.value;
     const quantityStr = event.target.quantity.value;
     const warehouseId = warehouseObj.id;
-    let quantity = null;
-
-    if (status === "In Stock") {
-      quantity = Number(event.target.quantity.value);
-    } else {
-      quantity = 0;
-    }
 
     setItemName(itemName);
     setDescription(description);
@@ -163,12 +201,12 @@ export default function AddInventoryItem({
     setWarehouse(warehouse);
 
     if (
-      warehouseId &&
-      itemName &&
-      description &&
-      category &&
-      status &&
-      quantity
+      isWarehouseIdValid(warehouseId) &&
+      isItemNameValid(itemName) &&
+      isDescriptionValid(description) &&
+      isCategoryValid(category) &&
+      isStatusValid(status) &&
+      isQuantityValid(quantityStr)
     ) {
       const newInventoryItem = {
         warehouse_id: warehouseId,
@@ -179,6 +217,8 @@ export default function AddInventoryItem({
         quantity: quantity,
       };
 
+      console.log(newInventoryItem);
+
       axios
         .post("http://localhost:8080/inventories", newInventoryItem)
         .then((response) => {
@@ -186,7 +226,7 @@ export default function AddInventoryItem({
           handleAddItem([...inventoryItemsList, response.data]);
         });
       navigate("/inventory");
-      event.target.reset();
+      // event.target.reset();
     }
   };
 
@@ -311,10 +351,11 @@ export default function AddInventoryItem({
               <div className="add-item__status-container">
                 <label className="add-item__label-text">Status</label>
 
+                {/* In Stock Button */}
                 <div className="add-item__radio-buttons-container">
                   <div className="add-item__stock-container">
                     <div
-                      className={`add-item__input-radio                     
+                      className={`add-item__input-radio
                       ${
                         statusButton === "In Stock"
                           ? "add-item__input-radio--selected"
@@ -349,6 +390,7 @@ export default function AddInventoryItem({
                     </label>
                   </div>
 
+                  {/* Out of Stock button */}
                   <div className="add-item__stock-container">
                     <div
                       className={`add-item__input-radio
@@ -386,6 +428,8 @@ export default function AddInventoryItem({
                     </label>
                   </div>
                 </div>
+
+                {/* Error Icon Validation */}
                 {!isStatusValid() && (
                   <span className="add-item__error-text">
                     <img
@@ -396,8 +440,6 @@ export default function AddInventoryItem({
                     This field is required
                   </span>
                 )}
-
-                {(status === "In Stock" || status === "Out of Stock") && <></>}
               </div>
 
               <div
@@ -419,7 +461,7 @@ export default function AddInventoryItem({
                   onChange={handleQuantityChange}
                 />
 
-                {status === "In Stock" && !isStatusValid() && (
+                {status === "In Stock" && !isQuantityValid() && (
                   <span className="add-item__error-text">
                     <img
                       className="add-item__error-image"
