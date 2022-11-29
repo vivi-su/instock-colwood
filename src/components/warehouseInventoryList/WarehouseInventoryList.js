@@ -21,104 +21,218 @@ export default function WarehouseInventoryList({ warehouseId }) {
   }, [warehouseId]);
 
   return (
-    <section className="inventory">
-      {warehouseInventoryList?.map((warehouseInventory) => (
-        <div
-          className="inventory__list"
-          key={warehouseInventory.item_name + warehouseInventory.id}
-        >
-          <div className="inventory__card">
-            {/* INVENTORY ITEM */}
-            <div className="inventory__item-wrapper">
-              <div className="inventory__item">
-                <div className="inventory__item-header">
-                  <h5 className="inventory__item-text ">INVENTORY ITEM</h5>
-                  <img
-                    className="inventory__sort-sortIcon"
-                    src={sortIcon}
-                    alt="sort icon"
-                  />
-                </div>
-                <div className="inventory__item-thing">
-                  <Link to={`/inventory/${warehouseInventory.id}`}>
-                    <p className="inventory__item-thing-text">
-                      {warehouseInventory.item_name}
-                    </p>
+    <>
+      <section className="inventory">
+        <div className="inventory-header__list">
+          <div className="inventory-header__list-content">
+            <div className="inventory-header__list-content-text">
+              INVENTORY ITEM
+            </div>
+            <img
+              className="inventory-header__list-sortIcon"
+              src={sortIcon}
+              alt="sort icon"
+            />
+          </div>
+          <div className="inventory-header__list-content">
+            <div className="inventory-header__list-content-text">CATEGORY</div>
+            <img
+              className="inventory-header__list-sortIcon"
+              src={sortIcon}
+              alt="sort icon"
+            />
+          </div>
+          <div className="inventory-header__list-content">
+            <div className="inventory-header__list-content-text">STATUS</div>
+            <img
+              className="inventory-header__list-sortIcon"
+              src={sortIcon}
+              alt="sort icon"
+            />
+          </div>
+          <div className="inventory-header__list-content">
+            <div className="inventory-header__list-content-text">QTY</div>
+            <img
+              src={sortIcon}
+              className="inventory-header__list-sortIcon"
+              alt="sort icon"
+            />
+          </div>
+          <div className="inventory-header__list-content-text">ACTIONS</div>
+        </div>
 
-                    <img src={chevronIcon} alt="more than sign" />
+        {warehouseInventoryList?.map((warehouseInventory) => (
+          <>
+            <section
+              className="inventory-wrapper"
+              key={warehouseInventory.item_name + warehouseInventory.id}
+            >
+              <div className="inventory__list">
+                <div className="inventory__card">
+                  {/* INVENTORY ITEM */}
+                  <div className="inventory__item-wrapper">
+                    <div className="inventory__item">
+                      <div className="inventory__item-header">
+                        <h5 className="inventory__item-text ">
+                          INVENTORY ITEM
+                        </h5>
+                      </div>
+                      <div className="inventory__item-thing">
+                        <Link
+                          className="inventory__item-link"
+                          to={`/inventory/${warehouseInventory.id}`}
+                        >
+                          <p
+                            className="inventory__item-name inventory__item-link
+                          "
+                          >
+                            {warehouseInventory.item_name}
+                          </p>
+
+                          <img
+                            className="inventory__item-icon"
+                            src={chevronIcon}
+                            alt="more than sign"
+                          />
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* INVENTORY STATUS */}
+                    <div className="inventory__status">
+                      <div className="inventory__status-header">
+                        <h5 className="inventory__item-text">STATUS</h5>
+                      </div>
+
+                      <p
+                        className={`inventory__item-status ${
+                          warehouseInventory?.status === "In Stock"
+                            ? "inventory__item-status--instock"
+                            : ""
+                        }`}
+                      >
+                        {warehouseInventory.status}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="inventory__category-wrapper">
+                    {/* INVENTORY CATEGORY */}
+                    <div className="inventory__category">
+                      <div className="inventory__category-header">
+                        <h5 className="inventory__item-text">CATEGORY</h5>
+                      </div>
+                      <p className="inventory__item-name">
+                        {warehouseInventory.category}
+                      </p>
+                    </div>
+
+                    {/* INVENTORY QTY */}
+                    <div className="inventory__qty">
+                      <div className="inventory__qty-header">
+                        <h5 className="inventory__item-text">QTY</h5>
+                      </div>
+                      <p className="inventory__item-name">
+                        {warehouseInventory.quantity}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* INVENTORY ACTIONS BUTTONS */}
+                  <div className="inventory__actions">
+                    <div className="inventory__actions-btns">
+                      <Link
+                        className="inventory__actions-edit"
+                        to={`/inventory/deleteInventoryItem/${warehouseInventory.id}`}
+                      >
+                        <img src={deleteIcon} alt="delete" />
+                      </Link>
+                      <Link
+                        to={`/inventory/editInventoryItem/${warehouseInventory.id}`}
+                      >
+                        <img src={editIcon} alt="edit" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {/* tablet/desctop layout*/}
+            <section className="inventory-tablet">
+              <div className="inventory-tablet__list-tablet">
+                <div className="inventory-tablet__card">
+                  {/* INVENTORY ITEM */}
+                  <div className="inventory-tablet__item-wrapper">
+                    <div className="inventory-tablet__item">
+                      <Link
+                        className="inventory-tablet__item-link"
+                        to={`/inventory/${warehouseInventory.id}`}
+                      >
+                        <p
+                          className="inventory-tablet__item-name inventory-tablet__item-link
+                          "
+                        >
+                          {warehouseInventory.item_name}
+                        </p>
+
+                        <img
+                          className="inventory-tablet__item-icon"
+                          src={chevronIcon}
+                          alt="more than sign"
+                        />
+                      </Link>
+                    </div>
+                    
+                    {/* INVENTORY CATEGORY */}
+                    <div className="inventory-tablet__category">
+                      <p className="inventory-tablet__item-name">
+                        {warehouseInventory.category}
+                      </p>
+                    </div>
+                   
+                  </div>
+                  <div className="inventory-tablet__status-qty">
+                    {/* INVENTORY STATUS */}
+                    <div className="inventory-tablet__status">
+                      <p
+                        className={`inventory-tablet__item-status ${
+                          warehouseInventory?.status === "In Stock"
+                            ? "inventory-tablet__item-status--instock"
+                            : ""
+                        }`}
+                      >
+                        {warehouseInventory.status}
+                      </p>
+                    </div>
+
+                    {/* INVENTORY QTY */}
+                    <div className="inventory-tablet__qty">
+                      <p className="inventory-tablet__item-name">
+                        {warehouseInventory.quantity}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* INVENTORY ACTIONS BUTTONS */}
+
+                <div className="inventory-tablet__actions-btns">
+                  <Link
+                    className="inventory-tablet__actions-edit"
+                    to={`/inventory/deleteInventoryItem/${warehouseInventory.id}`}
+                  >
+                    <img src={deleteIcon} alt="delete" />
+                  </Link>
+                  <Link
+                    to={`/inventory/editInventoryItem/${warehouseInventory.id}`}
+                  >
+                    <img src={editIcon} alt="edit" />
                   </Link>
                 </div>
               </div>
-
-              {/* INVENTORY STATUS */}
-              <div className="inventory__status">
-                <div className="inventory__status-header">
-                  <h5 className="inventory__status-text">STATUS</h5>
-                  <img
-                    className="inventory__sort-sortIcon"
-                    src={sortIcon}
-                    alt="sort icon"
-                  />
-                </div>
-                <p className="inventory__status-stock">
-                  {warehouseInventory.status}
-                </p>
-              </div>
-            </div>
-
-            <div className="inventory__category-wrapper">
-              {/* INVENTORY CATEGORY */}
-              <div className="inventory__category">
-                <div className="inventory__category-header">
-                  <h5 className="inventory__category-text">CATEGORY</h5>
-                </div>
-                <p className="inventory__category-name">
-                  {warehouseInventory.category}
-                </p>
-              </div>
-
-              {/* INVENTORY QTY */}
-              <div className="inventory__qty">
-                <div className="inventory__qty-header">
-                  <h5 className="inventory__qty-text">QTY</h5>
-                  <img
-                    className="inventory__sort-sortIcon"
-                    src={sortIcon}
-                    alt="sort icon"
-                  />
-                </div>
-                <p className="inventory__qty-num">
-                  {warehouseInventory.quantity}
-                </p>
-              </div>
-            </div>
-
-            {/* INVENTORY ACTIONS BUTTONS */}
-            <div className="inventory__actions">
-              <div className="inventory__actions-header">
-                <h5 className="inventory__actions-text">ACTIONS</h5>
-              </div>
-
-              <div className="inventory__actions-btns">
-                <Link
-                  to={`/inventory/deleteInventoryItem/${warehouseInventory.id}`}
-                >
-                  <button>
-                    <img src={deleteIcon} alt="delete" />
-                  </button>
-                </Link>
-                <Link
-                  to={`/inventory/editInventoryItem/${warehouseInventory.id}`}
-                >
-                  <button>
-                    <img src={editIcon} alt="edit" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </section>
+            </section>
+          </>
+        ))}
+      </section>
+    </>
   );
 }

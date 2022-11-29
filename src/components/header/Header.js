@@ -30,7 +30,7 @@ export default function Header() {
             </Link>
           </div>
           <div className="header__button-wrapper">
-            <Link to={`inventory`}>
+            <Link to={`inventory`} >
               <button
                 className={`header__button ${
                   pathname.includes("inventory")

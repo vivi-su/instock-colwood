@@ -119,9 +119,7 @@ export default function AddWarehouse() {
       contactName &&
       position &&
       phoneNumber &&
-      isPhoneNumberValid() &&
-      email &&
-      isEmailValid()
+      email
     ) {
       axios
         .post("http://localhost:8080/warehouses", warehouseDetails)
@@ -143,7 +141,11 @@ export default function AddWarehouse() {
       <section className="add-warehouse">
         <h1 className="add-warehouse__title">
           <Link to="/warehouses">
-            <img src={BackArrowIcon} alt="Back arrow icon" />
+            <img
+              src={BackArrowIcon}
+              alt="Back arrow icon"
+              className="add-warehouse__back-icon"
+            />
           </Link>
           Add New Warehouse
         </h1>
@@ -278,6 +280,7 @@ export default function AddWarehouse() {
               )}
             </section>
           </section>
+
           <section className="add-warehouse__button">
             <button className="add-warehouse__cancel-button" type="submit">
               <Link to="/warehouses" className="add-warehouse__cancel">

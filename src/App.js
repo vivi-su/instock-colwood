@@ -23,11 +23,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
+
   const [inventoryItemsList, setInventoryItemsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
 
   //<----------------WAREHOUSE---------------------------->
-  //get date for warehouse
+  //get data for warehouse
+
   useEffect(() => {
     const fetchAllwarehouses = async () => {
       try {
@@ -43,20 +45,20 @@ function App() {
 
   function handleDeleteWarehouse(warehouseId) {
     setWarehouseList(
-      setWarehouseList.filter((warehouse) => warehouse.id !== warehouseId)
+      warehouseList.filter((warehouse) => warehouse.id !== warehouseId)
     );
   }
 
-  console.log();
+  // console.log();
   // function handleAddWarehouse() {
   //   setWarehouseList();
   //   //here will go the added warehouse
   // }
 
-  // function handleEditWarehouse() {
-  //   setWarehouseList();
-  //   //here will go the edited warehouse
-  // }
+  function handleEditWarehouse(warehouseId) {
+    setWarehouseList.filter((warehouse) => warehouse.id === warehouseId);
+    //here will go the edited warehouse
+  }
 
   //<----------------INVENTORY---------------------------->
   //get data for inventory
@@ -76,15 +78,13 @@ function App() {
     );
   }
 
-  // function handleAddItem() {
-  //   setInventoryItemsList();
-  //   //here will go the added item
-  // }
+  function handleAddItem(newInventoryItem) {
+    setInventoryItemsList(newInventoryItem);
+  }
 
-  // function handleEditItem() {
-  //   setInventoryItemsList();
-  //   //here will go the edited item
-  // }
+  function handleEditItem(editInventoryItem) {
+    setInventoryItemsList(editInventoryItem);
+  }
 
   return (
     <BrowserRouter>
@@ -97,12 +97,12 @@ function App() {
           <Routes>
             {/*<---------------- HOME ---------------->*/}
             {/* Home will navigate the user to the Warehouses page so there is no need for a file homePage.js */}
-            <Route path="/" element={<Navigate to={"warehouses"} />} />
+            <Route path="/" element={<Navigate to={"/warehouses"} />} />
 
             {/*<---------------- WAREHOUSE PAGE ---------------->*/}
             {/* The Warehouses page has only one nested route to DELETE an existing warehouse*/}
             <Route
-              path="warehouses"
+              path="/warehouses"
               element={<Warehouses warehouseList={warehouseList} />}
             >
               <Route
@@ -120,7 +120,12 @@ function App() {
               element={<WarehouseSingle />}
             />
             <Route
-              element={<EditWarehouse />}
+              element={
+                <EditWarehouse
+                  warehouseList={warehouseList}
+                  handleEditWarehouse={handleEditWarehouse}
+                />
+              }
               path="warehouses/editWarehouse/:warehouseId"
             />
             <Route path="warehouses/addWarehouse" element={<AddWarehouse />} />
@@ -143,15 +148,25 @@ function App() {
             </Route>
             <Route
               path="inventory/:itemId"
-              element={<InventoryItemDetails />}
+              element={<InventoryItemDetails warehouseList={warehouseList} />}
             />
             <Route
               path="inventory/editInventoryItem/:itemId"
-              element={<EditInventoryItem />}
+              element={
+                <EditInventoryItem
+                  inventoryItemsList={inventoryItemsList}
+                  handleEditItem={handleEditItem}
+                />
+              }
             />
             <Route
               path="inventory/addInventoryItem"
-              element={<AddInventoryItem />}
+              element={
+                <AddInventoryItem
+                  inventoryItemsList={inventoryItemsList}
+                  handleAddItem={handleAddItem}
+                />
+              }
             />
 
             {/*<---------------- FALLBACK ROUTE ---------------->*/}
