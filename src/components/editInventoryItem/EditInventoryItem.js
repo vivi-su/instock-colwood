@@ -52,6 +52,60 @@ export default function EditInventoryItem({
     "Apparel",
   ];
 
+  const validateFields = (inventoryItemsList) => {
+    let ret = true;
+
+    if (inventoryItemsList.id === undefined || inventoryItemsList.id === "") {
+      ret = false;
+    }
+
+    if (
+      inventoryItemsList.warehouse_id === undefined ||
+      inventoryItemsList.warehouse_id === ""
+    ) {
+      ret = false;
+    }
+
+    if (
+      inventoryItemsList.item_name === undefined ||
+      inventoryItemsList.item_name === ""
+    ) {
+      ret = false;
+    }
+
+    if (
+      inventoryItemsList.description === undefined ||
+      inventoryItemsList.description === ""
+    ) {
+      ret = false;
+    }
+
+    if (
+      inventoryItemsList.category === undefined ||
+      inventoryItemsList.category === ""
+    ) {
+      ret = false;
+    }
+
+    if (
+      inventoryItemsList.status === undefined ||
+      (inventoryItemsList.status !== "In Stock" &&
+        inventoryItemsList.status !== "Out of Stock")
+    ) {
+      ret = false;
+    }
+
+    if (
+      inventoryItemsList.quantity === undefined ||
+      !Number.isInteger(Number(inventoryItemsList.quantity)) ||
+      inventoryItemsList.quantity < 0
+    ) {
+      ret = false;
+    }
+
+    return ret;
+  };
+
   const isItemNameValid = () => {
     if (itemName === "") {
       return false;
@@ -81,7 +135,11 @@ export default function EditInventoryItem({
   };
 
   const isQuantityValid = () => {
-    if (quantity === "" || !Number.isInteger(quantity) || quantity < 1) {
+    if (
+      quantity === "" ||
+      !Number.isInteger(Number(quantity)) ||
+      quantity < 0
+    ) {
       return false;
     }
     return true;
@@ -115,7 +173,12 @@ export default function EditInventoryItem({
   };
 
   const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
+    console.log(event.target.value);
+    if (event.target.value) {
+      setQuantity(Number(event.target.value));
+    } else {
+      setQuantity(-1);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -135,21 +198,17 @@ export default function EditInventoryItem({
       description: description,
       category: category,
       status: statusButton,
-      quantity: quantity,
+      quantity: newQuantity,
     };
 
-    if (
-      itemName &&
-      description &&
-      category &&
-      statusButton &&
-      quantity &&
-      warehouseId
-    ) {
+    if (validateFields(editedInventoryItem)) {
       axios
         .put(`http://localhost:8080/inventories/${itemId}`, editedInventoryItem)
         .then((response) => {
           handleEditItem([...inventoryItemsList, response.data]);
+        })
+        .catch((err) => {
+          console.log("ERRO", err);
         });
       navigate("/inventory");
     }
@@ -248,8 +307,8 @@ export default function EditInventoryItem({
               </div>
               <div
                 className={`edit-item__quantity ${
-                  statusButton === "In Stock"
-                    ? "edit-item__quantity--inStock"
+                  statusButton === "Out of Stock"
+                    ? "edit-item__quantity--outOfStock"
                     : ""
                 }`}
               >
@@ -294,11 +353,7 @@ export default function EditInventoryItem({
                 Cancel
               </Link>
             </button>
-            <button
-              // onClick={handleEdit}
-              className="edit-item__save"
-              type="submit"
-            >
+            <button className="edit-item__save" type="submit">
               Save
             </button>
           </section>
