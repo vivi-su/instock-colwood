@@ -55,7 +55,13 @@
         display: flex;
     }
 
-    &__input {
+    &__in-stock, &__out-stock {
+        display: flex;
+        align-items: center;
+        gap: .625rem;
+    }
+
+    &__input, &__category {
         border-radius: 1.25rem;
         padding: 0 1rem;
         height: 2.25rem;
@@ -67,8 +73,8 @@
         }
 
         &--invalid {
-            outline: 1px solid red;
-            border: none;
+            border: .0625rem solid red;
+            outline: none;
         }
     }
 
@@ -78,13 +84,21 @@
 
     &__quantity {
         border-radius: 1.25rem;
-        padding: 0 1rem;
-        height: 2.25rem;
+        padding: 0;
+        height: 3.75rem;
         border: 1px solid $border-devider;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         &--outOfStock{
             display: none;
         }
+    }
+
+    &__warehouse {
+        display: flex;
+        flex-direction: column;
     }
 
     &__button {
@@ -137,6 +151,53 @@
         
         &:hover {
             cursor: pointer;
+        }
+    }
+}
+
+@include large {
+
+    .edit-item {
+
+
+        &__form {
+            display: flex;
+            width: 100%;
+        }
+
+        &__title {
+            padding-left: 3rem;
+        }
+
+        &__details-container {
+            border-right: .0625rem solid $border-devider;
+            border-bottom: transparent;
+            width: 45%;
+            padding-left: 4rem;
+            padding-right: 3rem;
+        }
+
+        &__availability-container {
+            width: 45%;
+            padding-left: 3rem;
+            padding-right: 4rem;
+        }
+
+        &__stock {
+            gap: 2.5rem;
+        }
+
+        &__button {
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        &__cancel-button {
+            width: 8%;
+        }
+
+        &__save {
+            width: 8%;
         }
     }
 }

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-export default function AddWarehouse() {
+export default function AddWarehouse({handleAddWarehouse, warehouseList }) {
   const navigate = useNavigate();
   const [warehouseName, setWarehouseName] = useState("default");
   const [address, setAddress] = useState("default");
@@ -156,6 +156,7 @@ export default function AddWarehouse() {
       axios
         .post("http://localhost:8080/warehouses", warehouseDetails)
         .then((response) => {
+          handleAddWarehouse([...warehouseList, response.data]);
           alert("Warehouse added successfully");
           window.location.reload(true);
           navigate("/warehouses");

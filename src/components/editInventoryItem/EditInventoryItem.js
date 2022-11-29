@@ -266,7 +266,11 @@ export default function EditInventoryItem({
                 onChange={handleCategoryChange}
               >
                 {categoryList.map((category) => (
-                  <option value={category} key={category}>
+                  <option
+                    className="edit-item__category"
+                    value={category}
+                    key={category}
+                  >
                     {category}
                   </option>
                 ))}
@@ -279,7 +283,6 @@ export default function EditInventoryItem({
               <label className="edit-item__label">Status</label>
               <div className="edit-item__stock">
                 <label className="edit-item__in-stock">
-                  In Stock
                   <input
                     className={`edit-item__input ${
                       isStatusValid() ? "" : "edit-item__input--invalid"
@@ -290,9 +293,9 @@ export default function EditInventoryItem({
                     value="In Stock"
                     checked={statusButton === "In Stock"}
                   ></input>
+                  In Stock
                 </label>
                 <label className="edit-item__out-stock">
-                  Out of Stock
                   <input
                     className={`edit-item__input ${
                       isStatusValid() ? "" : "edit-item__input--invalid"
@@ -303,6 +306,7 @@ export default function EditInventoryItem({
                     value="Out of Stock"
                     checked={statusButton === "Out of Stock"}
                   ></input>
+                  Out of Stock
                 </label>
               </div>
               <div
@@ -323,7 +327,7 @@ export default function EditInventoryItem({
                   type="text"
                 ></input>
               </div>
-              <div>
+              <div className="edit-item__warehouse">
                 <label className="edit-item__label">Warehouse</label>
                 <select
                   className={`edit-item__input ${
