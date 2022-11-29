@@ -4,19 +4,51 @@ import ErrorIcon from "../../assets/icons/error-24px.svg";
 import BackArrowIcon from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 export default function AddWarehouse() {
-  const [warehouseName, setwarehouseName] = useState("default");
+  const navigate = useNavigate();
+  const [warehouseName, setWarehouseName] = useState("default");
   const [address, setAddress] = useState("default");
   const [city, setCity] = useState("default");
   const [country, setCountry] = useState("default");
   const [contactName, setContactName] = useState("default");
   const [position, setPosition] = useState("default");
-  const [email, setEmail] = useState("default");
-  const [phoneNumber, setPhoneNumber] = useState("default");
-  const [isFormValid, setIsFormValid] = useState(true);
+  const [email, setEmail] = useState("instock@email.com");
+  const [phoneNumber, setPhoneNumber] = useState("0123456789");
+
+  const handleWarehouseNameChange = (e) => {
+    setWarehouseName(e.target.value);
+  };
+
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
+  };
+
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+  };
+
+  const handleContactNameChange = (e) => {
+    setContactName(e.target.value);
+  };
+
+  const handlePositionChange = (e) => {
+    setPosition(e.target.value);
+  };
+
+  const handleContactPhoneChange = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  const handleContactEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
   const isWarehouseNameValid = () => {
     if (warehouseName === "") {
@@ -61,18 +93,18 @@ export default function AddWarehouse() {
   };
 
   const isPhoneNumberValid = () => {
-    if (
-      phoneNumber === "" &&
-      phoneNumber?.length < 11 &&
-      !Number.isInteger(phoneNumber)
-    ) {
+    const pass =
+      /^[+]?([0-9]{1})?\x20?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
+    if (phoneNumber === "" || !phoneNumber?.match(pass)) {
       return false;
     }
     return true;
   };
 
   const isEmailValid = () => {
-    if (email === "" && !email?.includes("@")) {
+    const pass =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (email === "" || !email?.match(pass)) {
       return false;
     }
     return true;
@@ -90,7 +122,7 @@ export default function AddWarehouse() {
     const phoneNumber = event.target.phoneNumber.value;
     const email = event.target.email.value;
 
-    setwarehouseName(warehouseName);
+    setWarehouseName(warehouseName);
     setAddress(address);
     setCity(city);
     setCountry(country);
@@ -112,14 +144,14 @@ export default function AddWarehouse() {
     };
 
     if (
-      warehouseName &&
-      address &&
-      city &&
-      country &&
-      contactName &&
-      position &&
-      phoneNumber &&
-      email
+      isWarehouseNameValid(warehouseName) &&
+      isAddressValid(address) &&
+      isCityValid(city) &&
+      isCountryValid(country) &&
+      isContactNameValid(contactName) &&
+      isPositionValid(position) &&
+      isPhoneNumberValid(phoneNumber) &&
+      isEmailValid(email)
     ) {
       axios
         .post("http://localhost:8080/warehouses", warehouseDetails)
@@ -131,8 +163,9 @@ export default function AddWarehouse() {
           console.log(error);
           alert("Failed to add Warehouse, please check your form");
         });
+      navigate("/warehouses");
     } else {
-      setIsFormValid(false);
+      return;
     }
   };
 
@@ -157,13 +190,16 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Warehouse Name</label>
               <input
                 className={`add-warehouse__input ${
-                  isWarehouseNameValid() ? "" : "add-warehouse__input--invalid"
+                  isWarehouseNameValid(warehouseName)
+                    ? ""
+                    : "add-warehouse__input--invalid"
                 }`}
                 name="warehouseName"
                 type="text"
                 placeholder="Warehouse Name"
+                onChange={handleWarehouseNameChange}
               ></input>
-              {!isWarehouseNameValid() && (
+              {!isWarehouseNameValid(warehouseName) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -172,13 +208,14 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Street Address</label>
               <input
                 className={`add-warehouse__input ${
-                  isAddressValid() ? "" : "add-warehouse__input--invalid"
+                  isAddressValid(address) ? "" : "add-warehouse__input--invalid"
                 }`}
                 name="address"
                 type="text"
                 placeholder="Street Address"
+                onChange={handleAddressChange}
               ></input>
-              {!isAddressValid() && (
+              {!isAddressValid(address) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -187,13 +224,14 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">City</label>
               <input
                 className={`add-warehouse__input ${
-                  isCityValid() ? "" : "add-warehouse__input--invalid"
+                  isCityValid(city) ? "" : "add-warehouse__input--invalid"
                 }`}
                 name="city"
                 type="text"
                 placeholder="City"
+                onChange={handleCityChange}
               ></input>
-              {!isCityValid() && (
+              {!isCityValid(city) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -202,13 +240,14 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Country</label>
               <input
                 className={`add-warehouse__input ${
-                  isCountryValid() ? "" : "add-warehouse__input--invalid"
+                  isCountryValid(country) ? "" : "add-warehouse__input--invalid"
                 }`}
                 name="country"
                 type="text"
                 placeholder="Country"
+                onChange={handleCountryChange}
               ></input>
-              {!isCountryValid() && (
+              {!isCountryValid(country) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -221,13 +260,16 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Contact Name</label>
               <input
                 className={`add-warehouse__input ${
-                  isContactNameValid() ? "" : "add-warehouse__input--invalid"
+                  isContactNameValid(contactName)
+                    ? ""
+                    : "add-warehouse__input--invalid"
                 }`}
                 name="contactName"
                 type="text"
                 placeholder="Contact Name"
+                onChange={handleContactNameChange}
               ></input>
-              {!isContactNameValid() && (
+              {!isContactNameValid(contactName) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -236,13 +278,16 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Position</label>
               <input
                 className={`add-warehouse__input ${
-                  isPositionValid() ? "" : "add-warehouse__input--invalid"
+                  isPositionValid(position)
+                    ? ""
+                    : "add-warehouse__input--invalid"
                 }`}
                 name="position"
                 type="text"
                 placeholder="Position"
+                onChange={handlePositionChange}
               ></input>
-              {!isPositionValid() && (
+              {!isPositionValid(position) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -251,13 +296,16 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Phone Number</label>
               <input
                 className={`add-warehouse__input ${
-                  isPhoneNumberValid() ? "" : "add-warehouse__input--invalid"
+                  isPhoneNumberValid(phoneNumber)
+                    ? ""
+                    : "add-warehouse__input--invalid"
                 }`}
                 type="text"
                 name="phoneNumber"
                 placeholder="Phone Number"
+                onChange={handleContactPhoneChange}
               ></input>
-              {!isPhoneNumberValid() && (
+              {!isPhoneNumberValid(phoneNumber) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
@@ -266,13 +314,14 @@ export default function AddWarehouse() {
               <label className="add-warehouse__label">Email</label>
               <input
                 className={`add-warehouse__input ${
-                  isEmailValid() ? "" : "add-warehouse__input--invalid"
+                  isEmailValid(email) ? "" : "add-warehouse__input--invalid"
                 }`}
                 type="text"
                 name="email"
                 placeholder="Email"
+                onChange={handleContactEmailChange}
               ></input>
-              {!isEmailValid() && (
+              {!isEmailValid(email) && (
                 <p className="add-warehouse__error">
                   <img src={ErrorIcon} alt="Error icon" />
                   This field is required
