@@ -158,12 +158,12 @@ export default function AddWarehouse() {
         .then((response) => {
           alert("Warehouse added successfully");
           window.location.reload(true);
+          navigate("/warehouses");
         })
         .catch((error) => {
           console.log(error);
           alert("Failed to add Warehouse, please check your form");
         });
-      navigate("/warehouses");
     } else {
       return;
     }
