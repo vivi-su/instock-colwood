@@ -2,46 +2,246 @@
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/fonts" as *;
 
-.inventory {
+.inventory-header {
+  &__list {
+    justify-content: space-between;
+    //margin: 1rem 2rem;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 600;
 
-    &__list{
-        border-bottom: 1px solid $border-devider;
-    }
-  &__card {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    display: flex;
+
+    color: $table-column;
+    background-color: rgba(247, 248, 249, 0.7);
+    border: 1px solid rgba(247, 248, 249, 0.7);
+    padding: 0.5rem 2rem;
   }
-
-  &__item-header,
-  &__qty-header,
-  &__item-link,
-  &__status-header {
+  &__list-content {
     display: flex;
   }
-
-  &__item-link {
-    text-decoration: none;
+  &__list-content-text {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
   }
+  &__list-sortIcon {
+    display: block;
+    padding-left: 0.25rem;
+    max-width: 1.2rem;
+    max-height: 1.2rem;
+  }
+}
+
+
+
+.inventory {
+  &__list {
+    border-top: 1px solid $border-devider;
+  }
+
+  &__card {
+    margin: 0.5rem 1.5rem;
+  }
+  &__item,
+  &__category {
+    width: 60%;
+  }
+
+  &__item-icon{
+    position: relative;
+    width: 1.2rem;
+    top: 0.4rem;
+  }
+
+  &__item-text {
+    font-weight: 600;
+    font-size: 0.688rem;
+    line-height: 1rem;
+    color: $table-column;
+    @include medium {
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+    }
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+    &__item-status {
+       color: $out-of-stock;
+      background: rgba(132, 21, 40, 0.07);
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      margin: 0;
+      text-transform: uppercase;
+      padding: 0.2rem 0.1rem;
+      border-radius: 3rem;
+      width: 5rem;
+      &--instock {
+        width: 3.5rem;
+        color: $in-stock;
+        background: rgba(21, 132, 99, 0.07);
+      }
+
+      @include medium {
+        font-size: 0.7rem;
+      }
+    }
+  
+  &__item-name {
+    display: unset;
+    font-weight: 400;
+    font-size: 0.813rem;
+    line-height: 1.25rem;
+    color: $global-text;
+    @include medium {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+  &__item-link {
+    color: $global-interect;
+    text-decoration: none;
+     font-weight: 600;
+  }
+
   &__item-wrapper,
   &__category-wrapper {
     display: flex;
-    justify-content:space-evenly ;
   }
 
   &__actions-btns {
     display: flex;
-    justify-content: space-evenly;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
-
-  &__category-name {
-    padding-bottom: 0;
-    padding-top: 0;
+  &__actions-edit {
+    width: 100%;
   }
 }
 
 @include small {
-  .inventory__sort-sortIcon,
-  .inventory__actions-text {
+  .inventory-header__list {
+    display: none;
+  }
+  .inventory-tablet {
     display: none;
   }
 }
+
+@include medium {
+  .inventory__list {
+    display: none;
+  }
+
+ 
+  .inventory-tablet {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-bottom: 1px solid $border-devider;
+
+    &__list-tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__card {
+      display: flex;
+     width: 90%;
+      justify-content: space-between;
+    }
+
+    &__item-wrapper {
+      display: flex;
+      width: 48%;
+    }
+
+    &__item {
+      display: flex;
+      width:68%;
+    }
+    &__status-qty {
+      display: flex;
+      width: 41%;
+    }
+    &__status{
+      width:58%;
+    }
+
+    &__qty{
+      width:41%;
+      //padding-left: 4rem;
+
+    }
+
+    &__actions-edit{
+      padding-right: 1rem;
+    }
+
+    
+
+    &__item-name {
+      margin-top:0;
+      margin-bottom: 1rem;
+       font-size: 0.875rem;
+      line-height: 1.375rem;
+       font-weight: 400;
+       color: $global-text;
+    }
+    &__item-link {
+      display: flex;
+      color: $global-interect;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    &__item-icon{
+      margin-bottom:1rem;
+      width:1.3rem;
+    }
+
+    &__item-status {
+    color: $out-of-stock;
+      background: rgba(132, 21, 40, 0.07);
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      margin: 0;
+      text-transform: uppercase;
+      padding: 0.2rem 0.1rem;
+      border-radius: 3rem;
+      width: 5rem;
+      &--instock {
+        width: 3.5rem;
+        color: $in-stock;
+        background: rgba(21, 132, 99, 0.07);
+      }
+
+      @include medium {
+        font-size: 0.7rem;
+      }
+    }
+    }
+ 
+  }
+
+
+@include large {
+  .inventory-header{
+    padding-left:2.5rem;
+    padding-right:2.5rem;
+  }
+
+  .inventory-tablet{
+    &__item{
+width:64%;
+
+  }
+  &__status-qty{
+    width: 42%;
+  }
+
+}
+}
+
