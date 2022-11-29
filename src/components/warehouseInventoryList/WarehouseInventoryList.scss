@@ -48,6 +48,12 @@
     width: 60%;
   }
 
+  &__item-icon{
+    position: relative;
+    width: 1.2rem;
+    top: 0.4rem;
+  }
+
   &__item-text {
     font-weight: 600;
     font-size: 0.688rem;
@@ -61,29 +67,27 @@
     margin-bottom: 0;
   }
     &__item-status {
-       font-size: 0.6875rem;
+       color: $out-of-stock;
+      background: rgba(132, 21, 40, 0.07);
+      font-size: 0.6875rem;
       line-height: 1rem;
       font-weight: 600;
       margin: 0;
-      color: $in-stock;
-      background: rgba(21, 132, 99, 0.07);
+      text-transform: uppercase;
       padding: 0.2rem 0.1rem;
       border-radius: 3rem;
-      width: 3.5rem;
-      text-transform: uppercase;
+      width: 5rem;
+      &--instock {
+        width: 3.5rem;
+        color: $in-stock;
+        background: rgba(21, 132, 99, 0.07);
+      }
+
+      @include medium {
+        font-size: 0.7rem;
+      }
     }
-    // &-outstock {
-    //   font-size: 0.6875rem;
-    //   line-height: 1rem;
-    //   font-weight: 600;
-    //   margin: 0;
-    //   color: $out-of-stock;
-    //   background: rgba(132, 21, 40, 0.07);
-    //   padding: 0.2rem 0.1rem;
-    //   border-radius: 3rem;
-    //   width: 5rem;
-    //text-transform: uppercase;
-    // }
+  
   &__item-name {
     display: unset;
     font-weight: 400;
@@ -98,6 +102,7 @@
   &__item-link {
     color: $global-interect;
     text-decoration: none;
+     font-weight: 600;
   }
 
   &__item-wrapper,
@@ -129,6 +134,8 @@
   .inventory__list {
     display: none;
   }
+
+ 
   .inventory-tablet {
     padding-top: 1rem;
     padding-left: 2rem;
@@ -147,7 +154,7 @@
 
     &__item-wrapper {
       display: flex;
-      width: 50%;
+      width: 48%;
     }
 
     &__item {
@@ -156,20 +163,26 @@
     }
     &__status-qty {
       display: flex;
-      width: 42%;
+      width: 41%;
     }
     &__status{
-      width:40%;
+      width:58%;
     }
 
     &__qty{
-      width:82%;
+      width:41%;
+      //padding-left: 4rem;
 
+    }
+
+    &__actions-edit{
+      padding-right: 1rem;
     }
 
     
 
     &__item-name {
+      margin-top:0;
       margin-bottom: 1rem;
        font-size: 0.875rem;
       line-height: 1.375rem;
@@ -180,45 +193,55 @@
       display: flex;
       color: $global-interect;
       text-decoration: none;
+      font-weight: 600;
     }
 
     &__item-icon{
       margin-bottom:1rem;
+      width:1.3rem;
     }
 
     &__item-status {
-       font-size: 0.6875rem;
+    color: $out-of-stock;
+      background: rgba(132, 21, 40, 0.07);
+      font-size: 0.6875rem;
       line-height: 1rem;
       font-weight: 600;
       margin: 0;
-      color: $in-stock;
-      background: rgba(21, 132, 99, 0.07);
+      text-transform: uppercase;
       padding: 0.2rem 0.1rem;
       border-radius: 3rem;
-      width: 3.5rem;
-      text-transform: uppercase;
-    }
-    // &-outstock {
-    //   font-size: 0.6875rem;
-    //   line-height: 1rem;
-    //   font-weight: 600;
-    //   margin: 0;
-    //   color: $out-of-stock;
-    //   background: rgba(132, 21, 40, 0.07);
-    //   padding: 0.2rem 0.1rem;
-    //   border-radius: 3rem;
-    //   width: 5rem;
-    //text-transform: uppercase;
-    // }
+      width: 5rem;
+      &--instock {
+        width: 3.5rem;
+        color: $in-stock;
+        background: rgba(21, 132, 99, 0.07);
+      }
 
+      @include medium {
+        font-size: 0.7rem;
+      }
+    }
+    }
+ 
   }
 
-}
+
 @include large {
   .inventory-header{
     padding-left:2.5rem;
     padding-right:2.5rem;
   }
 
+  .inventory-tablet{
+    &__item{
+width:64%;
+
+  }
+  &__status-qty{
+    width: 42%;
+  }
+
+}
 }
 

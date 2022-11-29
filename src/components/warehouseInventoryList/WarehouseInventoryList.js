@@ -91,7 +91,11 @@ export default function WarehouseInventoryList({ warehouseId }) {
                             {warehouseInventory.item_name}
                           </p>
 
-                          <img src={chevronIcon} alt="more than sign" />
+                          <img
+                            className="inventory__item-icon"
+                            src={chevronIcon}
+                            alt="more than sign"
+                          />
                         </Link>
                       </div>
                     </div>
@@ -101,7 +105,14 @@ export default function WarehouseInventoryList({ warehouseId }) {
                       <div className="inventory__status-header">
                         <h5 className="inventory__item-text">STATUS</h5>
                       </div>
-                      <p className="inventory__item-status">
+
+                      <p
+                        className={`inventory__item-status ${
+                          warehouseInventory?.status === "In Stock"
+                            ? "inventory__item-status--instock"
+                            : ""
+                        }`}
+                      >
                         {warehouseInventory.status}
                       </p>
                     </div>
@@ -188,7 +199,13 @@ export default function WarehouseInventoryList({ warehouseId }) {
                   <div className="inventory-tablet__status-qty">
                     {/* INVENTORY STATUS */}
                     <div className="inventory-tablet__status">
-                      <p className="inventory-tablet__item-status">
+                      <p
+                        className={`inventory-tablet__item-status ${
+                          warehouseInventory?.status === "In Stock"
+                            ? "inventory-tablet__item-status--instock"
+                            : ""
+                        }`}
+                      >
                         {warehouseInventory.status}
                       </p>
                     </div>
