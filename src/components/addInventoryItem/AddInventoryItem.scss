@@ -4,6 +4,7 @@
 .add-item-container {
   margin: 0 1rem;
   background-color: $global-background;
+
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   border-radius: 3px;
   @include medium {
@@ -37,6 +38,8 @@
   }
   &__back-link {
     max-height: 1rem;
+    width: 100%;
+    // margin-top: -2px;
   }
   &__back-icon {
     height: 1rem;
@@ -53,17 +56,364 @@
       line-height: 2.5rem;
     }
   }
-  &__quantity {
-    display: none;
-    &--inStock {
-      display: flex;
+
+  &__form {
+    padding-top: 1rem;
+    @include medium {
+      padding: 1.5rem 0 0;
     }
   }
-  &__input {
-    &--invalid {
-      //   border: 1px solid red;
-      outline: 1px solid red;
-      border: none;
+  &__columns {
+    @include medium {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 2rem;
+      padding: 0 2rem;
     }
+    @include large {
+      padding: 0 40px;
+      margin-bottom: 2rem;
+    }
+  }
+  &__details {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-bottom: 0.063rem solid $border-devider;
+    @include medium {
+      padding-bottom: 0;
+      width: 50%;
+      padding-right: 2rem;
+      padding-left: 0;
+      border-right: 1px solid $border-devider;
+      border-bottom: none;
+    }
+    @include large {
+      padding-right: 40px;
+    }
+  }
+  &__item-name-container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__subheader {
+    margin: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: $global-text;
+    @include medium {
+      margin-bottom: 2rem;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  &__label-text {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: $global-text;
+    @include medium {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+  &__input-regular {
+    background: $global-background;
+    border: 1px solid $border-devider;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    height: 36px;
+    @include medium {
+      height: 38px;
+    }
+    &--invalid {
+      border: 1px solid $out-of-stock;
+    }
+    &:focus {
+      outline: none;
+      border: 1px solid $global-interect;
+      background-color: $global-background;
+      font-weight: 400;
+      color: $global-text;
+      font-size: 13px;
+      line-height: 20px;
+      @include medium {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+    &::placeholder {
+      font-weight: 400;
+      color: $table-column;
+      font-size: 13px;
+      line-height: 20px;
+      @include medium {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+  &__input-textarea {
+    resize: none;
+    background: $global-background;
+    border: 1px solid $border-devider;
+    border-radius: 20px;
+    height: 120px;
+    padding: 0.5rem 1rem;
+    @include medium {
+    }
+    &--invalid {
+      border: 1px solid $out-of-stock;
+    }
+    &:focus {
+      outline: none;
+      border: 1px solid $global-interect;
+      color: $global-text;
+    }
+    &::placeholder {
+      font-weight: 400;
+      color: $table-column;
+      font-size: 13px;
+      line-height: 20px;
+      @include medium {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+  &__input-select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: $global-background;
+    border: 1px solid $border-devider;
+    color: $table-column;
+    background-image: url(../../assets/icons/arrow_drop_down-24px.svg);
+    background-position: right 0.7rem top 50%;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    padding: 0 1rem;
+    height: 36px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+
+    @include medium {
+      font-size: 14px;
+      line-height: 22px;
+      height: 38px;
+    }
+    &--invalid {
+      border: 1px solid $out-of-stock;
+    }
+    &:focus {
+      color: $global-text;
+      outline: none;
+      border: 1px solid $global-interect;
+    }
+  }
+
+  &__drop-down {
+    color: $global-text;
+    &:focus {
+      background-color: $global-interect;
+    }
+  }
+
+  &__radio-button {
+    appearance: none;
+    position: relative;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    left: 0px;
+    border-radius: 50%;
+    &--selected {
+      background-color: $global-interect;
+    }
+  }
+  &__input-radio {
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid $border-devider;
+    margin-right: 8px;
+    &--selected {
+      border: 1px solid $global-interect;
+    }
+    &--invalid {
+      border: 1px solid $out-of-stock;
+    }
+  }
+  &__description-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    @include medium {
+      margin-top: 1.5rem;
+    }
+  }
+  &__category-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    @include medium {
+      margin-top: 1.5rem;
+    }
+  }
+  &__radio-buttons-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    @include large {
+      width: 50%;
+    }
+  }
+  &__availability {
+    padding: 1rem 1.5rem 0 1.5rem;
+
+    @include medium {
+      width: 50%;
+      padding-left: 2rem;
+      padding-right: 0;
+      padding-top: 0;
+    }
+    @include large {
+      padding-left: 40px;
+    }
+  }
+  &__status-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    @include medium {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__stock-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+  }
+
+  &__warehouse-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    @include medium {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: $table-column;
+    @include medium {
+      font-size: 14px;
+      line-height: 22px;
+    }
+    &--selected {
+      color: $global-text;
+    }
+  }
+  &__quantity {
+    display: none;
+    margin-bottom: 1rem;
+    @include medium {
+      margin-bottom: 1.5rem;
+    }
+    &--inStock {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 1.5rem;
+    background-color: $page-cta;
+    width: 100%;
+
+    @include medium {
+      padding: 1rem 0;
+      justify-content: right;
+    }
+  }
+
+  &__button-wrapper {
+    width: 100%;
+    @include medium {
+      width: auto;
+    }
+  }
+
+  &__button {
+    border: 0;
+    height: 36px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    @include medium {
+      padding: 0 16px;
+      height: 38px;
+    }
+    &--cancel {
+      color: $table-column;
+      background-color: $global-background;
+      border: 1px solid $border-devider;
+      border-radius: 20px;
+      width: 100%;
+      @include medium {
+        width: auto;
+      }
+      &:hover {
+        outline: none;
+        border: 1px solid $global-interect;
+      }
+    }
+    &--add {
+      margin-left: 16px;
+      border-radius: 20px;
+      color: $global-background;
+      background-color: $global-interect;
+      width: 100%;
+      @include medium {
+        width: auto;
+        margin-right: 2rem;
+      }
+      @include large {
+        margin-right: 40px;
+      }
+      &:hover {
+        outline: none;
+        background-color: $navigation-hover;
+      }
+    }
+  }
+
+  &__error-text {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    color: $out-of-stock;
+    padding-top: 4px;
+    @include medium {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+  &__error-image {
+    width: 13.33px;
+    height: 13.33px;
   }
 }
