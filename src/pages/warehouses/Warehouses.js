@@ -35,7 +35,6 @@ export default function Warehouses({warehouseList}) {
                 type="search"
                 placeholder="Search..."
                 name="search"
-                autoFocus
                 className="warehouses__search-name"
               />
               <span className="warehouses__search-icon"></span>
