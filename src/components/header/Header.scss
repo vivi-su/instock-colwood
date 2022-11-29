@@ -2,6 +2,8 @@
 @use "../../styles/partials/colors" as *;
 
 .header {
+
+  
   padding: 1.5rem 1rem;
   @include medium {
     display: flex;

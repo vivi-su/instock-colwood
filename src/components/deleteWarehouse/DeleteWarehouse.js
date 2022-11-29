@@ -1,4 +1,3 @@
-//Ticket 13
 import React from "react";
 import { Link, Outlet, useParams, useNavigate } from "react-router-dom";
 import Exit from "../../assets/icons/close-24px.svg";

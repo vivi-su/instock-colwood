@@ -129,30 +129,30 @@ export default function AddWarehouse() {
       contact_phone: phoneNumber,
       contact_email: email,
     };
-
-    if (
-      warehouseName &&
-      address &&
-      city &&
-      country &&
-      contactName &&
-      position &&
-      phoneNumber &&
-      email
-    ) {
-      axios
-        .post("http://localhost:8080/warehouses", warehouseDetails)
-        .then((response) => {
-          alert("Warehouse added successfully");
-          window.location.reload(true);
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("Failed to add Warehouse, please check your form");
-        });
-    } else {
-      setIsFormValid(false);
-    }
+    
+      if (
+        warehouseName &&
+        address &&
+        city &&
+        country &&
+        contactName &&
+        position &&
+        phoneNumber &&
+        email
+      ) {
+        axios
+          .post("http://localhost:8080/warehouses", warehouseDetails)
+          .then((response) => {
+            alert("Warehouse added successfully");
+            window.location.reload(true);
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Failed to add Warehouse, please check your form");
+          });
+      } else {
+        setIsFormValid(false);
+      }
   };
 
   return (
@@ -160,7 +160,11 @@ export default function AddWarehouse() {
       <section className="add-warehouse">
         <h1 className="add-warehouse__title">
           <Link to="/warehouses">
-            <img src={BackArrowIcon} alt="Back arrow icon" />
+            <img
+              src={BackArrowIcon}
+              alt="Back arrow icon"
+              className="add-warehouse__back-icon"
+            />
           </Link>
           Add New Warehouse
         </h1>
@@ -295,6 +299,7 @@ export default function AddWarehouse() {
               )}
             </section>
           </section>
+
           <section className="add-warehouse__button">
             <button className="add-warehouse__cancel-button" type="submit">
               <Link to="/warehouses" className="add-warehouse__cancel">
