@@ -47,16 +47,22 @@ function App() {
     );
   }
 
-  // console.log();
-  // function handleAddWarehouse() {
-  //   setWarehouseList();
-  //   //here will go the added warehouse
-  // }
+  function handleAddWarehouse() {
+    setWarehouseList(warehouseList);
+  }
 
   // function handleEditWarehouse() {
   //   setWarehouseList();
   //   //here will go the edited warehouse
   // }
+
+
+  // function handleEditWarehouse() {
+  //   setWarehouseList();
+  //   //here will go the edited warehouse
+  // }
+
+
 
   //<----------------INVENTORY---------------------------->
   //get data for inventory
@@ -80,10 +86,12 @@ function App() {
     setInventoryItemsList(newInventoryItem);
   }
 
-  // function handleEditItem() {
-  //   setInventoryItemsList();
-  //   //here will go the edited item
-  // }
+
+  function handleEditItem(editInventoryItem) {
+    setInventoryItemsList(editInventoryItem);
+  }
+
+
   // console.log(inventoryItemsList);
   return (
     <BrowserRouter>
@@ -126,7 +134,7 @@ function App() {
               />
               <Route
                 path="warehouses/addWarehouse"
-                element={<AddWarehouse />}
+                element={<AddWarehouse warehouseList={warehouseList} />}
               />
 
               {/*<---------------- INVENTORY PAGE ---------------->*/}
@@ -151,7 +159,12 @@ function App() {
               />
               <Route
                 path="inventory/editInventoryItem/:itemId"
-                element={<EditInventoryItem />}
+                element={
+                  <EditInventoryItem
+                    inventoryItemsList={inventoryItemsList}
+                    handleEditItem={handleEditItem}
+                  />
+                }
               />
               <Route
                 path="inventory/addInventoryItem"
