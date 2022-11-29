@@ -25,46 +25,88 @@ export default function InventoryItemsList({
 
   return (
     <section className="inventory-list">
-      <div>
-        <span className="inventory-list__label-text inventory-list__label-text--mid">
-          INVENTORY ITEM
-        </span>
-        <Link to={`${inventoryItemId}`}>
-          <span>{name}</span>
-          <img src={chevron} alt="chevron" />
-        </Link>
+      <div className="inventory-list__row-container">
+        <div className="inventory-list__column">
+          <div className="inventory-list__info">
+            <span className="inventory-list__label-text inventory-list__label-text--mid">
+              INVENTORY ITEM
+            </span>
+            <Link className="inventory-list__link" to={`${inventoryItemId}`}>
+              <span className="inventory-list__body-text inventory-list__body-text--link">
+                {name}
+              </span>
+              <img
+                className="inventory-list__chevron"
+                src={chevron}
+                alt="chevron"
+              />
+            </Link>
+          </div>
+          <div className="inventory-list__info">
+            <span className="inventory-list__label-text inventory-list__label-text--mid">
+              CATEGORY
+            </span>
+            <span className="inventory-list__body-text">{category}</span>
+          </div>
+        </div>
+
+        <div className="inventory-list__column">
+          <div className="inventory-list__info">
+            <span className="inventory-list__label-text inventory-list__label-text--mid">
+              STATUS
+            </span>
+            <span
+              className={`inventory-list__status ${
+                status === "In Stock"
+                  ? "inventory-list__status--green"
+                  : "inventory-list__status--red"
+              }  `}
+            >
+              {status}
+            </span>
+          </div>
+          <div className="inventory-list__info">
+            <span className="inventory-list__label-text inventory-list__label-text--mid">
+              QTY
+            </span>
+            <span className="inventory-list__body-text">{quantity}</span>
+          </div>
+          <div className="inventory-list__info">
+            <span className="inventory-list__label-text inventory-list__label-text--mid">
+              WAREHOUSE
+            </span>
+            {warehouseName && (
+              <span className="inventory-list__body-text">{warehouseName}</span>
+            )}
+          </div>
+        </div>
       </div>
-      <div>
-        <span className="inventory-list__label-text inventory-list__label-text--mid">
-          CATEGORY
-        </span>
-        <span>{category}</span>
-      </div>
-      <div>
-        <span className="inventory-list__label-text inventory-list__label-text--mid">
-          STATUS
-        </span>
-        <span>{status}</span>
-      </div>
-      <div>
-        <span className="inventory-list__label-text inventory-list__label-text--mid">
-          QTY
-        </span>
-        <span>{quantity}</span>
-      </div>
-      <div>
-        <span className="inventory-list__label-text inventory-list__label-text--mid">
-          WAREHOUSE
-        </span>
-        {warehouseName && <span>{warehouseName}</span>}
-      </div>
-      <div className="inventory__action-buttons">
-        <Link to={`deleteInventoryItem/${inventoryItemId}`}>
-          <img src={deleteIcon} alt="delete: trash bin icon" />
-        </Link>
-        <Link to={`editInventoryItem/${inventoryItemId}`}>
-          <img src={editIcon} alt="edit: pencil icon" />
-        </Link>
+
+      <div className="inventory-list__icons-container">
+        <div className="inventory-list__action-buttons inventory-list__action-buttons--mid">
+          <Link
+            className="inventory-list__link"
+            to={`deleteInventoryItem/${inventoryItemId}`}
+          >
+            <img
+              className="inventory-list__icon"
+              src={deleteIcon}
+              alt="delete: trash bin icon"
+            />
+          </Link>
+        </div>
+        <div className="inventory-list__action-buttons inventory-list__action-buttons--mid">
+          <Link
+            className="inventory-list__link"
+            to={`editInventoryItem/${inventoryItemId}`}
+          >
+            <img
+              className="inventory-list__icon"
+              src={editIcon}
+              alt="edit: pencil icon"
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );
