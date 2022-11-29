@@ -1,7 +1,6 @@
 //Ticket 24
 import "./AddInventoryItem.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import dropDown from "../../assets/icons/arrow_drop_down-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -101,7 +100,11 @@ export default function AddInventoryItem({
     return true;
   };
   const isQuantityValid = () => {
-    if (quantity === "" || !Number.isInteger(quantity) || quantity < 1) {
+    if (
+      quantity === "" ||
+      !Number.isInteger(Number(quantity)) ||
+      quantity < 0
+    ) {
       return false;
     }
     return true;
@@ -120,7 +123,7 @@ export default function AddInventoryItem({
     setDescription(event.target.value);
   };
   const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
+    setQuantity(Number(event.target.value));
   };
   const handleWarehouseChange = (event) => {
     setWarehouse(event.target.value);
@@ -142,6 +145,7 @@ export default function AddInventoryItem({
     const description = event.target.description.value;
     const category = event.target.category.value;
     const status = event.target.status.value;
+    const quantityStr = event.target.quantity.value;
     const warehouseId = warehouseObj.id;
     let quantity = null;
 
@@ -151,20 +155,11 @@ export default function AddInventoryItem({
       quantity = 0;
     }
 
-    const newInventoryItem = {
-      warehouse_id: warehouseId,
-      item_name: itemName,
-      description: description,
-      category: category,
-      status: status,
-      quantity: quantity,
-    };
-
     setItemName(itemName);
     setDescription(description);
     setCategory(category);
     setStatus(status);
-    setQuantity(quantity);
+    setQuantity(quantityStr);
     setWarehouse(warehouse);
 
     if (
@@ -175,12 +170,23 @@ export default function AddInventoryItem({
       status &&
       quantity
     ) {
+      const newInventoryItem = {
+        warehouse_id: warehouseId,
+        item_name: itemName,
+        description: description,
+        category: category,
+        status: status,
+        quantity: quantity,
+      };
+
       axios
         .post("http://localhost:8080/inventories", newInventoryItem)
         .then((response) => {
+          console.log(response.data);
           handleAddItem([...inventoryItemsList, response.data]);
         });
       navigate("/inventory");
+      event.target.reset();
     }
   };
 
@@ -276,11 +282,6 @@ export default function AddInventoryItem({
                   name="category"
                   id="category"
                 >
-                  <img
-                    className="add-item__drop-down"
-                    src={dropDown}
-                    alt="drop dpwnm"
-                  />
                   {categoryList?.map((category) => (
                     <option
                       className="add-item__options"
@@ -309,6 +310,7 @@ export default function AddInventoryItem({
               <h2 className="add-item__subheader">Item Availability</h2>
               <div className="add-item__status-container">
                 <label className="add-item__label-text">Status</label>
+
                 <div className="add-item__radio-buttons-container">
                   <div className="add-item__stock-container">
                     <div
@@ -346,6 +348,7 @@ export default function AddInventoryItem({
                       In Stock
                     </label>
                   </div>
+
                   <div className="add-item__stock-container">
                     <div
                       className={`add-item__input-radio
@@ -416,7 +419,7 @@ export default function AddInventoryItem({
                   onChange={handleQuantityChange}
                 />
 
-                {status === "In Stock" && isStatusValid() && (
+                {status === "In Stock" && !isStatusValid() && (
                   <span className="add-item__error-text">
                     <img
                       className="add-item__error-image"
@@ -463,13 +466,16 @@ export default function AddInventoryItem({
             </div>
           </div>
           <div className="add-item__buttons-container">
-            <Link className="add-item__back-link" to={`/inventory`}>
-              <div className="add-item__button add-item__button--cancel">
-                Cancel
-              </div>
-            </Link>
+            <div className="add-item__button-wrapper">
+              <Link className="add-item__back-link" to={`/inventory`}>
+                <button className="add-item__button add-item__button--cancel">
+                  Cancel
+                </button>
+              </Link>
+            </div>
+
             <button className="add-item__button add-item__button--add">
-              +Add New Item
+              +Add Item
             </button>
           </div>
         </form>

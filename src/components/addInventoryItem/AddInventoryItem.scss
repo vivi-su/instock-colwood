@@ -43,6 +43,8 @@
   }
   &__back-link {
     max-height: 1rem;
+    width: 100%;
+    // margin-top: -2px;
   }
   &__back-icon {
     height: 1rem;
@@ -345,20 +347,61 @@
     flex-direction: row;
     padding: 1rem 1.5rem;
     background-color: $page-cta;
+    width: 100%;
+
     @include medium {
       padding: 1rem 0;
-      justify-content: flex-end;
+      justify-content: right;
     }
   }
+
+  &__button-wrapper {
+    width: 100%;
+    @include medium {
+      width: auto;
+    }
+  }
+
   &__button {
-    // &--cancel {
-    // }
-    &--add {
+    border: 0;
+    height: 36px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    @include medium {
+      padding: 0 16px;
+      height: 38px;
+    }
+    &--cancel {
+      color: $table-column;
+      background-color: $global-background;
+      border: 1px solid $border-devider;
+      border-radius: 20px;
+      width: 100%;
       @include medium {
+        width: auto;
+      }
+      &:hover {
+        outline: none;
+        border: 1px solid $global-interect;
+      }
+    }
+    &--add {
+      margin-left: 16px;
+      border-radius: 20px;
+      color: $global-background;
+      background-color: $global-interect;
+      width: 100%;
+      @include medium {
+        width: auto;
         margin-right: 2rem;
       }
       @include large {
         margin-right: 40px;
+      }
+      &:hover {
+        outline: none;
+        background-color: $navigation-hover;
       }
     }
   }

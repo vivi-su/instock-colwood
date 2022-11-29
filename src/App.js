@@ -43,7 +43,7 @@ function App() {
 
   function handleDeleteWarehouse(warehouseId) {
     setWarehouseList(
-      warehouseList.filter((warehouse) => warehouse.id !== warehouseId)
+      warehouseList?.filter((warehouse) => warehouse?.id !== warehouseId)
     );
   }
 
@@ -72,7 +72,7 @@ function App() {
 
   function handleDeleteItem(itemId) {
     setInventoryItemsList(
-      inventoryItemsList.filter((item) => item.id !== itemId)
+      inventoryItemsList?.filter((item) => item?.id !== itemId)
     );
   }
 
