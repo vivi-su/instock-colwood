@@ -16,11 +16,7 @@ export default function DeleteInventoryItem({
     setShowDeleteInventoryItem(
       inventoryItemsList?.find((inventoryItem) => inventoryItem.id === itemId)
     );
-  }, [
-    itemId,
-    setShowDeleteInventoryItem,
-    inventoryItemsList
-  ]);
+  }, [itemId, setShowDeleteInventoryItem, inventoryItemsList]);
 
   const handleDelete = (event) => {
     event.preventDefault();

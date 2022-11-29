@@ -4,8 +4,12 @@ import InventoryItemsList from "../../components/inventoryItemsList/InventoryIte
 import searchIcon from "../../assets/icons/search-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import { Outlet, Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Inventory({ inventoryItemsList }) {
+  const getNewId = () => {
+    return uuidv4();
+  };
   return (
     <>
       <Outlet />
@@ -90,7 +94,7 @@ export default function Inventory({ inventoryItemsList }) {
           {inventoryItemsList?.map((inventoryItem) => {
             return (
               <InventoryItemsList
-                key={inventoryItem?.id + inventoryItem?.item_name}
+                key={inventoryItem?.id + inventoryItem?.item_name + getNewId}
                 name={inventoryItem?.item_name}
                 category={inventoryItem?.category}
                 status={inventoryItem?.status}

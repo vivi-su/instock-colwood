@@ -4,6 +4,7 @@ import BackArrowIcon from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import { Link, useNavigate, Outlet, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function EditInventoryItem({
   inventoryItemsList,
@@ -20,6 +21,9 @@ export default function EditInventoryItem({
   const [firstLoad, setFirstLoad] = useState(true);
   const { itemId } = useParams();
 
+  const getNewId = () => {
+    return uuidv4();
+  };
   useEffect(() => {
     if (!firstLoad) return;
 
@@ -34,7 +38,7 @@ export default function EditInventoryItem({
     setStatusButton(editInventoryItem?.status);
     setWarehouseId(editInventoryItem?.warehouse_id);
     setFirstLoad(false);
-  }, [itemId, inventoryItemsList]);
+  }, [itemId, inventoryItemsList, firstLoad]);
 
   useEffect(() => {
     const getSingleWarehouseURL = `http://localhost:8080/warehouses/`;
@@ -173,7 +177,6 @@ export default function EditInventoryItem({
   };
 
   const handleQuantityChange = (event) => {
-    console.log(event.target.value);
     if (event.target.value) {
       setQuantity(Number(event.target.value));
     } else {
@@ -269,7 +272,7 @@ export default function EditInventoryItem({
                   <option
                     className="edit-item__category"
                     value={category}
-                    key={category}
+                    key={category + getNewId}
                   >
                     {category}
                   </option>
@@ -342,7 +345,7 @@ export default function EditInventoryItem({
                     Please select
                   </option>
                   {warehouseList.map((warehouse) => (
-                    <option value={warehouse.id} key={warehouse.id}>
+                    <option value={warehouse.id} key={warehouse.id + getNewId}>
                       {warehouse.warehouse_name}
                     </option>
                   ))}

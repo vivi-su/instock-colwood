@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-export default function AddWarehouse({handleAddWarehouse, warehouseList }) {
+export default function AddWarehouse({ handleAddWarehouse, warehouseList }) {
   const navigate = useNavigate();
   const [warehouseName, setWarehouseName] = useState("default");
   const [address, setAddress] = useState("default");
