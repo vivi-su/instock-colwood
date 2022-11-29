@@ -244,9 +244,9 @@ export default function EditInventoryItem({
                 defaultValue={itemName}
                 onChange={handleItemNameChange}
               ></input>
-              <label className="edit-item__label">Description</label>
-              <input
-                className={`edit-item__input ${
+              <label className="edit-item__label ">Description</label>
+              <textarea
+                className={`edit-item__input edit-item__label-big ${
                   isDescriptionValid() ? "" : "edit-item__input--invalid"
                 } `}
                 defaultValue={description}
@@ -255,7 +255,7 @@ export default function EditInventoryItem({
                 type="text"
                 cols="30"
                 rows="5"
-              ></input>
+              ></textarea>
               <label className="edit-item__label">Category</label>
               <select
                 value={category}
@@ -350,18 +350,17 @@ export default function EditInventoryItem({
               </div>
             </section>
           </section>
-
-          <section className="edit-item__button">
-            <button className="edit-item__cancel-button" type="submit">
-              <Link to="/inventory" className="edit-item__cancel">
-                Cancel
-              </Link>
-            </button>
-            <button className="edit-item__save" type="submit">
-              Save
-            </button>
-          </section>
         </form>
+        <section className="edit-item__button">
+          <button className="edit-item__cancel-button" type="submit">
+            <Link to="/inventory" className="edit-item__cancel">
+              Cancel
+            </Link>
+          </button>
+          <button className="edit-item__save" type="submit">
+            Save
+          </button>
+        </section>
       </section>
     </>
   );
