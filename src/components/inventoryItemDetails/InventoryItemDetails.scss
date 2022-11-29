@@ -30,8 +30,8 @@
     }
 
     &-arrow {
-      padding-right: 2%;
-      padding-top: 20%;
+      //padding-right: 2%;
+      padding-top: 0.2rem;
     }
     &-title {
       font-size: 1.7rem;
@@ -41,9 +41,11 @@
       margin: 1rem 0;
       margin-top: 0;
       padding-left: 0.5rem;
-
+      width: 80%;
+margin-bottom: 0;
       @include medium {
-        margin-bottom: 0.6rem;
+        margin-bottom: 0;
+        
       }
     }
 
@@ -51,12 +53,12 @@
       border: none;
       background: $global-interect;
       border-radius: 50%;
-      position: absolute;
-      right: 3rem;
-      top: 1.5rem;
+      //position: absolute;
+      //right: 3rem;
+      //top: 1.5rem;
       border-radius: 50%;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2.2rem;
+      height: 2.2rem;
       @include medium {
         border-radius: 2rem;
         width: 5rem;
@@ -70,7 +72,7 @@
       }
 
       &-icon {
-        padding-top: 0.5rem;
+        padding-top: 0.3rem;
         width: 1.3rem;
         height: 1.7rem;
         filter: brightness(4) sepia(0) hue-rotate(0deg) saturate(0);
@@ -83,7 +85,9 @@
         color: $global-background;
         @include medium {
           display: flex;
-          padding-top: 0.4rem;
+         
+          padding-top: 0.2rem;
+    padding-left: 0.1rem;
         }
       }
     }
@@ -165,6 +169,10 @@
         display: flex;
         flex-direction: column;
         width: 50%;
+
+        @include medium {
+          width: 80%;
+        }
       }
     }
     &-header {
