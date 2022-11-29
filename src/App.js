@@ -56,6 +56,13 @@ function App() {
   //   //here will go the edited warehouse
   // }
 
+
+  // function handleEditWarehouse() {
+  //   setWarehouseList();
+  //   //here will go the edited warehouse
+  // }
+
+
   //<----------------INVENTORY---------------------------->
   //get data for inventory
   useEffect(() => {
@@ -81,6 +88,7 @@ function App() {
   function handleEditItem(editInventoryItem) {
     setInventoryItemsList(editInventoryItem);
   }
+
   // console.log(inventoryItemsList);
   return (
     <BrowserRouter>
