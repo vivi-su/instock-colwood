@@ -3,7 +3,7 @@ import "./AddInventoryItem.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
@@ -19,10 +19,11 @@ export default function AddInventoryItem({
   const [status, setStatus] = useState("Out of Stock");
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState("default");
-  const [uniqueId, setUniqueId] = useState();
-  useEffect(() => {
-    setUniqueId(uuidv4());
-  }, []);
+
+  const getNewId = () => {
+    return uuidv4();
+  };
+
   //The warehouse list and the category list are hardcoded because
   //it didn't make sense to have them generated dinamically.
   //If we had them generated dinamically, if somebody deleted the warehouses,
@@ -217,8 +218,6 @@ export default function AddInventoryItem({
         quantity: quantity,
       };
 
-      console.log(newInventoryItem);
-
       axios
         .post("http://localhost:8080/inventories", newInventoryItem)
         .then((response) => {
@@ -324,9 +323,9 @@ export default function AddInventoryItem({
                 >
                   {categoryList?.map((category) => (
                     <option
+                      key={category + getNewId}
                       className="add-item__options"
                       value={category}
-                      key={category + uniqueId}
                     >
                       {category}
                     </option>
@@ -488,7 +487,7 @@ export default function AddInventoryItem({
                   {warehouseList.map((warehouse) => (
                     <option
                       value={warehouse.warehouse_name}
-                      key={warehouse.warehouse_name + warehouse.id}
+                      key={warehouse.warehouse_name + warehouse.id + getNewId}
                     >
                       {warehouse.warehouse_name}
                     </option>

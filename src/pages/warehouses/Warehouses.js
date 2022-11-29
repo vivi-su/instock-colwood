@@ -1,10 +1,13 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import "./Warehouses.scss";
+import { v4 as uuidv4 } from "uuid";
 
-export default function Warehouses({warehouseList}) {
-
+export default function Warehouses({ warehouseList }) {
+  const getNewId = () => {
+    return uuidv4();
+  };
   const navigate = useNavigate();
 
   const handleAddWarehouse = (event) => {
@@ -79,7 +82,7 @@ export default function Warehouses({warehouseList}) {
 
         {/*---warehouse list---*/}
         {warehouseList?.map((warehouse) => (
-          <form className="warehouses__list" key={warehouse.id}>
+          <form className="warehouses__list" key={warehouse.id + getNewId}>
             <div className="warehouses__subtitle-all-list-group">
               <div className="warehouses__subtitle-session-half-for-leftand-right warehouses__subtitle-session-half-for-leftand-right--group-one">
                 <div className="warehouses__subtitle-session warehouses__subtitle-session--group-one">
