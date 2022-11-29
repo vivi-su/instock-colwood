@@ -1,0 +1,419 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+
+.add-item-container {
+  margin: 0 1rem;
+  background-color: $global-background;
+
+  box-shadow: 0rem .125rem .3125rem rgba(19, 24, 44, 0.1);
+  border-radius: .1875rem;
+  @include medium {
+    margin: 0 2rem;
+  }
+  @include large {
+    margin: 0 auto;
+    max-width: 63.75rem;
+  }
+}
+
+.add-item {
+  &__nav-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+    border-bottom: 0.063rem solid $border-devider;
+    @include medium {
+      padding-bottom: 1.5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include large {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+  &__arrow-text-wrapper {
+    display: flex;
+    align-items: baseline;
+  }
+  &__back-link {
+    max-height: 1rem;
+    width: 100%;
+
+  }
+  &__back-icon {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+  }
+  &__section-header {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    @include medium {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &__form {
+    padding-top: 1rem;
+    @include medium {
+      padding: 1.5rem 0 0;
+    }
+  }
+  &__columns {
+    @include medium {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 2rem;
+      padding: 0 2rem;
+    }
+    @include large {
+      padding: 0 2.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+  &__details {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-bottom: 0.063rem solid $border-devider;
+    @include medium {
+      padding-bottom: 0;
+      width: 50%;
+      padding-right: 2rem;
+      padding-left: 0;
+      border-right: .0625rem solid $border-devider;
+      border-bottom: none;
+    }
+    @include large {
+      padding-right: 2.5rem;
+    }
+  }
+  &__item-name-container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__subheader {
+    margin: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: $global-text;
+    @include medium {
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+  &__label-text {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .25rem;
+    font-weight: 600;
+    font-size: .8125rem;
+    line-height: 1.25rem;
+    color: $global-text;
+    @include medium {
+      font-size: .875rem;
+      line-height: 1.375rem;
+    }
+  }
+  &__input-regular {
+    background: $global-background;
+    border: .0625rem solid $border-devider;
+    border-radius: 1.25rem;
+    padding: 0.5rem 1rem;
+    height: 2.25rem;
+    @include medium {
+      height: 2.375rem;
+    }
+    &--invalid {
+      border: .0625rem solid $out-of-stock;
+    }
+    &:focus {
+      outline: none;
+      border: .0625rem solid $global-interect;
+      background-color: $global-background;
+      font-weight: 400;
+      color: $global-text;
+      font-size: .8125rem;
+      line-height: 1.25rem;
+      @include medium {
+        font-size: .875rem;
+        line-height: 1.375rem;
+      }
+    }
+    &::placeholder {
+      font-weight: 400;
+      color: $table-column;
+      font-size: .8125rem;
+      line-height: 1.25rem;
+      @include medium {
+        font-size: .875rem;
+        line-height: 1.375rem;
+      }
+    }
+  }
+  &__input-textarea {
+    resize: none;
+    background: $global-background;
+    border: .0625rem solid $border-devider;
+    border-radius: 1.25rem;
+    height: 7.5rem;
+    padding: 0.5rem 1rem;
+    @include medium {
+    }
+    &--invalid {
+      border: .0625rem solid $out-of-stock;
+    }
+    &:focus {
+      outline: none;
+      border: .0625rem solid $global-interect;
+      color: $global-text;
+    }
+    &::placeholder {
+      font-weight: 400;
+      color: $table-column;
+      font-size: .8125rem;
+      line-height: 1.25rem;
+      @include medium {
+        font-size: .875rem;
+        line-height: 1.375rem;
+      }
+    }
+  }
+  &__input-select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: $global-background;
+    border: .0625rem solid $border-devider;
+    color: $table-column;
+    background-image: url(../../assets/icons/arrow_drop_down-24px.svg);
+    background-position: right 0.7rem top 50%;
+    background-repeat: no-repeat;
+    border-radius: 1.25rem;
+    padding: 0 1rem;
+    height: 2.25rem;
+    font-weight: 400;
+    font-size: .8125rem;
+    line-height: 1.25rem;
+
+    @include medium {
+      font-size: .875rem;
+      line-height: 1.375rem;
+      height: 2.375rem;
+    }
+    &--invalid {
+      border: .0625rem solid $out-of-stock;
+    }
+    &:focus {
+      color: $global-text;
+      outline: none;
+      border: .0625rem solid $global-interect;
+    }
+  }
+
+  &__drop-down {
+    color: $global-text;
+    &:focus {
+      background-color: $global-interect;
+    }
+  }
+
+  &__radio-button {
+    appearance: none;
+    position: relative;
+    width: .5rem;
+    height: .5rem;
+    top: -0.625rem;
+    left: 0rem;
+    border-radius: 50%;
+    &--selected {
+      background-color: $global-interect;
+    }
+  }
+  &__input-radio {
+    width: 1rem;
+    height: 1rem;
+    padding: .1875rem;
+    background-color: white;
+    border-radius: 50%;
+    border: .0625rem solid $border-devider;
+    margin-right: .5rem;
+    &--selected {
+      border: .0625rem solid $global-interect;
+    }
+    &--invalid {
+      border: .0625rem solid $out-of-stock;
+    }
+  }
+  &__description-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    @include medium {
+      margin-top: 1.5rem;
+    }
+  }
+  &__category-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    @include medium {
+      margin-top: 1.5rem;
+    }
+  }
+  &__radio-buttons-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    @include large {
+      width: 50%;
+    }
+  }
+  &__availability {
+    padding: 1rem 1.5rem 0 1.5rem;
+
+    @include medium {
+      width: 50%;
+      padding-left: 2rem;
+      padding-right: 0;
+      padding-top: 0;
+    }
+    @include large {
+      padding-left: 2.5rem;
+    }
+  }
+  &__status-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    @include medium {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__stock-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+  }
+
+  &__warehouse-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    @include medium {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__text {
+    font-weight: 400;
+    font-size: .8125rem;
+    line-height: 1.25rem;
+    color: $table-column;
+    @include medium {
+      font-size: .875rem;
+      line-height: 1.375rem;
+    }
+    &--selected {
+      color: $global-text;
+    }
+  }
+  &__quantity {
+    display: none;
+    margin-bottom: 1rem;
+    @include medium {
+      margin-bottom: 1.5rem;
+    }
+    &--inStock {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 1.5rem;
+    background-color: $page-cta;
+    width: 100%;
+
+    @include medium {
+      padding: 1rem 0;
+      justify-content: right;
+    }
+  }
+
+  &__button-wrapper {
+    width: 100%;
+    @include medium {
+      width: auto;
+    }
+  }
+
+  &__button {
+    border: 0;
+    height: 2.25rem;
+    font-weight: 600;
+    font-size: .8125rem;
+    line-height: 1.25rem;
+    @include medium {
+      padding: 0 1rem;
+      height: 2.375rem;
+    }
+    &--cancel {
+      color: $table-column;
+      background-color: $global-background;
+      border: .0625rem solid $border-devider;
+      border-radius: 1.25rem;
+      width: 100%;
+      @include medium {
+        width: auto;
+      }
+      &:hover {
+        outline: none;
+        border: .0625rem solid $global-interect;
+      }
+    }
+    &--add {
+      margin-left: 1rem;
+      border-radius: 1.25rem;
+      color: $global-background;
+      background-color: $global-interect;
+      width: 100%;
+      @include medium {
+        width: auto;
+        margin-right: 2rem;
+      }
+      @include large {
+        margin-right: 2.5rem;
+      }
+      &:hover {
+        outline: none;
+        background-color: $navigation-hover;
+      }
+    }
+  }
+
+  &__error-text {
+    font-weight: 400;
+    font-size: .6875rem;
+    line-height: 1rem;
+    color: $out-of-stock;
+    padding-top: .25rem;
+    @include medium {
+      font-size: .75rem;
+      line-height: 1.125rem;
+    }
+  }
+  &__error-image {
+    width: .8331rem;
+    height: .8331rem;
+  }
+}

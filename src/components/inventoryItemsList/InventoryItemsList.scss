@@ -1,0 +1,109 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+
+.inventory-list {
+  border-bottom: 1px solid $border-devider;
+  padding: 16px 24px 24px 24px;
+  width: 100%;
+  color: $table-column;
+  display: flex;
+  flex-direction: column;
+  @include medium {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__label-text {
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 16px;
+    color: $table-column;
+    padding-bottom: 4px;
+    @include medium {
+      &--mid {
+        display: none;
+      }
+    }
+  }
+
+  &__body-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: $global-text;
+
+    &--link {
+      text-decoration: none;
+      color: $global-interect;
+      font-weight: 600;
+    }
+  }
+
+  &__chevron {
+    height: 25px;
+    width: 25px;
+    margin: -7px;
+    padding-left: 8px;
+  }
+  &__icon {
+    height: 18px;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    @include medium {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    @include medium {
+      width: 20%;
+    }
+  }
+
+  &__row-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    @include medium {
+      // width: auto;
+    }
+  }
+
+  &__icons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__status {
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 16px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    width: auto;
+    margin-right: auto;
+    height: 24px;
+    @include medium {
+      height: 26px;
+    }
+    &--green {
+      background: rgba(21, 132, 99, 0.07);
+      color: $in-stock;
+    }
+    &--red {
+      background: rgba(201, 69, 21, 0.07);
+      color: $out-of-stock;
+    }
+  }
+}
