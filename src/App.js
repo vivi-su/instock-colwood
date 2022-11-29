@@ -23,13 +23,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
-
   const [inventoryItemsList, setInventoryItemsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
 
   //<----------------WAREHOUSE---------------------------->
   //get data for warehouse
-
   useEffect(() => {
     const fetchAllwarehouses = async () => {
       try {
@@ -49,16 +47,14 @@ function App() {
     );
   }
 
-  // console.log();
-  // function handleAddWarehouse() {
-  //   setWarehouseList();
-  //   //here will go the added warehouse
-  // }
-
-  function handleEditWarehouse(warehouseId) {
-    setWarehouseList.filter((warehouse) => warehouse.id === warehouseId);
-    //here will go the edited warehouse
+  function handleAddWarehouse() {
+    setWarehouseList(warehouseList);
   }
+
+  // function handleEditWarehouse() {
+  //   setWarehouseList();
+  //   //here will go the edited warehouse
+  // }
 
   //<----------------INVENTORY---------------------------->
   //get data for inventory
@@ -85,7 +81,7 @@ function App() {
   function handleEditItem(editInventoryItem) {
     setInventoryItemsList(editInventoryItem);
   }
-
+  // console.log(inventoryItemsList);
   return (
     <BrowserRouter>
       <div className="app-container">
@@ -127,7 +123,7 @@ function App() {
               />
               <Route
                 path="warehouses/addWarehouse"
-                element={<AddWarehouse />}
+                element={<AddWarehouse warehouseList={warehouseList} />}
               />
 
               {/*<---------------- INVENTORY PAGE ---------------->*/}
@@ -148,35 +144,16 @@ function App() {
               </Route>
               <Route
                 path="inventory/:itemId"
-                element={<InventoryItemDetails />}
+                element={<InventoryItemDetails warehouseList={warehouseList} />}
               />
-
-            </Route>
-            <Route
-              path="warehouses/:warehouseId"
-              element={<WarehouseSingle />}
-            />
-            <Route
-              element={
-                <EditWarehouse
-                  warehouseList={warehouseList}
-                  handleEditWarehouse={handleEditWarehouse}
-                />
-              }
-              path="warehouses/editWarehouse/:warehouseId"
-            />
-            <Route path="warehouses/addWarehouse" element={<AddWarehouse />} />
-
-            {/*<---------------- INVENTORY PAGE ---------------->*/}
-            {/* The Inventory page has only one nested to DELETE an existing item*/}
-            <Route
-              path="/inventory"
-              element={<Inventory inventoryItemsList={inventoryItemsList} />}
-            >
-            
               <Route
                 path="inventory/editInventoryItem/:itemId"
-                element={<EditInventoryItem />}
+                element={
+                  <EditInventoryItem
+                    inventoryItemsList={inventoryItemsList}
+                    handleEditItem={handleEditItem}
+                  />
+                }
               />
               <Route
                 path="inventory/addInventoryItem"
@@ -193,6 +170,7 @@ function App() {
               <Route path="*" element={<Warehouses />} />
             </Routes>
           </main>
+          {/* </div> */}
           {/* Footer stays outside the routes */}
           <div className="footer-wrapper">
             <footer className="footer-container">
@@ -200,41 +178,6 @@ function App() {
             </footer>
           </div>
         </div>
-        
-            </Route>
-            <Route
-              path="inventory/:itemId"
-              element={<InventoryItemDetails warehouseList={warehouseList} />}
-            />
-            <Route
-              path="inventory/editInventoryItem/:itemId"
-              element={
-                <EditInventoryItem
-                  inventoryItemsList={inventoryItemsList}
-                  handleEditItem={handleEditItem}
-                />
-              }
-            />
-            <Route
-              path="inventory/addInventoryItem"
-              element={
-                <AddInventoryItem
-                  inventoryItemsList={inventoryItemsList}
-                  handleAddItem={handleAddItem}
-                />
-              }
-            />
-
-            {/*<---------------- FALLBACK ROUTE ---------------->*/}
-            {/* Fallback route will direct user to Warehouses page*/}
-            <Route path="*" element={<Warehouses />} />
-          </Routes>
-        </main>
-        {/* Footer stays outside the routes */}
-        <footer className="footer-container">
-          <Footer />
-        </footer>
-
       </div>
     </BrowserRouter>
   );
