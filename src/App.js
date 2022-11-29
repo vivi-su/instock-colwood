@@ -63,6 +63,7 @@ function App() {
   // }
 
 
+
   //<----------------INVENTORY---------------------------->
   //get data for inventory
   useEffect(() => {
@@ -85,9 +86,11 @@ function App() {
     setInventoryItemsList(newInventoryItem);
   }
 
+
   function handleEditItem(editInventoryItem) {
     setInventoryItemsList(editInventoryItem);
   }
+
 
   // console.log(inventoryItemsList);
   return (
