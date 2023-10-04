@@ -1,71 +1,63 @@
-# Getting Started with Create React App
+# InSTOCK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Responsive Web Design (RWD) **Full-stack React/Express APP** built in week-long sprint with a group of 4: Anastasia Zaika, Aline Bellozo, Priscila Moura and Vivi Su.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+In a team of four, our task was to develop an inventory management system for a fictional company. 
 
-### `npm start`
+We were provided with a Figma design file and were responsible for constructing a backend-end using a relational MYSQL databse, connected with Knex.js and a server using Express.js.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The front-end was built using React (Axios,Scss and React Router Dom). The app allow user to view warehouse and inventory data as well as add, edit, and delete warehouses and inventories.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Screenshots
 
-### `npm test`
+![Instock1](https://github.com/vivi-su/instock-colwood/assets/81454201/a6c918d9-8053-4515-8a16-3ed31e51ec35)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Instock2](https://github.com/vivi-su/instock-colwood/assets/81454201/9cd292a5-9b4b-4ba4-9044-363ef19ab249)
 
-### `npm run build`
+![Instock3](https://github.com/vivi-su/instock-colwood/assets/81454201/5db22376-6251-4d97-accf-3d0c213b59b8)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Instock4](https://github.com/vivi-su/instock-colwood/assets/81454201/edebe93c-a88b-4060-bf5f-dfd5d97c9858)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Developer Installation Instructions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Set Up The Database
 
-### `npm run eject`
+1. Create an .env file at back-end app with the following contents:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   `
+   DB_LOCAL_DBNAME = "<your_db_username>";
+   DB_LOCAL_USER = "<your_db_user>";
+   DB_LOCAL_PASSWORD = "<your_db_password>";
+   PORT = "<your_port>";
+   `
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Create your MYSQL database, you can call it 'instock'.
+   In the terminal, enter command lines as follow:
+   `
+   mysql -u root -p
+   CREATE DATABASE instock;
+   USE instock;
+   `
+3. Create the table at back-end app
+   ` npx knex migrate:latest`
+4. Seed your data
+   `npx knex seed:run` to execute all seed files and add seed data to each table
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Start Your Server
+- cd into the server folder
+- npm run dev
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Start Your Client
+- cd into the client folder
+- npm start
 
-## Learn More
+### Tech Stack
+Back-end built in NodeJS and ExpressJS on the foundation of MYSQL database and connected with Knex.
+Front-end built in React(create-react-app), BEM/SCSS and react-router-dom.
+* npm to install packages that will aid in project development
+* Postman
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# instock-colwood
+### What We Learned
+#### Using Branches effectively and Selecting Relative Tickets 
