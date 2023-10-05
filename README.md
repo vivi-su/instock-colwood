@@ -27,9 +27,12 @@ The front-end was built using React (Axios,Scss and React Router Dom). The app a
 1. Create an .env file at back-end app with the following contents:
 
    
-   `DB_LOCAL_DBNAME = "<your_db_username>";`<br>
+   `DB_LOCAL_DBNAME = "<your_db_username>";`
+   
    `DB_LOCAL_USER = "<your_db_user>";`
+
    `DB_LOCAL_PASSWORD = "<your_db_password>";`
+
    `PORT = "<your_port>";`
    
 
@@ -37,7 +40,9 @@ The front-end was built using React (Axios,Scss and React Router Dom). The app a
    In the terminal, enter command lines as follow:
    
    `mysql -u root -p`
+   
    `CREATE DATABASE instock;`
+
    `USE instock;`
    
 5. Create the table at back-end app
