@@ -26,20 +26,20 @@ The front-end was built using React (Axios,Scss and React Router Dom). The app a
 
 1. Create an .env file at back-end app with the following contents:
 
-   `
-   DB_LOCAL_DBNAME = "<your_db_username>";
-   DB_LOCAL_USER = "<your_db_user>";
-   DB_LOCAL_PASSWORD = "<your_db_password>";
-   PORT = "<your_port>";
-   `
+   
+   `DB_LOCAL_DBNAME = "<your_db_username>";`
+   `DB_LOCAL_USER = "<your_db_user>";`
+   `DB_LOCAL_PASSWORD = "<your_db_password>";`
+   `PORT = "<your_port>";`
+   
 
 2. Create your MYSQL database, you can call it 'instock'.
    In the terminal, enter command lines as follow:
-   `
-   mysql -u root -p
-   CREATE DATABASE instock;
-   USE instock;
-   `
+   
+   `mysql -u root -p`
+   `CREATE DATABASE instock;`
+   `USE instock;`
+   
 3. Create the table at back-end app
    ` npx knex migrate:latest`
 4. Seed your data
@@ -61,3 +61,4 @@ Front-end built in React(create-react-app), BEM/SCSS and react-router-dom.
 
 ### What We Learned
 #### Using Branches effectively and Selecting Relative Tickets 
+We took pride in successfully completing this project as a collaborative team effort. Along the way, we encountered challenges, inclufing merge conflict in the later stages and differing opinions on React State management. However, we worked closely, continuously sharing our thoughts throughout the week. One area for improvement is our approach to selecting relevant tickets from the project management board in JIRA more strategically. This would help us duplicating code for similar pages, such as viewing the Warehouse and Inventory tables, as well as adding and editing of these pages.
