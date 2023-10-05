@@ -33,16 +33,17 @@ The front-end was built using React (Axios,Scss and React Router Dom). The app a
    `PORT = "<your_port>";`
    
 
-2. Create your MYSQL database, you can call it 'instock'.
+3. Create your MYSQL database, you can call it 'instock'.
    In the terminal, enter command lines as follow:
    
    `mysql -u root -p`
    `CREATE DATABASE instock;`
    `USE instock;`
    
-3. Create the table at back-end app
+5. Create the table at back-end app
    ` npx knex migrate:latest`
-4. Seed your data
+   
+7. Seed your data
    `npx knex seed:run` to execute all seed files and add seed data to each table
 
 #### Start Your Server
