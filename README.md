@@ -2,6 +2,8 @@
 
 Responsive Web Design (RWD) **Full-stack React/Express APP** built in week-long sprint with a group of 4: Anastasia Zaika, Aline Bellozo, Priscila Moura and Vivi Su.
 
+- View the backend repo here https://github.com/vivi-su/instock-api-colwood
+
 ## Overview
 
 In a team of four, our task was to develop an inventory management system for a fictional company. 
@@ -67,4 +69,4 @@ Front-end built in React(create-react-app), BEM/SCSS and react-router-dom.
 
 ### What We Learned
 #### Using Branches effectively and Selecting Relative Tickets 
-We took pride in successfully completing this project as a collaborative team effort. Along the way, we encountered challenges, inclufing merge conflict in the later stages and differing opinions on React State management. However, we worked closely, continuously sharing our thoughts throughout the week. One area for improvement is our approach to selecting relevant tickets from the project management board in JIRA more strategically. This would help us duplicating code for similar pages, such as viewing the Warehouse and Inventory tables, as well as adding and editing of these pages.
+We took pride in successfully completing this project as a collaborative team effort. Along the way, we encountered challenges, including merge conflict in the later stages and differing opinions on React State management. However, we worked closely, continuously sharing our thoughts throughout the week. One area for improvement is our approach to selecting relevant tickets from the project management board in JIRA more strategically. This would help us from duplicating code for similar pages, such as viewing the Warehouse and Inventory tables, as well as adding and editing of Warehouse and Inventory.
